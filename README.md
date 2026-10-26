@@ -5,6 +5,11 @@ host, guest count, appetizers, salad or soup, entree, and dessert) and it builds
 printable prep sheets, one page per prep day. Each task is back-scheduled from Chef's day
 and hour offsets.
 
+The same repo serves the **Prep Planner** website, https://imprimisxo.github.io/fiveoaks-prep-planner/,
+where Chef enters dinners and builds the prep list from any device. GitHub Pages serves it
+from `docs/`. This repo was merged with the old `fiveoaks-prep-list` repo on 2026-10-26;
+that one is archived.
+
 ## What's here
 
 | Path | What it is |
@@ -15,9 +20,10 @@ and hour offsets.
 | `scripts/prep_core.js` | The scheduling and Word file code, shared by the generator and the web app |
 | `scripts/render_docx.sh` | Renders the Word file to PDF through Microsoft Word, for checking |
 | `scripts/stage_webapp.sh` | Gathers the web app's files into one folder for publishing |
-| `scripts/publish_site.sh` | Pushes the web app to its website, https://imprimisxo.github.io/fiveoaks-prep-planner/ |
+| `scripts/publish_site.sh` | Stages the web app into `docs/` and pushes it to the website |
 | `webapp/index.html` | The Prep Planner web app: enter dinners, pick menus, build the prep list |
 | `webapp/firestore.rules` | Access rules for the website's Firebase database |
+| `docs/` | The website's served copies. Rebuilt by `publish_site.sh`; don't edit by hand |
 | `references/selection_menu.md` | The appetizer, salad or soup, dinner, and dessert pick list |
 | `assets/FiveOaksLogo.png` | The Five Oaks logo printed on each sheet |
 
@@ -26,9 +32,10 @@ and hour offsets.
 Clone into your Claude Code skills folder:
 
 ```bash
-git clone https://github.com/imprimisxo/fiveoaks-prep-list.git ~/.claude/skills/fiveoaks-prep-list
+git clone https://github.com/imprimisxo/fiveoaks-prep-planner.git ~/.claude/skills/fiveoaks-prep-list
 ```
 
-Then ask Claude Code for a Five Oaks prep list, or give it a host and a dinner date.
+The folder keeps the skill's name, `fiveoaks-prep-list`. Then ask Claude Code for a Five
+Oaks prep list, or give it a host and a dinner date.
 
 Generated prep lists save to `~/Five_Oaks/Prep Lists/` and are not tracked here.

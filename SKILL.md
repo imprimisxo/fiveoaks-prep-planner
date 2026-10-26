@@ -40,8 +40,9 @@ say "per SOP"; those SOPs live in `/Users/cheflance/Five_Oaks/SOP/`.
 | `scripts/prep_core.js` | The scheduling and document code itself, shared by the generator and the web app |
 | `scripts/render_docx.sh` | Renders a .docx through Microsoft Word to PDF and page PNGs |
 | `scripts/stage_webapp.sh` | Gathers the web app and the files it loads into one folder for publishing |
-| `scripts/publish_site.sh` | Pushes the staged web app to the no-login website (GitHub Pages) |
+| `scripts/publish_site.sh` | Stages the web app into `docs/` and pushes it to the no-login website (GitHub Pages) |
 | `webapp/index.html` | The Prep Planner web app (see "Web app" below) |
+| `docs/` | The website's served copies, rebuilt by `publish_site.sh`; never edited by hand |
 | `webapp/firestore.rules` | The website database's access rules, pasted into the Firebase console |
 | `references/selection_menu.md` | The appetizer, salad or soup, dinner, and dessert selection menu shown when Chef gives a host and date |
 | `assets/FiveOaksLogo.png` | Green FIVE OAKS mallard wordmark, 700 x 204 |
@@ -333,10 +334,13 @@ was slow. The artifact still works.
   wildcard `{service}`: `service` is a reserved word there, and the rules won't compile.
   **Change kitchen code** in the footer forgets the code on that device.
   Firestore keeps an offline copy, so the list opens and edits queue when the Wi-Fi drops.
-- **Website files.** The public repo `imprimisxo/fiveoaks-prep-planner` holds only staged
-  copies: `index.html`, `prep_core.js`, `menu.json`, the logo, `firebase-config.json`
-  and `.nojekyll`. Never edit it directly. `webapp/firebase-config.json` is the Firebase
-  web config. It is public by design: it only tells browsers where the database is.
+- **Website files.** This skill's own repo, the public `imprimisxo/fiveoaks-prep-planner`,
+  serves the site from `docs/` (Chef merged the old `fiveoaks-prep-list` repo into it on
+  2026-10-26 and archived it). `docs/` holds staged copies: `index.html`, `prep_core.js`,
+  `menu.json`, the logo, `firebase-config.json` and `.nojekyll`. Never edit `docs/` by
+  hand; `publish_site.sh` rebuilds it from the sources. `webapp/firebase-config.json` is
+  the Firebase web config. It is public by design: it only tells browsers where the
+  database is.
 - **Dinner fields**, the same in both stores, one document per dinner: `host`, `date`
   (YYYY-MM-DD), `guests`, `appetizer_duck` and `appetizer_nonduck` (key or `none`),
   `salad` (key or `none`), `meal` (`"1"` to `"5"`), `dessert` (key or `none`), `created`.
@@ -348,8 +352,10 @@ was slow. The artifact still works.
   ask him for the dinners instead. Then run them through Steps 2 to 5.
 - **Republish after any change** to `menu.json`, `prep_core.js`, or `webapp/index.html`,
   or the pages keep the old menu.
-  - Website: run `scripts/publish_site.sh "<commit message>"`. It clones the site repo,
-    stages the files, and pushes. GitHub Pages updates in about a minute.
+  - Website: run `scripts/publish_site.sh "<commit message>"`. It stages the files into
+    `docs/`, commits them together with the sources they came from, and pushes the
+    skill's repo. Other uncommitted work stays out of that commit. GitHub Pages updates
+    in about a minute.
   - Artifact: stage the files into the scratchpad with `scripts/stage_webapp.sh
     <scratchpad>/prep-app`, then publish the staged `index.html` with `prep_core.js`,
     `menu.json` and `FiveOaksLogo.png` as `files`. Pass the artifact URL as `url` (read
