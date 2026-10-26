@@ -1,9 +1,9 @@
 # Five Oaks Prep List
 
 A Claude Code skill for the Five Oaks Duck Lodge kitchen. Give it a dinner booking (date,
-host, guest count, salad or soup, entree, and dessert) and it builds dated, printable prep
-sheets, one page per prep day. Each task is back-scheduled from Chef's day and hour
-offsets.
+host, guest count, appetizers, salad or soup, entree, and dessert) and it builds dated,
+printable prep sheets, one page per prep day. Each task is back-scheduled from Chef's day
+and hour offsets.
 
 ## What's here
 
@@ -18,7 +18,7 @@ offsets.
 | `scripts/publish_site.sh` | Pushes the web app to its website, https://imprimisxo.github.io/fiveoaks-prep-planner/ |
 | `webapp/index.html` | The Prep Planner web app: enter dinners, pick menus, build the prep list |
 | `webapp/firestore.rules` | Access rules for the website's Firebase database |
-| `references/selection_menu.md` | The salad or soup, dinner, and dessert pick list |
+| `references/selection_menu.md` | The appetizer, salad or soup, dinner, and dessert pick list |
 | `assets/FiveOaksLogo.png` | The Five Oaks logo printed on each sheet |
 
 ## Install
