@@ -9,10 +9,11 @@
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
 
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, and the Mushroom & Cheese Arancini the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, and the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05.",
   "appetizers": {
     "asian-grilled-duck": { "category": "duck", "name": "Asian Grilled Duck", "short": "Asian Grilled Duck", "components": ["Asian Grilled Duck"] },
     "bbq-duck-breast": { "category": "duck", "name": "BBQ Duck Breast", "short": "BBQ Duck", "components": ["BBQ Duck Breast"] },
+    "crispy-wonton-cups-sausage-cheddar": { "category": "non-duck", "name": "Crispy Wonton Cups with Sausage & Cheddar", "short": "Wonton Cups", "components": ["Crispy Wonton Cups with Sausage & Cheddar"] },
     "duck-and-bacon-wonton-tacos": { "category": "duck", "name": "Duck and Bacon Wonton Tacos", "short": "Wonton Tacos", "components": ["Duck and Bacon Wonton Tacos"] },
     "duck-and-cheese-wontons": { "category": "duck", "name": "Duck and Cheese Wontons", "short": "Cheese Wontons", "components": ["Duck and Cheese Wontons"] },
     "duck-and-mushroom-flatbread": { "category": "duck", "name": "Duck and Mushroom Flatbread", "short": "Mushroom Flatbread", "components": ["Duck and Mushroom Flatbread"] },
@@ -463,6 +464,18 @@
         "-30 minutes, reheat reduction base to 165°F, mount with cold butter, add sherry vinegar, season; hold at 135-150°F",
         "-20 minutes, bake tarts at 385°F convection 12-16 minutes to 165°F center; rest 3 minutes",
         "0 hours, plate tart off-center with 30 g reduction beside, not under; chives, microgreens, olive oil drops"
+      ]
+    },
+    "Crispy Wonton Cups with Sausage & Cheddar": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-05 from FiveOaks_SOP_Crispy_Wonton_Cups_with_Sausage_and_Cheddar, on the SOP's Step 1 plan: empty shells baked and filling made at -1 day (the SOP allows the shells 2 days at room temperature; -1 day keeps them crisp); oven to 375°F at -40 minutes; shells filled at -20 minutes and baked from -15 minutes to a 165°F center, so every cup goes out within the SOP's 30 minutes of filling; passed at 6:00 PM. One SOP batch is 24 cups in one mini muffin tin, 2-3 cups per guest (8-12 guests).",
+      "tasks": [
+        "-1 days, bake 24 empty wonton shells per SOP: mini muffin tin, 375°F 5 minutes, golden not brown; cool, store airtight at room temperature: 24 cups per SOP batch, 2-3 cups per guest",
+        "-1 days, brown 300 g sausage to 160°F with the red pepper, drain; mix filling per SOP, about 600 g per batch; chill shallow, cover, label",
+        "-40 minutes, heat oven to 375°F; set the shells back in the mini muffin tin",
+        "-20 minutes, stir filling; fill shells 25 g each (#40 disher), below the rim",
+        "-15 minutes, bake 8-12 minutes to 165°F center, cheese bubbling; rest 2 minutes in the tin",
+        "0 hours, unmold onto platter, single layer, corners up; pass warm with napkins"
       ]
     },
 
