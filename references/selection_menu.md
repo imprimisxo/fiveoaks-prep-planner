@@ -87,9 +87,13 @@ question tool: it caps a question at 4 options, and there are 23 duck appetizers
       <div class="elicit-pills" data-name="host_nonduck_app" data-multi="false">
         <button type="button" class="elicit-pill" data-value="three-cheese-spinach-dip">3 Cheese Spinach Dip</button>
         <button type="button" class="elicit-pill" data-value="crispy-wonton-cups-sausage-cheddar">Crispy Wonton Cups with Sausage &amp; Cheddar</button>
+        <button type="button" class="elicit-pill" data-value="curried-sausage-puff-pastry-bites">Curried Sausage Puff Pastry Bites</button>
+        <button type="button" class="elicit-pill" data-value="lemon-shrimp-cheesecake-tartlets">Lemon Shrimp Cheesecake Tartlets</button>
         <button type="button" class="elicit-pill" data-value="mushroom-and-cheese-arancini">Mushroom &amp; Cheese Arancini</button>
+        <button type="button" class="elicit-pill" data-value="rustic-eggplant-caponata-crostini">Rustic Eggplant Caponata Crostini</button>
         <button type="button" class="elicit-pill" data-value="southern-fried-catfish-bites">Southern Fried Catfish Bites</button>
         <button type="button" class="elicit-pill" data-value="wild-mushroom-gruyere-tart">Wild Mushroom &amp; Gruyère Tart</button>
+        <button type="button" class="elicit-pill" data-value="wild-mushroom-gruyere-tarts-cognac">Wild Mushroom &amp; Gruyère Tarts with Cognac-Thyme Reduction</button>
         <button type="button" class="elicit-pill" data-value="none">No non-duck appetizer</button>
       </div>
     </div>

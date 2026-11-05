@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 28 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 32 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add a Non-duck appetizer, add its component
@@ -464,7 +464,21 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     minutes and oven-finished from -20 minutes. A fifth, the Crispy Wonton Cups with
     Sausage & Cheddar ("Wonton Cups"), was added on 2026-11-05 from its new SOP: shells
     baked and filling made at -1 day, oven to 375°F at -40 minutes, filled at -20 minutes,
-    baked from -15 minutes to a 165°F center. Their prep lists carry Chef's calls: pizza
+    baked from -15 minutes to a 165°F center. The Rustic Eggplant Caponata Crostini
+    ("Caponata Crostini") was added the same day: caponata made at -2 days, pine nuts
+    toasted at -1 day, caponata out to room temperature at -1 hour, bread toasted from -45
+    minutes, topped at -15 minutes, passed at room temperature. So were the Wild Mushroom &
+    Gruyère Tarts with Cognac-Thyme Reduction ("Cognac Mushroom Tarts"): pastry thawed and
+    stock, cream, filling, and reduction base made at -2 days, cups lined at -1 day, shells
+    blind-baked at -4 hours, filled at -45 minutes, baked from -15 minutes to a 165°F
+    center. The Curried Sausage Puff Pastry Bites
+    ("Sausage Bites") followed the same day, from its new SOP, with precooked cocktail
+    smokies: pastry thawed at -2 days, chutney mixed and bites wrapped at -1 day, oven to
+    400°F at -45 minutes, egg-washed and baked from -25 minutes to a 165°F smokie
+    center. The Lemon Shrimp Cheesecake Tartlets ("Shrimp Tartlets") were added the same day
+    from their new SOP, with BEK #138973 61/70 shrimp: shrimp thawed and tartlets baked to a
+    150°F center at -1 day, shrimp cooked to 145°F at -2 hours, topped at -30 minutes,
+    passed chilled. Their prep lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
   - **House Bacon Salad:** unchanged on purpose. Chef keeps tempering the spinach at -1 hour,
