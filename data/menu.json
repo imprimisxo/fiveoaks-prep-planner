@@ -1,6 +1,5 @@
 {
   "_about": "Five Oaks Duck Lodge menu and prep timing. Source: /Users/cheflance/Five_Oaks/Prep List.docx (Chef Lance, 2026-10-20), with Chef's corrections of 2026-10-22 (see SKILL.md). This file, not the .docx, is now the source of truth. Each task reads '<offset>, <task>' in Chef's wording. Day offsets put the task on a dated sheet as advance prep; hour and minute offsets put it on the service-day timeline, counted back from that component's course time.",
-
   "service_times": {
     "appetizers": "18:00",
     "salad": "19:00",
@@ -8,118 +7,387 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, and the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day.",
   "appetizers": {
-    "asian-grilled-duck": { "category": "duck", "name": "Asian Grilled Duck", "short": "Asian Grilled Duck", "components": ["Asian Grilled Duck"] },
-    "bbq-duck-breast": { "category": "duck", "name": "BBQ Duck Breast", "short": "BBQ Duck", "components": ["BBQ Duck Breast"] },
-    "crispy-wonton-cups-sausage-cheddar": { "category": "non-duck", "name": "Crispy Wonton Cups with Sausage & Cheddar", "short": "Wonton Cups", "components": ["Crispy Wonton Cups with Sausage & Cheddar"] },
-    "duck-and-bacon-wonton-tacos": { "category": "duck", "name": "Duck and Bacon Wonton Tacos", "short": "Wonton Tacos", "components": ["Duck and Bacon Wonton Tacos"] },
-    "duck-and-cheese-wontons": { "category": "duck", "name": "Duck and Cheese Wontons", "short": "Cheese Wontons", "components": ["Duck and Cheese Wontons"] },
-    "duck-and-mushroom-flatbread": { "category": "duck", "name": "Duck and Mushroom Flatbread", "short": "Mushroom Flatbread", "components": ["Duck and Mushroom Flatbread"] },
-    "duck-arancini": { "category": "duck", "name": "Duck Arancini", "short": "Arancini", "components": ["Duck Arancini"] },
-    "duck-asian-egg-rolls": { "category": "duck", "name": "Duck Asian Egg Rolls", "short": "Asian Egg Rolls", "components": ["Duck Asian Egg Rolls"] },
-    "duck-beignets": { "category": "duck", "name": "Duck Beignets", "short": "Beignets", "components": ["Duck Beignets"] },
-    "duck-carpaccio": { "category": "duck", "name": "Duck Carpaccio", "short": "Carpaccio", "components": ["Duck Carpaccio"] },
-    "duck-confit-crab-cakes": { "category": "duck", "name": "Duck Confit Crab Cakes", "short": "Crab Cakes", "components": ["Duck Confit Crab Cakes"] },
-    "duck-confit-cream-cheese-dip": { "category": "duck", "name": "Duck Confit Cream Cheese Dip", "short": "Confit Dip", "components": ["Duck Confit Cream Cheese Dip"] },
-    "duck-confit-pizza": { "category": "duck", "name": "Duck Confit Pizza", "short": "Confit Pizza", "components": ["Duck Confit Pizza"] },
-    "duck-confit-waffles": { "category": "duck", "name": "Duck Confit Waffles", "short": "Confit Waffles", "components": ["Duck Confit Waffles"] },
-    "duck-empanadas": { "category": "duck", "name": "Duck Empanadas", "short": "Empanadas", "components": ["Duck Empanadas"] },
-    "duck-nachos-three-ways": { "category": "duck", "name": "Duck Nachos, Three Ways", "short": "Nachos", "components": ["Duck Nachos, Three Ways"] },
-    "duck-prosciutto": { "category": "duck", "name": "Duck Prosciutto", "short": "Prosciutto", "components": ["Duck Prosciutto"] },
-    "duck-roll-ups": { "category": "duck", "name": "Duck Roll Ups", "short": "Roll Ups", "components": ["Duck Roll Ups"] },
-    "duck-southwest-egg-rolls": { "category": "duck", "name": "Duck Southwest Egg Rolls", "short": "Southwest Egg Rolls", "components": ["Duck Southwest Egg Rolls"] },
-    "duck-tamales": { "category": "duck", "name": "Duck Tamales", "short": "Tamales", "components": ["Duck Tamales"] },
-    "duck-tender-pow-pow": { "category": "duck", "name": "Duck Tender Pow Pow", "short": "Pow Pow", "components": ["Duck Tender Pow Pow"] },
-    "duck-wings-three-sauces": { "category": "duck", "name": "Duck Wings, Three Sauces", "short": "Duck Wings", "components": ["Duck Wings, Three Sauces"] },
-    "fried-duck-tenders": { "category": "duck", "name": "Fried Duck Tenders", "short": "Duck Tenders", "components": ["Fried Duck Tenders"] },
-    "mushroom-and-cheese-arancini": { "category": "non-duck", "name": "Mushroom & Cheese Arancini", "short": "Mushroom Arancini", "components": ["Mushroom & Cheese Arancini"] },
-    "smoked-duck-breast": { "category": "duck", "name": "Smoked Duck Breast", "short": "Smoked Duck", "components": ["Smoked Duck Breast"] },
-    "southern-fried-catfish-bites": { "category": "non-duck", "name": "Southern Fried Catfish Bites", "short": "Catfish Bites", "components": ["Southern Fried Catfish Bites"] },
-    "three-cheese-spinach-dip": { "category": "non-duck", "name": "3 Cheese Spinach Dip", "short": "Spinach Dip", "components": ["3 Cheese Spinach Dip"] },
-    "wild-mushroom-gruyere-tart": { "category": "non-duck", "name": "Wild Mushroom & Gruyère Tart", "short": "Mushroom Tart", "components": ["Wild Mushroom & Gruyère Tart"] }
+    "asian-grilled-duck": {
+      "category": "duck",
+      "name": "Asian Grilled Duck",
+      "short": "Asian Grilled Duck",
+      "components": [
+        "Asian Grilled Duck"
+      ]
+    },
+    "bbq-duck-breast": {
+      "category": "duck",
+      "name": "BBQ Duck Breast",
+      "short": "BBQ Duck",
+      "components": [
+        "BBQ Duck Breast"
+      ]
+    },
+    "crispy-wonton-cups-sausage-cheddar": {
+      "category": "non-duck",
+      "name": "Crispy Wonton Cups with Sausage & Cheddar",
+      "short": "Wonton Cups",
+      "components": [
+        "Crispy Wonton Cups with Sausage & Cheddar"
+      ]
+    },
+    "curried-sausage-puff-pastry-bites": {
+      "category": "non-duck",
+      "name": "Curried Sausage Puff Pastry Bites",
+      "short": "Sausage Bites",
+      "components": [
+        "Curried Sausage Puff Pastry Bites"
+      ]
+    },
+    "rustic-eggplant-caponata-crostini": {
+      "category": "non-duck",
+      "name": "Rustic Eggplant Caponata Crostini",
+      "short": "Caponata Crostini",
+      "components": [
+        "Rustic Eggplant Caponata Crostini"
+      ]
+    },
+    "duck-and-bacon-wonton-tacos": {
+      "category": "duck",
+      "name": "Duck and Bacon Wonton Tacos",
+      "short": "Wonton Tacos",
+      "components": [
+        "Duck and Bacon Wonton Tacos"
+      ]
+    },
+    "duck-and-cheese-wontons": {
+      "category": "duck",
+      "name": "Duck and Cheese Wontons",
+      "short": "Cheese Wontons",
+      "components": [
+        "Duck and Cheese Wontons"
+      ]
+    },
+    "duck-and-mushroom-flatbread": {
+      "category": "duck",
+      "name": "Duck and Mushroom Flatbread",
+      "short": "Mushroom Flatbread",
+      "components": [
+        "Duck and Mushroom Flatbread"
+      ]
+    },
+    "duck-arancini": {
+      "category": "duck",
+      "name": "Duck Arancini",
+      "short": "Arancini",
+      "components": [
+        "Duck Arancini"
+      ]
+    },
+    "duck-asian-egg-rolls": {
+      "category": "duck",
+      "name": "Duck Asian Egg Rolls",
+      "short": "Asian Egg Rolls",
+      "components": [
+        "Duck Asian Egg Rolls"
+      ]
+    },
+    "duck-beignets": {
+      "category": "duck",
+      "name": "Duck Beignets",
+      "short": "Beignets",
+      "components": [
+        "Duck Beignets"
+      ]
+    },
+    "duck-carpaccio": {
+      "category": "duck",
+      "name": "Duck Carpaccio",
+      "short": "Carpaccio",
+      "components": [
+        "Duck Carpaccio"
+      ]
+    },
+    "duck-confit-crab-cakes": {
+      "category": "duck",
+      "name": "Duck Confit Crab Cakes",
+      "short": "Crab Cakes",
+      "components": [
+        "Duck Confit Crab Cakes"
+      ]
+    },
+    "duck-confit-cream-cheese-dip": {
+      "category": "duck",
+      "name": "Duck Confit Cream Cheese Dip",
+      "short": "Confit Dip",
+      "components": [
+        "Duck Confit Cream Cheese Dip"
+      ]
+    },
+    "duck-confit-pizza": {
+      "category": "duck",
+      "name": "Duck Confit Pizza",
+      "short": "Confit Pizza",
+      "components": [
+        "Duck Confit Pizza"
+      ]
+    },
+    "duck-confit-waffles": {
+      "category": "duck",
+      "name": "Duck Confit Waffles",
+      "short": "Confit Waffles",
+      "components": [
+        "Duck Confit Waffles"
+      ]
+    },
+    "duck-empanadas": {
+      "category": "duck",
+      "name": "Duck Empanadas",
+      "short": "Empanadas",
+      "components": [
+        "Duck Empanadas"
+      ]
+    },
+    "duck-nachos-three-ways": {
+      "category": "duck",
+      "name": "Duck Nachos, Three Ways",
+      "short": "Nachos",
+      "components": [
+        "Duck Nachos, Three Ways"
+      ]
+    },
+    "duck-prosciutto": {
+      "category": "duck",
+      "name": "Duck Prosciutto",
+      "short": "Prosciutto",
+      "components": [
+        "Duck Prosciutto"
+      ]
+    },
+    "duck-roll-ups": {
+      "category": "duck",
+      "name": "Duck Roll Ups",
+      "short": "Roll Ups",
+      "components": [
+        "Duck Roll Ups"
+      ]
+    },
+    "duck-southwest-egg-rolls": {
+      "category": "duck",
+      "name": "Duck Southwest Egg Rolls",
+      "short": "Southwest Egg Rolls",
+      "components": [
+        "Duck Southwest Egg Rolls"
+      ]
+    },
+    "duck-tamales": {
+      "category": "duck",
+      "name": "Duck Tamales",
+      "short": "Tamales",
+      "components": [
+        "Duck Tamales"
+      ]
+    },
+    "duck-tender-pow-pow": {
+      "category": "duck",
+      "name": "Duck Tender Pow Pow",
+      "short": "Pow Pow",
+      "components": [
+        "Duck Tender Pow Pow"
+      ]
+    },
+    "duck-wings-three-sauces": {
+      "category": "duck",
+      "name": "Duck Wings, Three Sauces",
+      "short": "Duck Wings",
+      "components": [
+        "Duck Wings, Three Sauces"
+      ]
+    },
+    "fried-duck-tenders": {
+      "category": "duck",
+      "name": "Fried Duck Tenders",
+      "short": "Duck Tenders",
+      "components": [
+        "Fried Duck Tenders"
+      ]
+    },
+    "mushroom-and-cheese-arancini": {
+      "category": "non-duck",
+      "name": "Mushroom & Cheese Arancini",
+      "short": "Mushroom Arancini",
+      "components": [
+        "Mushroom & Cheese Arancini"
+      ]
+    },
+    "smoked-duck-breast": {
+      "category": "duck",
+      "name": "Smoked Duck Breast",
+      "short": "Smoked Duck",
+      "components": [
+        "Smoked Duck Breast"
+      ]
+    },
+    "southern-fried-catfish-bites": {
+      "category": "non-duck",
+      "name": "Southern Fried Catfish Bites",
+      "short": "Catfish Bites",
+      "components": [
+        "Southern Fried Catfish Bites"
+      ]
+    },
+    "three-cheese-spinach-dip": {
+      "category": "non-duck",
+      "name": "3 Cheese Spinach Dip",
+      "short": "Spinach Dip",
+      "components": [
+        "3 Cheese Spinach Dip"
+      ]
+    },
+    "wild-mushroom-gruyere-tart": {
+      "category": "non-duck",
+      "name": "Wild Mushroom & Gruyère Tart",
+      "short": "Mushroom Tart",
+      "components": [
+        "Wild Mushroom & Gruyère Tart"
+      ]
+    },
+    "wild-mushroom-gruyere-tarts-cognac": {
+      "category": "non-duck",
+      "name": "Wild Mushroom & Gruyère Tarts with Cognac-Thyme Reduction",
+      "short": "Cognac Mushroom Tarts",
+      "components": [
+        "Wild Mushroom & Gruyère Tarts with Cognac"
+      ]
+    },
+    "lemon-shrimp-cheesecake-tartlets": {
+      "category": "non-duck",
+      "name": "Lemon Shrimp Cheesecake Tartlets",
+      "short": "Shrimp Tartlets",
+      "components": [
+        "Lemon Shrimp Cheesecake Tartlets"
+      ]
+    }
   },
-
   "_salads_soups_note": "Salads & Soups is part of the dinner, one choice per night, served at 7 PM (course 'salad'). Appetizers are separate. Chef's list of 2026-10-23, numbered as he numbered it. That list replaced the SOP-derived gumbo tasks of 2026-10-22.",
   "salads_soups": {
     "ranch-salad": {
       "number": 1,
       "name": "Five Oaks Ranch Salad",
       "short": "Ranch Salad",
-      "components": ["Five Oaks Ranch Salad"]
+      "components": [
+        "Five Oaks Ranch Salad"
+      ]
     },
     "bacon-salad": {
       "number": 2,
       "name": "House Bacon Salad",
       "short": "Bacon Salad",
-      "components": ["House Bacon Salad"]
+      "components": [
+        "House Bacon Salad"
+      ]
     },
     "caesar-salad": {
       "number": 3,
       "name": "Caesar Salad",
       "short": "Caesar Salad",
-      "components": ["Caesar Salad"]
+      "components": [
+        "Caesar Salad"
+      ]
     },
     "duck-gumbo": {
       "number": 4,
       "name": "Duck Gumbo",
       "short": "Duck Gumbo",
-      "components": ["Duck Gumbo"]
+      "components": [
+        "Duck Gumbo"
+      ]
     }
   },
-
   "meals": {
     "1": {
       "name": "Bone-in Cowboy Ribeye, Sauteed Wild Mushrooms, Cajun Rice, and Sauteed Green Beans",
       "short": "Cowboy Ribeye",
-      "components": ["Bone-in Cowboy Ribeye", "Sauteed Wild Mushrooms", "Cajun Rice", "Sauteed Green Beans"]
+      "components": [
+        "Bone-in Cowboy Ribeye",
+        "Sauteed Wild Mushrooms",
+        "Cajun Rice",
+        "Sauteed Green Beans"
+      ]
     },
     "2": {
       "name": "Bone-in Filet with Demi-glace, Au Gratin Rice, and Grilled Broccolini",
       "short": "Bone-in Filet",
-      "components": ["Bone-in Filet with Demi-glace", "Au Gratin Rice", "Grilled Broccolini"]
+      "components": [
+        "Bone-in Filet with Demi-glace",
+        "Au Gratin Rice",
+        "Grilled Broccolini"
+      ]
     },
     "3": {
       "name": "Prime Rib with Au Jus, Mashed Potatoes, and Sauteed Green Beans",
       "short": "Prime Rib",
-      "components": ["Prime Rib with Au Jus", "Mashed Potatoes", "Sauteed Green Beans"]
+      "components": [
+        "Prime Rib with Au Jus",
+        "Mashed Potatoes",
+        "Sauteed Green Beans"
+      ]
     },
     "4": {
       "name": "Dry Aged Duroc Pork Ribeye with Money Sauce, Au Gratin Rice, and Lemon Grilled Asparagus",
       "short": "Duroc Pork Ribeye",
-      "components": ["Dry Aged Duroc Pork Ribeye", "Money Sauce", "Au Gratin Rice", "Lemon Grilled Asparagus"]
+      "components": [
+        "Dry Aged Duroc Pork Ribeye",
+        "Money Sauce",
+        "Au Gratin Rice",
+        "Lemon Grilled Asparagus"
+      ]
     },
     "5": {
       "name": "Salmon with Creamy Dill Sauce, Au Gratin Rice, and Lemon Grilled Asparagus",
       "short": "Salmon",
-      "components": ["Salmon", "Creamy Dill Sauce", "Au Gratin Rice", "Lemon Grilled Asparagus"]
+      "components": [
+        "Salmon",
+        "Creamy Dill Sauce",
+        "Au Gratin Rice",
+        "Lemon Grilled Asparagus"
+      ]
     }
   },
-
   "desserts": {
     "skillet-cookie": {
       "name": "Warm Individual Chocolate Chip Skillet Cookie with Blue Bell Ice Cream and Homemade Hot Fudge",
       "short": "Skillet Cookie",
-      "components": ["Chocolate Chip Skillet Cookie", "Homemade Hot Fudge", "Blue Bell Ice Cream"]
+      "components": [
+        "Chocolate Chip Skillet Cookie",
+        "Homemade Hot Fudge",
+        "Blue Bell Ice Cream"
+      ]
     },
     "cheesecake": {
       "name": "Classic Cheesecake with Strawberries and Homemade Sweetened Whipped Cream",
       "short": "Cheesecake",
-      "components": ["Classic Cheesecake", "Macerated Strawberry Sauce", "Homemade Sweetened Whipped Cream"]
+      "components": [
+        "Classic Cheesecake",
+        "Macerated Strawberry Sauce",
+        "Homemade Sweetened Whipped Cream"
+      ]
     },
     "bread-pudding": {
       "name": "Bread Pudding with Bourbon Caramel Sauce and Homemade Sweetened Whipped Cream",
       "short": "Bread Pudding",
-      "components": ["Bread Pudding", "Homemade Sweetened Whipped Cream"]
+      "components": [
+        "Bread Pudding",
+        "Homemade Sweetened Whipped Cream"
+      ]
     },
     "brownie": {
       "name": "Warm Chocolate Brownie with Blue Bell Ice Cream and Homemade Hot Fudge",
       "short": "Brownie",
-      "components": ["Warm Chocolate Brownie", "Blue Bell Ice Cream", "Homemade Hot Fudge"]
+      "components": [
+        "Warm Chocolate Brownie",
+        "Blue Bell Ice Cream",
+        "Homemade Hot Fudge"
+      ]
     }
   },
-
   "components": {
     "Asian Grilled Duck": {
       "course": "appetizers",
@@ -478,7 +746,30 @@
         "0 hours, unmold onto platter, single layer, corners up; pass warm with napkins"
       ]
     },
-
+    "Curried Sausage Puff Pastry Bites": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-05 from FiveOaks_SOP_Curried_Sausage_Puff_Pastry_Bites, on the SOP's Step 1 plan: pastry thaw at -2 days; spiced chutney, smokies, and wrapping at -1 day (wrapped bites hold 24 hours in the cooler; the SOP's freeze-raw route, up to 1 month and +6 minutes from frozen, is not scheduled here); oven to 400°F at -45 minutes; egg-washed and baked from -25 minutes to a 165°F smokie center with a 5 minute rest; passed at 6:00 PM. One SOP batch is 32 bites on 2 half sheet pans, about 3 per guest (10-12 guests).",
+      "tasks": [
+        "-2 days, move 320 g all-butter puff pastry from freezer to reefer to thaw, still wrapped: 32 bites per SOP batch, about 3 per guest",
+        "-1 days, mix spiced chutney per SOP (30 g mango chutney, 2 g curry, 1 g cumin); drain and pat dry 32 cocktail smokies plus spares",
+        "-1 days, roll pastry 3 mm, cut 32 strips 3 x 8 cm; spread 1 g chutney, wrap smokies, seam down, 16 per pan; chill, cover, label",
+        "-45 minutes, heat oven to 400°F (convection 375°F)",
+        "-25 minutes, egg-wash tops and sides, seeds and salt; bake 15-20 minutes to 165°F smokie center, golden top and bottom; rest 5 minutes",
+        "0 hours, platter single layer, seam down, uncovered; pass warm with napkins"
+      ]
+    },
+    "Rustic Eggplant Caponata Crostini": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-05 from FiveOaks_SOP_Rustic_Eggplant_Caponata_Crostini: caponata made at -2 days (SOP allows -2 or -1; best after 24 hours, keeps 4 days); pine nuts toasted -1 day; caponata pulled to room temperature at -1 hour (4-hour limit out of the cooler); bread toasted at 400°F from -45 minutes; topped at -15 minutes, within the SOP's 15 minutes of service; passed at room temperature at 6:00 PM. One SOP batch is 30 crostini, 2-3 per guest (10-12 guests).",
+      "tasks": [
+        "-2 days, salt and fry 800 g eggplant, cook caponata per SOP until the spoon channel holds; chill shallow, label with weight: 30 crostini per batch, 2-3 per guest",
+        "-1 days, toast 30 g pine nuts per batch, 325°F 5-7 minutes; cool, store airtight",
+        "-1 hours, pull 800 g caponata to room temp, label time out (4 h limit); oven 400°F",
+        "-45 minutes, toast 34 baguette slices 1/2 in, 8-10 minutes, flip halfway; cool on rack",
+        "-15 minutes, taste caponata; top 25 g per toast, pine nuts, torn basil",
+        "0 hours, pass at room temp, single layer on platter, with napkins"
+      ]
+    },
     "Five Oaks Ranch Salad": {
       "course": "salad",
       "_note": "Chef's call of 2026-10-25: this is FiveOaks_SOP_Spring_Mix_Salad_with_Peppercorn_Ranch_Dressing. Chef added the SOP's vegetable prep at -1 hour and kept his lettuce tasks as written; the SOP itself is unchanged (it says ready-to-eat spring mix is not rewashed).",
@@ -684,7 +975,6 @@
         "0 hours, plate and serve"
       ]
     },
-
     "Chocolate Chip Skillet Cookie": {
       "course": "dessert",
       "tasks": [
@@ -772,6 +1062,35 @@
         "-30 minutes, reheat fudge sauce per SOP",
         "-15 minutes, hold in warm oven",
         "0 hours, plate and serve"
+      ]
+    },
+    "Wild Mushroom & Gruyère Tarts with Cognac": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-05 from FiveOaks_SOP_Wild_Mushroom_and_Gruyere_Tarts_Cognac_Thyme_Reduction, on the SOP's production plan: pastry thaw and Steps 1-5 (stock, Gruyère cream, filling, reduction base, all 3-day holds) at -2 days; cups lined at -1 day (24 hour hold); shells blind-baked at -4 hours (4 hour room-temperature hold); filled at -45 minutes and held cold up to 30 minutes; sauce mounted at -20 minutes; baked from -15 minutes to a 165°F center. One SOP batch is 24 tarts in 24 small muffin cups, 1 tart per guest.",
+      "tasks": [
+        "-2 days, move puff pastry from freezer to reefer to thaw, still wrapped: 900 g per SOP batch of 24 tarts, 1 tart per guest",
+        "-2 days, clean, trim, and chop mushrooms per SOP, saving stems, trim, and 24 top pieces; make house mushroom stock, strain to 600 g, cool",
+        "-2 days, make Gruyère cream (about 365 g, all of it is used); grate and hold 72 g Gruyère for the tops; refrigerate",
+        "-2 days, brown mushroom filling dry in batches with the 24 top pieces, taste salt with the Gruyère cream, cool, label the per-tart weight",
+        "-2 days, make Cognac-thyme reduction base to 180 g (150-160 g if passed), cool, refrigerate",
+        "-1 days, roll pastry 2.5-3 mm, cut 24 rounds, line greased small muffin cups, dock; wrap and refrigerate",
+        "-4 hours, convection oven to 375°F; blind-bake shells with parchment and weights 10-12 minutes, then 3-5 minutes bare; cool in the tins, hold dry",
+        "-45 minutes, fill shells: 15 g Gruyère cream, filling per label, 3 g Gruyère, 1 top piece; refrigerate; oven back to 375°F",
+        "-20 minutes, reheat reduction base to 165°F, mount 60 g cold butter, add sherry vinegar, season; hold at 135-150°F",
+        "-15 minutes, bake tarts at 375°F convection 12-16 minutes to 165°F center; rest 2-3 minutes, lift onto rack",
+        "0 hours, glaze 7-8 g reduction on the filling, chives and microgreens; pass on a platter or plate 1 per guest"
+      ]
+    },
+    "Lemon Shrimp Cheesecake Tartlets": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-05 from FiveOaks_SOP_Lemon_Shrimp_Cheesecake_Tartlets, on the SOP's Step 1 plan: shrimp moved to the walk-in and tartlets baked at -1 day (the SOP allows the tartlets 2 days); shrimp cooked at -2 hours and chilled; topped at -30 minutes, within the SOP's 1 hour of passing; passed chilled at 6:00 PM. One SOP batch is 24 tartlets in one mini muffin tin, 2-3 per guest (serves 8-10).",
+      "tasks": [
+        "-1 days, move 200 g 61/70 shrimp (BEK #138973) to the walk-in to thaw overnight, perforated pan over drip pan",
+        "-1 days, press 24 cracker bases, 10 g each, in a cased mini muffin tin; pre-bake 340°F 5 minutes: 24 tartlets per SOP batch, 2-3 per guest",
+        "-1 days, beat filling per SOP; pipe 18 g per case; bake 20-22 minutes to 150°F center; cool, chill 3+ hours, cover",
+        "-2 hours, cook shrimp per SOP, 45-60 seconds a side to 145°F; lift out, toss with parsley; chill flat; chill 2 platters",
+        "-30 minutes, top each tartlet with 1 blotted shrimp in the center dip; hold at 41°F",
+        "0 hours, 12 per chilled platter; pass chilled with napkins, second platter in the walk-in; 30 minutes out max"
       ]
     }
   }
