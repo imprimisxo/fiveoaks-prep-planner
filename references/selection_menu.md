@@ -94,6 +94,7 @@ question tool: it caps a question at 4 options, and there are 24 duck appetizers
         <button type="button" class="elicit-pill" data-value="mushroom-and-cheese-arancini">Mushroom &amp; Cheese Arancini</button>
         <button type="button" class="elicit-pill" data-value="rustic-eggplant-caponata-crostini">Rustic Eggplant Caponata Crostini</button>
         <button type="button" class="elicit-pill" data-value="southern-fried-catfish-bites">Southern Fried Catfish Bites</button>
+        <button type="button" class="elicit-pill" data-value="sweet-and-spicy-kielbasa-bites">Sweet &amp; Spicy Kielbasa Bites</button>
         <button type="button" class="elicit-pill" data-value="wild-mushroom-gruyere-tart">Wild Mushroom &amp; Gruyère Tart</button>
         <button type="button" class="elicit-pill" data-value="wild-mushroom-gruyere-tarts-cognac">Wild Mushroom &amp; Gruyère Tarts with Cognac-Thyme Reduction</button>
         <button type="button" class="elicit-pill" data-value="none">No non-duck appetizer</button>

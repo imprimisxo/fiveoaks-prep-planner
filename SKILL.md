@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 34 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 35 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -497,7 +497,13 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     rolls rolled from -45 minutes; cut, sauced, and garnished from -15 minutes; passed within
     30 minutes of cutting. Its 10 service-day SOP times share 7 short rows: one row each drew
     the heaviest menu to 751 pt, and the 7 rows bring it to 718 pt, in line with the Wonton
-    Cups. Their prep lists carry Chef's calls: pizza
+    Cups. The Sweet & Spicy Kielbasa Bites ("Kielbasa Bites") joined the Non-duck group the
+    same day from their new SOP (40 passed pieces on picks, 700 g smoked kielbasa): coins
+    sliced 1.5 cm and the apricot-mustard glaze mixed at -1 day, stored apart; green onions
+    sliced and coins browned in 2 batches from -35 minutes; fat poured off and coins glazed
+    6-8 minutes to a 165°F center from -20 minutes; picked, garnished, and passed warm. The
+    SOP's covered 250°F hold, up to 1 hour, is not scheduled. Its 4 rows put the heaviest
+    menu at 696.6 pt with no spill, level with the Sausage Bites. Their prep lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
   - **House Bacon Salad:** unchanged on purpose. Chef keeps tempering the spinach at -1 hour,
