@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -271,6 +271,14 @@
       "short": "Shrimp Tartlets",
       "components": [
         "Lemon Shrimp Cheesecake Tartlets"
+      ]
+    },
+    "blackened-ahi-tuna-sushi-rolls": {
+      "category": "non-duck",
+      "name": "Blackened Ahi Tuna & Sweet Potato Sushi Rolls",
+      "short": "Tuna Sushi Rolls",
+      "components": [
+        "Blackened Tuna Sushi Rolls"
       ]
     }
   },
@@ -1113,6 +1121,21 @@
         "-2 hours, cook shrimp per SOP, 45-60 seconds a side to 145°F; lift out, toss with parsley; chill flat; chill 2 platters",
         "-30 minutes, top each tartlet with 1 blotted shrimp in the center dip; hold at 41°F",
         "0 hours, 12 per chilled platter; pass chilled with napkins, second platter in the walk-in; 30 minutes out max"
+      ]
+    },
+    "Blackened Tuna Sushi Rolls": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Blackened_Ahi_Tuna_and_Sweet_Potato_Sushi_Rolls (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan: tuna thawed in the cooler with the vacuum bag cut open, blackening seasoning mixed, and the chosen sauce made at -1 day; tuna blackened in a dry cast-iron skillet and chilled to 41°F at -4 hours; rice rinsed at -3 1/2 hours and cooked at -3 1/4 hours (one row; Chef moved the rice an hour earlier than the first SOP on 11/06 so it cools fully before rolling); rice seasoned and cooled from -2 3/4 hours under a 4-hour time limit; platters chilled and fries cooked at -1 1/4 hours, tuna into the freezer at -1 hour (one row); tuna sliced and avocado and apple cut at -45 minutes, rolled at -30 (one row); rested, cut, and plated at -15 minutes, sauced and garnished at -5 (one row); passed at 6:00 PM within 30 minutes of cutting, servers telling guests the center is raw. One SOP batch is 3 rolls cut 8 each, 24 pieces, 2 per guest for 12, with 360 g tuna. Chef keeps all three sauces as options (Ginger-Lime Ponzu, Maple-Mirin-Soy Reduction, Wasabi-Lime Crème Fraîche) and picks one per dinner. The 10 service-day SOP times share 7 rows: one row each drew the heaviest service day to 751 pt, and 7 rows bring it to 718 pt, in line with the Wonton Cups. The component is named \"Blackened Tuna Sushi Rolls\" to keep rows short.",
+      "tasks": [
+        "-1 days, thaw tuna in cooler, bag cut open; mix blackening spice",
+        "-1 days, make chosen sauce per SOP (Ponzu, Maple-Mirin, or Wasabi)",
+        "-4 hours, blacken 360 g tuna in hot cast iron; chill to 41°F",
+        "-3 1/2 hours, rinse, drain, and cook 400 g sushi rice per SOP",
+        "-2 3/4 hours, season rice; cool under damp towel; label 4-hour time",
+        "-1 1/4 hours, chill 2 platters; air-fry fries; then freeze tuna 15-20 min",
+        "-45 minutes, slice tuna 1/16 in; cut avocado and apple; roll 3 rolls",
+        "-15 minutes, cut 8 per roll; 12 per chilled platter; sauce, garnish",
+        "0 hours, pass 24 within 30 min of cutting; tell guests raw center"
       ]
     }
   }
