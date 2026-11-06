@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -311,6 +311,14 @@
       "short": "Crab Napoleons",
       "components": [
         "Crab Puff Pastry Napoleons"
+      ]
+    },
+    "caramelized-onion-baked-brie-crostini": {
+      "category": "non-duck",
+      "name": "Caramelized Onion Baked Brie Crostini",
+      "short": "Brie Crostini",
+      "components": [
+        "Caramelized Onion Baked Brie Crostini"
       ]
     }
   },
@@ -1211,6 +1219,18 @@
         "-2 hours, drain and pick 350 g lump crab twice; mix filling; chill",
         "-15 minutes, fill 12 bases 25 g; cap; crème fraîche dot, herb",
         "0 hours, pass on dry platter; fill 2nd 12 as it goes; 30 min max"
+      ]
+    },
+    "Caramelized Onion Baked Brie Crostini": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Caramelized_Onion_Baked_Brie_Crostini (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan: for the Hot Pepper & Bacon Jam variation, house bacon jam in date on hand, or a frozen tub moved to the cooler to thaw, at -2 days; onion topping cooked on the stovetop at -1 day (Chef's pick over the source's microwave; the SOP allows up to 3 days ahead for fig, 2 for bacon jam): 170 g onion caramelized, dip mix and water at the end, then 70 g fig jam stirred in hot (Variation 1) or 70 g cold bacon jam folded into the chilled base (Variation 2), chilled and labeled; oven to 400°F and 40 baguette slices toasted light golden from -1 hour; 2 cold Brie wheels cut into 36 wedges, set on the crostini, and topped with about 4.5 g topping each on 2 parchment-lined pans of 18 at -30 minutes; first pan baked 5-7 minutes and rested at -10 minutes; passed warm at 6:00 PM within 20 minutes of the oven, the second pan going in as the first platter goes out. One SOP batch is 36 crostini, 3 per guest (12 guests). Chef picked passed crostini and two jam variations (fig, house Hot Pepper & Bacon Jam), one per batch.",
+      "tasks": [
+        "-2 days, bacon jam version: have jam in date, or thaw a tub",
+        "-1 days, onion topping per SOP, fig or bacon jam; chill, label",
+        "-1 hours, oven 400°F; toast 40 baguette slices 1/2 in; rack-cool",
+        "-30 minutes, cut 2 cold Brie into 36 wedges; top; 2 pans of 18",
+        "-10 minutes, bake 1st pan 400°F 5-7 min; rest 1-2 min",
+        "0 hours, pass 18 within 20 min; bake 2nd pan as 1st goes out"
       ]
     }
   }
