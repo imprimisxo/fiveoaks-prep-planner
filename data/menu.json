@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -303,6 +303,14 @@
       "short": "Cheesecake Squares",
       "components": [
         "Southwest Cheesecake Squares"
+      ]
+    },
+    "crab-puff-pastry-napoleons": {
+      "category": "non-duck",
+      "name": "Crab Puff Pastry Napoleons",
+      "short": "Crab Napoleons",
+      "components": [
+        "Crab Puff Pastry Napoleons"
       ]
     }
   },
@@ -1191,6 +1199,18 @@
         "-1 hours, chill 2 platters; dust paprika; trim; cut 36 squares; 41°F",
         "-15 minutes, 1 square per whole chip; 18 per chilled platter",
         "0 hours, pass chilled with napkins; second platter waits; 30 min max"
+      ]
+    },
+    "Crab Puff Pastry Napoleons": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Crab_Puff_Pastry_Napoleons (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan: pastry thawed in the walk-in at -2 days; 490 g all-butter puff pastry rolled 3 mm, cut into 48 rectangles of 4 x 6 cm, egg-washed, and baked at 400°F for 16-18 minutes pressed under a second pan at -1 day (the SOP allows -2 days), cooled on racks and stored airtight at room temperature, never refrigerated; lump crab (Chef's pick) drained, picked twice, folded into the crème fraîche filling, and chilled at -2 hours, made on the day; first 12 napoleons assembled at -15 minutes (25 g filling, cap, crème fraîche dot, micro herb); passed at 6:00 PM on dry room-temperature platters, the second 12 assembled as the first platter goes out, each within 15 minutes of assembly and each platter out no more than 30 minutes. One SOP batch is 24 napoleons, 2-3 per guest (serves 8-10).",
+      "tasks": [
+        "-2 days, move 490 g puff pastry to the walk-in to thaw, wrapped",
+        "-1 days, roll 3 mm; cut 48 at 4 x 6 cm; egg-wash; press under pan",
+        "-1 days, bake 400°F 16-18 min; rack-cool; airtight, room temp",
+        "-2 hours, drain and pick 350 g lump crab twice; mix filling; chill",
+        "-15 minutes, fill 12 bases 25 g; cap; crème fraîche dot, herb",
+        "0 hours, pass on dry platter; fill 2nd 12 as it goes; 30 min max"
       ]
     }
   }
