@@ -88,6 +88,7 @@ question tool: it caps a question at 4 options, and there are 24 duck appetizers
       <div class="elicit-pills" data-name="host_nonduck_app" data-multi="false">
         <button type="button" class="elicit-pill" data-value="three-cheese-spinach-dip">3 Cheese Spinach Dip</button>
         <button type="button" class="elicit-pill" data-value="blackened-ahi-tuna-sushi-rolls">Blackened Ahi Tuna &amp; Sweet Potato Sushi Rolls</button>
+        <button type="button" class="elicit-pill" data-value="caramelized-onion-baked-brie-crostini">Caramelized Onion Baked Brie Crostini</button>
         <button type="button" class="elicit-pill" data-value="cider-glazed-cocktail-sausages">Cider-Glazed Cocktail Sausages</button>
         <button type="button" class="elicit-pill" data-value="crab-puff-pastry-napoleons">Crab Puff Pastry Napoleons</button>
         <button type="button" class="elicit-pill" data-value="crispy-wonton-cups-sausage-cheddar">Crispy Wonton Cups with Sausage &amp; Cheddar</button>

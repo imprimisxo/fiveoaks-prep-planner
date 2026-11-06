@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 38 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 39 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -526,7 +526,17 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     refrigerated; crab drained, picked twice, and folded into the crème fraîche filling at
     -2 hours; the first 12 assembled at -15 minutes and the second 12 as the first platter
     goes out, each passed within 15 minutes of assembly. Its 6 rows put the heaviest menu at
-    696.6 pt with no spill, level with the Cheesecake Squares. Their prep
+    696.6 pt with no spill, level with the Cheesecake Squares. The Caramelized Onion Baked
+    Brie Crostini ("Brie Crostini") joined the Non-duck group the same day from their new SOP
+    (36 passed crostini; Chef picked passed crostini over the source's whole baked wheels, a
+    stovetop topping at -1 day over its microwave, and two jam variations, fig or the house
+    Hot Pepper & Bacon Jam, one per batch): bacon jam in date or a tub thawing at -2 days
+    (bacon jam version); onion topping cooked, jam added, chilled, and labeled at -1 day;
+    oven to 400°F and 40 baguette slices toasted from -1 hour; 2 cold Brie wheels cut into
+    36 wedges and topped on 2 pans of 18 at -30 minutes; first pan baked 5-7 minutes at
+    -10 minutes; passed warm within 20 minutes of the oven, the second pan baked as the first
+    platter goes out. Its 6 rows put the heaviest menu at 696.6 pt with no spill, level with
+    the Crab Napoleons. Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
