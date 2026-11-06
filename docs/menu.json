@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -287,6 +287,22 @@
       "short": "Kielbasa Bites",
       "components": [
         "Sweet & Spicy Kielbasa Bites"
+      ]
+    },
+    "cider-glazed-cocktail-sausages": {
+      "category": "non-duck",
+      "name": "Cider-Glazed Cocktail Sausages",
+      "short": "Cider Sausages",
+      "components": [
+        "Cider-Glazed Cocktail Sausages"
+      ]
+    },
+    "southwest-savory-cheesecake-squares": {
+      "category": "non-duck",
+      "name": "Southwest Savory Cheesecake Squares",
+      "short": "Cheesecake Squares",
+      "components": [
+        "Southwest Cheesecake Squares"
       ]
     }
   },
@@ -1154,6 +1170,27 @@
         "-35 minutes, slice green onions; pat coins dry; brown in 2 batches",
         "-20 minutes, pour off fat; glaze 6-8 min, 165°F center; pepper",
         "0 hours, pick 40 coins; green onions; pass warm with napkins"
+      ]
+    },
+    "Cider-Glazed Cocktail Sausages": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Cider_Glazed_Cocktail_Sausages (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan: cider glaze base (hard cider, apple jelly, Dijon, cider vinegar) mixed and 2 thyme sprigs set aside at -1 day (the SOP allows up to 2 days); 40 precooked cocktail smokies counted, dried, and browned 4-5 minutes from -30 minutes, fat poured off; glaze and thyme in the same pan, reduced 8-10 minutes to the cold-plate set and a 165°F center from -20 minutes, thyme discarded; picked and passed warm at 6:00 PM. The SOP's covered 250°F hold, up to 45 minutes, and its 2-day make-ahead route are not scheduled here. One SOP batch is 40 smokies (about 360 g, 1 package of about 42) with the source glaze halved (Chef, 11/06), 3-4 per guest (10-12 guests).",
+      "tasks": [
+        "-1 days, mix cider glaze base; thyme aside; 1 pack smokies on hand",
+        "-30 minutes, count 40 smokies, pat dry; brown 4-5 min; pour off fat",
+        "-20 minutes, glaze and thyme; reduce 8-10 min, 165°F; thyme out",
+        "0 hours, pick 40 smokies; pass warm with napkins"
+      ]
+    },
+    "Southwest Cheesecake Squares": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Southwest_Savory_Cheesecake_Squares (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan: cream cheese softened 60-90 minutes, tortilla-chip base pressed into a parchment-lined 8 x 8 in pan and pre-baked 10 minutes at -1 day (the SOP allows -2 days; the baked cake holds 3); filling mixed and baked at 320°F to a 150°F center, cooled 30 minutes in the turned-off oven and 1 hour on a rack, then chilled at least 4 hours, the same day; platters chilled, top dusted with smoked paprika, edges trimmed 1/4 in, and the cake cut into 36 squares of 1 1/4 in at -1 hour (the SOP allows up to -3 hours); each square set on a whole tortilla chip at -15 minutes; passed chilled at 6:00 PM, each platter out no more than 30 minutes. Chef chose butler-passed squares over the source's 20 wedges with chips on the side. One SOP batch is one 8 x 8 in cake, 36 squares, 3 per guest (serves 12). The component is named \"Southwest Cheesecake Squares\" to keep rows short.",
+      "tasks": [
+        "-1 days, cream cheese out; press tortilla-chip base; pre-bake 10 min",
+        "-1 days, mix filling per SOP; bake to 150°F center; slow cool; chill",
+        "-1 hours, chill 2 platters; dust paprika; trim; cut 36 squares; 41°F",
+        "-15 minutes, 1 square per whole chip; 18 per chilled platter",
+        "0 hours, pass chilled with napkins; second platter waits; 30 min max"
       ]
     }
   }
