@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -279,6 +279,14 @@
       "short": "Tuna Sushi Rolls",
       "components": [
         "Blackened Tuna Sushi Rolls"
+      ]
+    },
+    "sweet-and-spicy-kielbasa-bites": {
+      "category": "non-duck",
+      "name": "Sweet & Spicy Kielbasa Bites",
+      "short": "Kielbasa Bites",
+      "components": [
+        "Sweet & Spicy Kielbasa Bites"
       ]
     }
   },
@@ -1136,6 +1144,16 @@
         "-45 minutes, slice tuna 1/16 in; cut avocado and apple; roll 3 rolls",
         "-15 minutes, cut 8 per roll; 12 per chilled platter; sauce, garnish",
         "0 hours, pass 24 within 30 min of cutting; tell guests raw center"
+      ]
+    },
+    "Sweet & Spicy Kielbasa Bites": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Sweet_and_Spicy_Kielbasa_Bites (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan: kielbasa sliced into 1.5 cm coins and the apricot-mustard glaze mixed at -1 day, stored apart in the cooler (the SOP allows up to 2 days); green onions sliced and coins browned in 2 batches from -35 minutes; fat poured off and coins glazed 6-8 minutes to a 165°F center from -20 minutes; picked, garnished, and passed at 6:00 PM. The SOP's covered 250°F hold, up to 1 hour, is not scheduled here. One SOP batch is 700 g kielbasa, 40 pieces on picks, 3-4 per guest (10-12 guests).",
+      "tasks": [
+        "-1 days, slice 700 g kielbasa, 1.5 cm coins; mix glaze; store apart",
+        "-35 minutes, slice green onions; pat coins dry; brown in 2 batches",
+        "-20 minutes, pour off fat; glaze 6-8 min, 165°F center; pepper",
+        "0 hours, pick 40 coins; green onions; pass warm with napkins"
       ]
     }
   }
