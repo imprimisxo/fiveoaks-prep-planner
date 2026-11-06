@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 33 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 34 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -487,7 +487,17 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     8 service-day SOP steps share 6 short rows: the first 10-row draft pushed the heaviest
     menu to 829 pt, and the 6 rows bring it to 727 pt, in line with Duck Wings. It uses a
     house Smoked Duck Breast or a commercial ready-to-eat breast, so it adds no smoking
-    tasks. The component is named "Sweet Potato Sushi Rolls" to keep rows short. Their prep lists carry Chef's calls: pizza
+    tasks. The component is named "Sweet Potato Sushi Rolls" to keep rows short. The
+    Blackened Ahi Tuna & Sweet Potato Sushi Rolls ("Tuna Sushi Rolls") joined the Non-duck
+    group the same day from their new SOP (24 passed pieces, 360 g tuna, three sauces Chef
+    picks from per dinner): tuna thawed with the vacuum bag cut open, spice mixed, and sauce
+    made at -1 day; tuna blackened and chilled to 41°F at -4 hours; rice rinsed and cooked
+    from -3 1/2 hours and held under a 4-hour time limit; platters chilled, fries cooked, and
+    tuna firmed in the freezer from -1 1/4 hours; tuna sliced, avocado and apple cut, and
+    rolls rolled from -45 minutes; cut, sauced, and garnished from -15 minutes; passed within
+    30 minutes of cutting. Its 10 service-day SOP times share 7 short rows: one row each drew
+    the heaviest menu to 751 pt, and the 7 rows bring it to 718 pt, in line with the Wonton
+    Cups. Their prep lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
   - **House Bacon Salad:** unchanged on purpose. Chef keeps tempering the spinach at -1 hour,
