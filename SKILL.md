@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 37 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 38 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -518,7 +518,15 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     pre-baked, and filling baked to a 150°F center, slow-cooled, and chilled at -1 day;
     platters chilled, top dusted with smoked paprika, edges trimmed, and 36 squares cut at
     -1 hour; each square set on a whole chip at -15 minutes; passed chilled. Its 5 rows put
-    the heaviest menu at 696.6 pt with no spill, level with the Kielbasa Bites. Their prep
+    the heaviest menu at 696.6 pt with no spill, level with the Kielbasa Bites. The Crab Puff
+    Pastry Napoleons ("Crab Napoleons") joined the Non-duck group the same day from their new
+    SOP (24 passed napoleons; Chef picked pasteurized lump crab): puff pastry thawed at
+    -2 days; 490 g rolled 3 mm, cut into 48 rectangles of 4 x 6 cm, egg-washed, and baked
+    pressed under a second pan at -1 day, stored airtight at room temperature, never
+    refrigerated; crab drained, picked twice, and folded into the crème fraîche filling at
+    -2 hours; the first 12 assembled at -15 minutes and the second 12 as the first platter
+    goes out, each passed within 15 minutes of assembly. Its 6 rows put the heaviest menu at
+    696.6 pt with no spill, level with the Cheesecake Squares. Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
