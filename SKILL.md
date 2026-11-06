@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 35 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 37 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -503,7 +503,23 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     sliced and coins browned in 2 batches from -35 minutes; fat poured off and coins glazed
     6-8 minutes to a 165°F center from -20 minutes; picked, garnished, and passed warm. The
     SOP's covered 250°F hold, up to 1 hour, is not scheduled. Its 4 rows put the heaviest
-    menu at 696.6 pt with no spill, level with the Sausage Bites. Their prep lists carry Chef's calls: pizza
+    menu at 696.6 pt with no spill, level with the Sausage Bites. The Cider-Glazed Cocktail
+    Sausages ("Cider Sausages") joined the Non-duck group the same day from their new SOP (40
+    passed pieces on picks; Chef picked precooked cocktail smokies, about 360 g, with the
+    source glaze halved, and dry hard cider): cider glaze base mixed and thyme set aside at
+    -1 day; smokies counted, dried, and browned 4-5 minutes from -30 minutes, fat poured off;
+    glazed with the thyme and reduced 8-10 minutes to a 165°F center from -20 minutes;
+    picked and passed warm. The SOP's covered 250°F hold, up to 45 minutes, and its 2-day
+    make-ahead route are not scheduled. Its 4 rows put the heaviest menu at 696.6 pt with no
+    spill, level with the Kielbasa Bites. The Southwest Savory Cheesecake Squares
+    ("Cheesecake Squares") joined the Non-duck group the same day from their new SOP (one
+    8 x 8 in cake cut into 36 squares, each passed chilled on a tortilla chip; Chef chose
+    passed squares over the source's 20 wedges): cream cheese softened, chip base pressed and
+    pre-baked, and filling baked to a 150°F center, slow-cooled, and chilled at -1 day;
+    platters chilled, top dusted with smoked paprika, edges trimmed, and 36 squares cut at
+    -1 hour; each square set on a whole chip at -15 minutes; passed chilled. Its 5 rows put
+    the heaviest menu at 696.6 pt with no spill, level with the Kielbasa Bites. Their prep
+    lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
   - **House Bacon Salad:** unchanged on purpose. Chef keeps tempering the spinach at -1 hour,
