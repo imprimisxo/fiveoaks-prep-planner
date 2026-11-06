@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -223,6 +223,14 @@
       "short": "Smoked Duck",
       "components": [
         "Smoked Duck Breast"
+      ]
+    },
+    "sweet-potato-sushi-rolls": {
+      "category": "duck",
+      "name": "Sweet Potato Sushi Rolls with Cured Smoked Duck",
+      "short": "Sushi Rolls",
+      "components": [
+        "Sweet Potato Sushi Rolls"
       ]
     },
     "southern-fried-catfish-bites": {
@@ -671,6 +679,20 @@
         "-2 hours, slice duck cold 1/8 in into 50 sets of 20 g; cut chive batons",
         "-30 minutes, set glaze out; build canapés 25 per tray",
         "0 hours, pass cold; trays hold 3 hours"
+      ]
+    },
+    "Sweet Potato Sushi Rolls": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Sweet_Potato_Sushi_Rolls_with_Cured_Smoked_Duck (SOP/Appetizers/Duck Apps), on the SOP's Step 1 plan: chosen sauce made and duck on hand at -1 day; rice rinsed and cooked at -2 1/4 hours, seasoned and cooled from -1 3/4 hours under a 4-hour time limit; duck sliced and sweet potato fries cooked at -1 1/4 hours; sauce out, avocado and apple cut, and rolls rolled from -40 minutes (the SOP rolls at -35); cut and plated from -15 minutes, sauce and onions last (the SOP dots them at -5); passed at cool room temperature at 6:00 PM. One SOP batch is 3 rolls cut 8 each, 24 pieces, 2 per guest for 12. Chef keeps all three sauces as options and picks one per dinner. The duck is a house Smoked Duck Breast (4-day build, its own SOP) or a commercial ready-to-eat breast, so the planner adds no smoking tasks. The service-day rows are combined (8 SOP steps in 6 rows) to keep the heaviest service day on one page.",
+      "tasks": [
+        "-1 days, make the chosen sauce per SOP (Maple-Mirin Soy, Orange-Ginger, or Tart Cherry-Miso)",
+        "-1 days, have 2 smoked duck breasts in the walk-in (house or commercial ready-to-eat)",
+        "-2 1/4 hours, rinse and cook 400 g sushi rice per SOP",
+        "-1 3/4 hours, season rice; cool under damp towel; label time (4-hour limit)",
+        "-1 1/4 hours, skin, slice duck 1/16 in, 3 x 57 g; cook fries; chop onions",
+        "-40 minutes, sauce out; cut avocado and apple; roll 3 rolls per SOP",
+        "-15 minutes, cut 8 per roll, wet knife; 12 per platter; sauce, then onions",
+        "0 hours, pass 24 at cool room temp; discard at the 4-hour rice limit"
       ]
     },
     "Mushroom & Cheese Arancini": {
