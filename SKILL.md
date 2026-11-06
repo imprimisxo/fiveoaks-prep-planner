@@ -379,12 +379,12 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 32 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 33 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
-  SOP in `/Users/cheflance/Five_Oaks/SOP`. To add a Non-duck appetizer, add its component
-  and an entry with `"category": "non-duck"`; the web app lists it under Non-duck on its
-  own. Keep each `short` unique: the request can name a dish by it.
+  SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
+  entry with `"category": "duck"` or `"non-duck"`; the web app lists it in that group on
+  its own. Keep each `short` unique: the request can name a dish by it.
 - **Salads & Soups:** a menu section (`salads_soups`) like desserts, one choice per
   dinner, picked with the request's `salad` field. It's part of the dinner, not an
   appetizer. Each entry carries Chef's `number` (1-4) besides its key. Their components
@@ -478,7 +478,16 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     center. The Lemon Shrimp Cheesecake Tartlets ("Shrimp Tartlets") were added the same day
     from their new SOP, with BEK #138973 61/70 shrimp: shrimp thawed and tartlets baked to a
     150°F center at -1 day, shrimp cooked to 145°F at -2 hours, topped at -30 minutes,
-    passed chilled. Their prep lists carry Chef's calls: pizza
+    passed chilled. The first Duck appetizer added after the book's 23, the Sweet Potato
+    Sushi Rolls with Cured Smoked Duck ("Sushi Rolls"), came on 2026-11-06 from its new SOP
+    (24 passed pieces, three sauces Chef picks from per dinner): sauce made and duck on hand
+    at -1 day, rice cooked at -2 1/4 hours and held under a 4-hour time limit, duck sliced
+    and sweet potato fries cooked at -1 1/4 hours, avocado and apple cut and rolls rolled
+    from -40 minutes, cut and sauced from -15 minutes, passed at cool room temperature. Its
+    8 service-day SOP steps share 6 short rows: the first 10-row draft pushed the heaviest
+    menu to 829 pt, and the 6 rows bring it to 727 pt, in line with Duck Wings. It uses a
+    house Smoked Duck Breast or a commercial ready-to-eat breast, so it adds no smoking
+    tasks. The component is named "Sweet Potato Sushi Rolls" to keep rows short. Their prep lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
   - **House Bacon Salad:** unchanged on purpose. Chef keeps tempering the spinach at -1 hour,

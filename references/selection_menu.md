@@ -37,12 +37,12 @@ Fill-in rules:
   the meal number, or the dessert key. Use the `ti-salad` icon for a salad and `ti-soup`
   for a soup. When he adds an appetizer, add a pill to its group (`category` `duck` or
   `non-duck`) with the `appetizers` key as its `data-value`, in alphabetical order. The
-  appetizer groups use plain pills, not cards: the Duck group has 23 dishes.
+  appetizer groups use plain pills, not cards: the Duck group has 24 dishes.
 
 If `show_widget` is not available in the session, fall back to a numbered menu in plain
 text, in course order (duck appetizers, non-duck appetizers, salads and soups, dinners,
 desserts), and ask Chef to reply with one number per menu. Don't use the multiple-choice
-question tool: it caps a question at 4 options, and there are 23 duck appetizers.
+question tool: it caps a question at 4 options, and there are 24 duck appetizers.
 
 ## Template (one booking)
 
@@ -79,6 +79,7 @@ question tool: it caps a question at 4 options, and there are 23 duck appetizers
         <button type="button" class="elicit-pill" data-value="duck-wings-three-sauces">Duck Wings, Three Sauces</button>
         <button type="button" class="elicit-pill" data-value="fried-duck-tenders">Fried Duck Tenders</button>
         <button type="button" class="elicit-pill" data-value="smoked-duck-breast">Smoked Duck Breast</button>
+        <button type="button" class="elicit-pill" data-value="sweet-potato-sushi-rolls">Sweet Potato Sushi Rolls with Cured Smoked Duck</button>
         <button type="button" class="elicit-pill" data-value="none">No duck appetizer</button>
       </div>
     </div>
