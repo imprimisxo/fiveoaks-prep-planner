@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -319,6 +319,22 @@
       "short": "Brie Crostini",
       "components": [
         "Caramelized Onion Baked Brie Crostini"
+      ]
+    },
+    "sausage-stuffed-mushroom-caps": {
+      "category": "non-duck",
+      "name": "Sausage-Stuffed Mushroom Caps",
+      "short": "Stuffed Mushrooms",
+      "components": [
+        "Sausage-Stuffed Mushroom Caps"
+      ]
+    },
+    "leek-and-walnut-tartlets-fontina-or-brie": {
+      "category": "non-duck",
+      "name": "Leek & Walnut Tartlets with Fontina or Brie",
+      "short": "Leek Tartlets",
+      "components": [
+        "Leek & Walnut Tartlets with Fontina or Brie"
       ]
     }
   },
@@ -1231,6 +1247,31 @@
         "-30 minutes, cut 2 cold Brie into 36 wedges; top; 2 pans of 18",
         "-10 minutes, bake 1st pan 400°F 5-7 min; rest 1-2 min",
         "0 hours, pass 18 within 20 min; bake 2nd pan as 1st goes out"
+      ]
+    },
+    "Sausage-Stuffed Mushroom Caps": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Sausage_Stuffed_Mushroom_Caps (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan: at -1 day, 28 baby bella or brown mushrooms (Chef's swap for the source's chestnut mushrooms) wiped, never rinsed, and stemmed, the caps stored gill side up on paper towel; the stems chopped and cooked with 300 g mild bulk pork sausage and garlic to 160°F, drained, mixed with cream cheese, Parmesan, green onions, and parsley, chilled shallow and labeled (about 550 g, holds 2 days); the crumb topping (30 g fresh crumbs, 30 g Parmesan) mixed and chilled. At -1 1/4 hours, 24 caps set on a cross-wire rack in a half sheet pan and filled about 23 g each (#40 disher), covered and chilled. Oven to 375°F at -55 minutes. At -35 minutes, crumb topping on, baked 22-28 minutes to 165°F in the filling center on 3 caps. Rested 5 minutes and passed warm at 6:00 PM within 20 minutes of the oven. One SOP batch is 24 caps, 2-3 per guest (serves 8-10).",
+      "tasks": [
+        "-1 days, wipe and stem 28 mushrooms; caps on paper towel, chill",
+        "-1 days, sausage filling per SOP to 160°F; crumb topping; label",
+        "-1 1/4 hours, fill 24 caps on rack in sheet pan, 23 g (#40); chill",
+        "-55 minutes, heat oven to 375°F",
+        "-35 minutes, crumb tops; bake 375°F 22-28 min to 165°F center",
+        "0 hours, rest 5 min; platter 24 caps; pass warm within 20 min"
+      ]
+    },
+    "Leek & Walnut Tartlets with Fontina or Brie": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Leek_and_Walnut_Tartlets_with_Fontina_or_Brie (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan: leek base at -1 day (the SOP allows up to 3 days ahead, or frozen up to 1 month): 300 g leeks, white and pale green, quartered, sliced 1/8 in, washed, sweated in 20 g butter on low 20-25 minutes with no color, dryness-checked, chilled shallow and labeled; 60 g walnuts toasted at 350°F 7-9 minutes and chopped 1/4 in at -1 day (the SOP allows up to 1 week); oven to 375°F and 180 g Fontina or Brie (Chef's swap for the source's Taleggio, one per batch) cut into 72 pieces of about 2.5 g at -1 hour; 45 g cream, 1 yolk, and 2 thyme sprigs folded into the cold leeks and 24 ready-made 1 1/2 in shells set on 2 pans of 12 at -1 hour; first 12 filled about 9-10 g each, topped with 3 cheese pieces, and baked 10-12 minutes to 165°F center from -20 minutes; walnuts scattered on after a 2-minute rest and passed warm at 6:00 PM within 15 minutes of the oven, the second 12 going in as the first platter goes out. One SOP batch is 24 tartlets, 2-3 per guest (serves 8-10).",
+      "tasks": [
+        "-1 days, leek base: 300 g leeks, quartered, washed; sweat low",
+        "-1 days, leeks 20-25 min, no color, dry; chill shallow, label",
+        "-1 days, toast 60 g walnuts 350°F 7-9 min; chop 1/4 in; airtight",
+        "-1 hours, oven 375°F; cut 180 g Fontina or Brie into 72 pieces",
+        "-1 hours, fold cream, yolk, thyme into cold leeks; 2 pans of 12",
+        "-20 minutes, fill 12 at 9-10 g, 3 cheese each; bake to 165°F",
+        "0 hours, walnuts on; pass within 15 min; 2nd 12 in as 1st goes"
       ]
     }
   }
