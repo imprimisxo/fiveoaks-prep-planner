@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 39 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 41 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -536,7 +536,24 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     36 wedges and topped on 2 pans of 18 at -30 minutes; first pan baked 5-7 minutes at
     -10 minutes; passed warm within 20 minutes of the oven, the second pan baked as the first
     platter goes out. Its 6 rows put the heaviest menu at 696.6 pt with no spill, level with
-    the Crab Napoleons. Their prep
+    the Crab Napoleons. The Sausage-Stuffed Mushroom Caps ("Stuffed Mushrooms") joined the
+    Non-duck group the same day from their new SOP (24 passed caps; Chef swapped whole baby
+    bella or brown mushrooms for the source's chestnut mushrooms): 28 mushrooms wiped and
+    stemmed, the caps chilled on paper towel, the stems cooked into the sausage filling to
+    160°F, and the crumb topping mixed at -1 day; 24 caps filled about 23 g each on a rack
+    in a half sheet pan at -1 1/4 hours; oven to 375°F at -55 minutes; crumb topping on and
+    baked 22-28 minutes to 165°F at -35 minutes; rested 5 minutes and passed warm within
+    20 minutes of the oven. Its 6 rows put the heaviest menu at 696.6 pt with no spill,
+    level with the Brie Crostini. The Leek & Walnut Tartlets with Fontina or Brie ("Leek
+    Tartlets") joined the Non-duck group the same day from their new SOP (24 passed tartlets
+    in ready-made 1 1/2 in shells; Chef swapped Fontina or Brie, one per batch, for the
+    source's Taleggio): leek base of 300 g leeks sweated with no color, chilled, and labeled,
+    and 60 g walnuts toasted and chopped at -1 day; oven to 375°F, 180 g cheese cut into 72
+    pieces, the cream, yolk, and thyme folded into the cold leeks, and 2 pans of 12 shells
+    set at -1 hour; the first 12 filled about 9-10 g, topped with 3 cheese pieces, and baked
+    to 165°F at -20 minutes; walnuts on and passed warm within 15 minutes of the oven, the
+    second 12 baked as the first platter goes out. Its 7 rows put the heaviest menu at
+    696.6 pt with no spill, level with the Brie Crostini. Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.

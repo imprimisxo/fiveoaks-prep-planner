@@ -93,9 +93,11 @@ question tool: it caps a question at 4 options, and there are 24 duck appetizers
         <button type="button" class="elicit-pill" data-value="crab-puff-pastry-napoleons">Crab Puff Pastry Napoleons</button>
         <button type="button" class="elicit-pill" data-value="crispy-wonton-cups-sausage-cheddar">Crispy Wonton Cups with Sausage &amp; Cheddar</button>
         <button type="button" class="elicit-pill" data-value="curried-sausage-puff-pastry-bites">Curried Sausage Puff Pastry Bites</button>
+        <button type="button" class="elicit-pill" data-value="leek-and-walnut-tartlets-fontina-or-brie">Leek &amp; Walnut Tartlets with Fontina or Brie</button>
         <button type="button" class="elicit-pill" data-value="lemon-shrimp-cheesecake-tartlets">Lemon Shrimp Cheesecake Tartlets</button>
         <button type="button" class="elicit-pill" data-value="mushroom-and-cheese-arancini">Mushroom &amp; Cheese Arancini</button>
         <button type="button" class="elicit-pill" data-value="rustic-eggplant-caponata-crostini">Rustic Eggplant Caponata Crostini</button>
+        <button type="button" class="elicit-pill" data-value="sausage-stuffed-mushroom-caps">Sausage-Stuffed Mushroom Caps</button>
         <button type="button" class="elicit-pill" data-value="southern-fried-catfish-bites">Southern Fried Catfish Bites</button>
         <button type="button" class="elicit-pill" data-value="southwest-savory-cheesecake-squares">Southwest Savory Cheesecake Squares</button>
         <button type="button" class="elicit-pill" data-value="sweet-and-spicy-kielbasa-bites">Sweet &amp; Spicy Kielbasa Bites</button>
