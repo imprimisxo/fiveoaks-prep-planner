@@ -575,7 +575,10 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     375°F at -50 minutes; 4 eggs, then 3, fried 4-5 minutes from -30 minutes and
     oven-finished to 160°F in the meat; rested, the check egg cut, and 12 halves sliced at
     -10 minutes; set on mayo dots and passed within 10 minutes at 6:00 PM. Its 8 rows put
-    the heaviest menu at 696.6 pt with no spill, level with the Nest Egg. Their prep
+    the heaviest menu at 696.6 pt with no spill, level with the Nest Egg. Later that day
+    Chef added a ninth row, Paxo ordered at -7 days (a Walmart online order that takes
+    about 5 days; skipped when a box is on hand), matching the SOP's Step 1 Order line;
+    the sweep stayed at 696.6 pt with no spill. Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
