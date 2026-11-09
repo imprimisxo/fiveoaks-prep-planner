@@ -794,17 +794,17 @@
     },
     "Southern Fried Catfish Bites": {
       "course": "appetizers",
-      "_note": "Added 2026-10-30 from FiveOaks_SOP_Southern_Fried_Catfish_Bites_on_Hushpuppy_Patties, on the SOP's Step 1 plan: catfish thaw and tartar sauce at -1 day (the SOP allows the tartar up to 2 days ahead); catfish cut and dredge mixed at -1 1/2 hours; hushpuppy batter and patties at -1 1/4 hours (fried within 2 hours of mixing); fryer on and catfish soaked at -50 minutes; patties fried at -35 minutes and held at 200°F up to 30 minutes; catfish breaded at -20 minutes and fried at -10 minutes; plated at 6:00 PM. One SOP batch is 12 plates of 3 bites, 1 plate per guest. The SOP fries the patties and any fried duck appetizer before the catfish: oil that has fried catfish carries the fish allergen.",
+      "_note": "Added 2026-10-30; retimed 2026-11-09 to Chef's rewrite of FiveOaks_SOP_Southern_Fried_Catfish_Bites_on_Hushpuppy_Patties, which uses Walmart products (Louisiana Fish Fry, Martha White Hush Puppy Mix with Onion Flavor, Great Value Tartar Sauce): thaw and tartar check -2 days; cut and dredge pan -1 day; batter, fryer 340°F, and buttermilk soak -2 hours; patties fried, thumb-dimpled, and held at 200°F from -1 1/2 hours; breading, fryer 350°F, and tartar bag -1 hour; catfish fried -45 minutes and held at 200°F; plated -15 minutes. One SOP batch is 12 plates of 3 bites, 1 plate per guest. The catfish now fries at 5:15 PM, before most fried duck appetizers, and oil that has fried catfish carries the fish allergen; fryer order is Chef's call on site.",
       "tasks": [
-        "-1 days, move frozen catfish to reefer to thaw, sealed, in a drip pan: 795 g (1 3/4 lb) per SOP batch of 12 plates, 1 plate of 3 bites per guest",
-        "-1 days, make dill pickle tartar sauce per SOP, pickles and capers blotted dry; cover, label, refrigerate",
-        "-1 1/2 hours, cut catfish into 17-19 g pieces, 3 per guest plus 2 to test; log trim; mix dredge",
-        "-1 1/4 hours, mix hushpuppy batter, rest 10 minutes; shape 21-22 g patties 1 3/4 in wide; chill",
-        "-50 minutes, heat fryer to 340°F; soak catfish in buttermilk and hot sauce in reefer",
-        "-35 minutes, fry test patty, then patties 3-4 minutes; hold on rack at 200°F up to 30 minutes",
-        "-20 minutes, bread catfish, rest on rack 5-10 minutes; fryer to 350°F; fill tartar bag",
-        "-10 minutes, fry test piece, then catfish 2-3 minutes to 145°F",
-        "0 hours, plate 3 bites as each batch comes out: patty, 5-6 g tartar, catfish, dill"
+        "-2 days, thaw catfish in reefer, sealed, in a drip pan: 795 g per 12 guests",
+        "-2 days, check tartar on hand: 1 bottle Great Value per 12 guests",
+        "-1 days, cut catfish 17-19 g, 3 per guest plus 2; log trim; refrigerate",
+        "-1 days, pour 1 bag Louisiana Fish Fry into a dredge pan, cover",
+        "-2 hours, hushpuppy patties, chill; fryer 340°F; catfish in buttermilk",
+        "-1 1/2 hours, fry patties; thumb dimple; hold at 200°F",
+        "-1 hours, bread catfish; fryer to 350°F; fill tartar bag",
+        "-45 minutes, fry catfish 2-3 minutes to 145°F; hold at 200°F",
+        "-15 minutes, plate 3 bites: patty, 5-6 g tartar, catfish, dill"
       ]
     },
     "3 Cheese Spinach Dip": {
