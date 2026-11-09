@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 41 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 42 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -553,7 +553,16 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     set at -1 hour; the first 12 filled about 9-10 g, topped with 3 cheese pieces, and baked
     to 165°F at -20 minutes; walnuts on and passed warm within 15 minutes of the oven, the
     second 12 baked as the first platter goes out. Its 7 rows put the heaviest menu at
-    696.6 pt with no spill, level with the Brie Crostini. Their prep
+    696.6 pt with no spill, level with the Brie Crostini. The Nest Egg (Coddled Egg, Smoked
+    Butter & Mushrooms) ("Nest Egg") joined the Non-duck group on 2026-11-08 from its new SOP
+    (12 eggs, 1 per guest, after Ollie Dabbous; Chef picked hand-held passing and the button
+    mushrooms as written): butter smoked or bought, 18 eggs topped and the shells boiled,
+    peeled, and dried at 225°F, and 340 g mushrooms browned nearly dry in smoked butter and
+    33 g chopped and chilled at -1 day; 2 hay trays of 6 on hidden rings and the custard mise
+    at -1 hour; water bath on and shells warmed at -20 minutes; custard cooked over the water
+    from -15 minutes and pulled at 155-160°F; piped 35 g a shell and passed within 5 minutes
+    at 6:00 PM. Its 9 rows put the heaviest menu at 696.6 pt with no spill, level with the
+    Leek Tartlets. Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
