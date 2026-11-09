@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -335,6 +335,14 @@
       "short": "Leek Tartlets",
       "components": [
         "Leek & Walnut Tartlets with Fontina or Brie"
+      ]
+    },
+    "nest-egg-coddled-egg-smoked-butter-mushrooms": {
+      "category": "non-duck",
+      "name": "Nest Egg (Coddled Egg, Smoked Butter & Mushrooms)",
+      "short": "Nest Egg",
+      "components": [
+        "Nest Egg (Coddled Egg, Smoked Butter & Mushrooms)"
       ]
     }
   },
@@ -1272,6 +1280,21 @@
         "-1 hours, fold cream, yolk, thyme into cold leeks; 2 pans of 12",
         "-20 minutes, fill 12 at 9-10 g, 3 cheese each; bake to 165°F",
         "0 hours, walnuts on; pass within 15 min; 2nd 12 in as 1st goes"
+      ]
+    },
+    "Nest Egg (Coddled Egg, Smoked Butter & Mushrooms)": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-08 from FiveOaks_SOP_Nest_Egg_Coddled_Egg_Smoked_Butter_and_Mushrooms (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan (after Ollie Dabbous's Nest Egg): 340 g unsalted butter smoked over ice in the house smoker (185°F max, apple or cherry) or with a smoking gun, or 203 g bought, at -1 day (the SOP allows up to 2 weeks); 18 large brown eggs topped, the raw egg kept for fully cooked dishes within 2 days, shells boiled in salted water, membranes peeled, and dried at 225°F 15 minutes at -1 day (up to 3 days ahead); 340 g button mushrooms (Chef's pick, as written) browned nearly dry in 128 g smoked butter 20-35 minutes, drained, chopped fine, and 33 g chilled at -1 day (the source cooked them at -4 hours); 2 hay-lined passing trays of 6 on hidden ring cutters, tasting spoons and napkins off the hay, and the custard mise weighed at -1 hour; water bath on and 14 shells warmed at 150°F at -20 minutes; one custard batch of 300 g pasteurized carton egg, mushrooms, 75 g smoked butter, 60 g cream, 2 g salt, and 3 g chives cooked over the water from -15 minutes and pulled at 155-160°F; piped 35 g a shell, 1/4 in below the rim, and passed hand-held (Chef's call) at 6:00 PM within 5 minutes of filling, discarded after 30 minutes. One SOP batch is 12 eggs, 1 per guest, with custard for 1 spare.",
+      "tasks": [
+        "-1 days, smoke 340 g butter (or buy 203 g); pack, label, chill",
+        "-1 days, top 18 eggs; boil shells, peel membrane; dry 225°F",
+        "-1 days, brown 340 g sliced mushrooms in 128 g smoked butter",
+        "-1 days, drain; chop fine; 33 g to deli; chill, label",
+        "-1 hours, 2 hay trays of 6 on hidden rings; spoons, napkins",
+        "-1 hours, weigh custard mise into bowl, cold; mince 3 g chives",
+        "-20 minutes, water bath to bare simmer; warm 14 shells 150°F",
+        "-15 minutes, cook custard, stirring; pull 155-160°F; mount butter",
+        "0 hours, pipe 35 g per shell; wipe; 6 per tray; pass within 5 min"
       ]
     }
   }
