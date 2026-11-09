@@ -429,6 +429,9 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   added these steps on 2026-10-23, so this is settled.
 - **Macerated Strawberry Sauce:** made and stored at -1 day, not -2 days. The SOP allows
   only 2 days refrigerated and is best the day it is made. Chef moved it on 2026-10-24.
+- **Duck Confit Crab Cakes make-ahead:** mixed, formed, breaded, and frozen at -10 days, not
+  -1 day. Chef changed the SOP's Step 1 plan on 2026-11-09. The confit thaws at -11 days, the
+  aioli stays at -1 day (it holds only 5 days), and the frozen cakes hold 30 days.
 - **SOP review of 2026-10-25** (`/Users/cheflance/Five_Oaks/FiveOaksClaudeWorkspace/reports/
   SOP Prep Activities by Dish.md`): Chef's calls, each with a `_note` in `menu.json`.
   - **Sauteed Wild Mushrooms:** no freeze. The SOP says the butter sauce breaks and the
