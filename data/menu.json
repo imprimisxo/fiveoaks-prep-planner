@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -343,6 +343,14 @@
       "short": "Nest Egg",
       "components": [
         "Nest Egg (Coddled Egg, Smoked Butter & Mushrooms)"
+      ]
+    },
+    "louisiana-boudin-scotch-eggs": {
+      "category": "non-duck",
+      "name": "Louisiana Boudin Scotch Eggs",
+      "short": "Scotch Eggs",
+      "components": [
+        "Louisiana Boudin Scotch Eggs"
       ]
     }
   },
@@ -1295,6 +1303,20 @@
         "-20 minutes, water bath to bare simmer; warm 14 shells 150°F",
         "-15 minutes, cook custard, stirring; pull 155-160°F; mount butter",
         "0 hours, pipe 35 g per shell; wipe; 6 per tray; pass within 5 min"
+      ]
+    },
+    "Louisiana Boudin Scotch Eggs": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-09 from FiveOaks_SOP_Louisiana_Boudin_Scotch_Eggs (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 plan (after Tom Kerridge's Scotch egg): 8 pasteurized in-shell US large eggs boiled 6 1/2 minutes, iced 10 minutes, peeled, and dried at -1 day (if none are on hand, regular eggs pasteurized in-house at 135°F for 75 minutes at -2 days; not scheduled); 525 g mild bulk pork sausage, 175 g Louisiana pork boudin, fennel, and sage mixed cold, seasoned off a test patty, and 7 eggs wrapped at 100 g at -1 day; Rosemary Dijon mayo (150 g mayo, 22 g Dijon) bottled and the house pickled red onion checked at -1 day, during the wrap chill; breaded in flour, egg wash, and 170 g dry Paxo Sage & Onion and chilled at -1 day, fried within 24 hours of breading; fryer to 350°F and oven to 375°F, onion and chives cut, and trays set at -50 minutes; 4 eggs, then 3, fried 4-5 minutes from -30 minutes, each batch into the oven to 160°F in the meat (165°F for poultry boudin); rested 2 minutes, the check egg cut, and 12 halves sliced at -10 minutes; set on 8 g mayo dots, garnished, and passed at 6:00 PM within 10 minutes of slicing. Chef's call: passed large-egg halves, 1 per guest. One SOP batch is 7 eggs: 12 halves for 12 guests plus 1 check egg.",
+      "tasks": [
+        "-1 days, boil 8 eggs 6 1/2 min; ice 10 min; peel, pat dry",
+        "-1 days, mix filling; test patty; wrap 7 eggs at 100 g; chill",
+        "-1 days, Rosemary Dijon mayo, bottle; check pickled onion",
+        "-1 days, bread in flour, egg wash, Paxo; chill, label",
+        "-50 minutes, fryer 350°F, oven 375°F; cut onion, chives; trays",
+        "-30 minutes, fry 4, then 3 eggs, 4-5 min; oven to 160°F meat",
+        "-10 minutes, rest 2 min; cut check egg; slice 12 halves",
+        "0 hours, halves on 8 g mayo dots; garnish; pass within 10 min"
       ]
     }
   }
