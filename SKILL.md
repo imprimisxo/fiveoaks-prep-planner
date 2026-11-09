@@ -457,12 +457,16 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     Cheese Spinach Dip), one of each per dinner. A second Non-duck, the Wild Mushroom &
     Gruyère Tart, was added on 2026-10-26 from its new SOP: pastry thaw at -2 days, all
     components at -1 day, shells par-baked at -3 hours, tarts baked at -20 minutes. A
-    third, the Southern Fried Catfish Bites, was added on 2026-10-30 on its SOP's Step 1
-    plan: thaw and tartar sauce at -1 day, cut at -1 1/2 hours, patties fried at -35
-    minutes, catfish fried at -10 minutes. A fourth, the Mushroom & Cheese Arancini, was
-    added the same day: risotto at -2 days, balls formed and breaded at -1 day, fried at -40
-    minutes and oven-finished from -20 minutes. A fifth, the Crispy Wonton Cups with
-    Sausage & Cheddar ("Wonton Cups"), was added on 2026-11-05 from its new SOP: shells
+    third, the Southern Fried Catfish Bites, was added on 2026-10-30 and retimed on
+    2026-11-09 to Chef's store-bought rewrite (Louisiana Fish Fry, Martha White hush puppy
+    mix, Great Value tartar): thaw and tartar check at -2 days, cut and dredge pan at -1
+    day, patty batter, fryer to 340°F and buttermilk soak at -2 hours, patties fried at
+    -1 1/2 hours, catfish breaded at -1 hour, fried at -45 minutes, plated at -15 minutes.
+    The two -2 hours rows are one task so the service day fits one page. A fourth, the
+    Mushroom & Cheese Arancini, was added on 2026-10-30: risotto at -2 days, balls formed
+    and breaded at -1 day, fried at -40 minutes and oven-finished from -20 minutes. A
+    fifth, the Crispy Wonton Cups with Sausage & Cheddar ("Wonton Cups"), was added on
+    2026-11-05 from its new SOP: shells
     baked and filling made at -1 day, oven to 375°F at -40 minutes, filled at -20 minutes,
     baked from -15 minutes to a 165°F center. The Rustic Eggplant Caponata Crostini
     ("Caponata Crostini") was added the same day: caponata made at -2 days, pine nuts
