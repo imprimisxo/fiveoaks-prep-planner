@@ -410,6 +410,24 @@ details.past .tickets { margin-top: 10px; }
   };
   const choiceOf = (field, key) => (key && key !== 'none') ? choicesFor(field).find((c) => c.key === String(key)) : null;
 
+  // Appetizer rest (Chef, 2026-11-09): once an appetizer is picked for a dinner, it comes off
+  // the list for every other dinner within 14 days of that date, before or after.
+  const REST_DAYS = 14;
+  const daysApart = (a, b) => Math.abs(Math.round((dateOf(a) - dateOf(b)) / 864e5));
+  const restingFor = (s, field) => {
+    const rest = new Map();   // appetizer key -> [{ date, host }]
+    for (const o of state.items) {
+      const v = o[field];
+      if (o.id === s.id || v == null || v === 'none' || !o.date || !s.date) continue;
+      if (daysApart(o.date, s.date) > REST_DAYS) continue;
+      const k = String(v);
+      if (!rest.has(k)) rest.set(k, []);
+      rest.get(k).push({ date: o.date, host: o.host });
+    }
+    return rest;
+  };
+  const usedOn = (uses) => uses.map((u) => `${shortDay(u.date)}${u.host ? ` (${u.host})` : ''}`).join(', ');
+
   // How far ahead the earliest task for a dish starts, from Chef's offsets in menu.json.
   const leadOf = (comps) => {
     let days = 0, minutes = 0;
@@ -564,18 +582,30 @@ details.past .tickets { margin-top: 10px; }
     if (!s || !state.menu) { el.innerHTML = ''; return; }
     const times = state.menu.service_times;
     const choiceButtons = (c) => {
-      const cards = choicesFor(c.field).map((ch) => {
+      const all = choicesFor(c.field);
+      // Appetizers picked for another dinner within REST_DAYS are left off. This dinner's own
+      // pick stays visible, with a warning if it now clashes.
+      const rest = c.category ? restingFor(s, c.field) : new Map();
+      const isOn = (ch) => String(s[c.field]) === String(ch.key);
+      const shown = all.filter((ch) => !rest.has(ch.key) || isOn(ch));
+      const resting = all.filter((ch) => rest.has(ch.key) && !isOn(ch));
+      const cards = shown.map((ch) => {
         const lead = leadLine(leadOf(ch.comps), s.date);
-        const on = String(s[c.field]) === String(ch.key);
+        const on = isOn(ch);
+        const clash = rest.get(ch.key);
         return `<button type="button" class="choice" aria-pressed="${on}" data-action="pick" data-field="${c.field}" data-value="${esc(ch.key)}" data-key="pick-${c.field}-${esc(ch.key)}">
           <span class="num" aria-hidden="true">${ch.num != null ? esc(ch.num) : ''}</span>
           <span class="name">${esc(ch.title)}</span>
           ${ch.sub ? `<span class="sub">${esc(ch.sub)}</span>` : ''}
           <span class="lead${lead.late ? ' late' : ''}">${esc(lead.text)}</span>
+          ${clash ? `<span class="lead late">Also on ${esc(usedOn(clash))}, within ${REST_DAYS} days</span>` : ''}
         </button>`;
       }).join('');
       const none = c.none ? `<button type="button" class="choice none" aria-pressed="${s[c.field] === 'none'}" data-action="pick" data-field="${c.field}" data-value="none" data-key="pick-${c.field}-none"><span class="num" aria-hidden="true"></span><span class="name">${esc(c.none)}</span></button>` : '';
-      return { cards, none };
+      const restNote = resting.length
+        ? `<p class="empty-cat">Resting (served within ${REST_DAYS} days): ${resting.map((ch) => `${esc(ch.title)}, ${esc(usedOn(rest.get(ch.key)))}`).join('; ')}</p>`
+        : '';
+      return { cards, none, count: shown.length, total: all.length, restNote };
     };
     const group = (c) => {
       const { cards, none } = choiceButtons(c);
@@ -588,12 +618,14 @@ details.past .tickets { margin-top: 10px; }
     const appetizerBlock = (list) => `<div class="course" role="group" aria-labelledby="h-appetizers">
         <div class="course-head"><h4 id="h-appetizers">Appetizers</h4><span>served ${clock(times.appetizers)} &middot; one from each</span></div>
         ${list.map((c) => {
-          const { cards, none } = choiceButtons(c);
-          const count = choicesFor(c.field).length;
+          const { cards, none, count, total, restNote } = choiceButtons(c);
+          const label = !total ? '' : count === total ? `${total} on the menu` : `${count} of ${total} available`;
           return `<div class="subcourse" role="group" aria-labelledby="h-${c.field}">
-            <h5 id="h-${c.field}">${esc(c.group)}<span>${count ? `${count} on the menu` : ''}</span></h5>
-            ${count ? '' : `<p class="empty-cat">None on the menu yet.</p>`}
+            <h5 id="h-${c.field}">${esc(c.group)}<span>${label}</span></h5>
+            ${total ? '' : `<p class="empty-cat">None on the menu yet.</p>`}
+            ${total && !count ? `<p class="empty-cat">Every ${esc(c.group.toLowerCase())} appetizer was served within ${REST_DAYS} days of this dinner.</p>` : ''}
             <div class="choices">${cards}${none}</div>
+            ${restNote}
           </div>`;
         }).join('')}
       </div>`;

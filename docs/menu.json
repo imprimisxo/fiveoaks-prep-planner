@@ -352,6 +352,14 @@
       "components": [
         "Louisiana Boudin Scotch Eggs"
       ]
+    },
+    "white-castle-style-sliders": {
+      "category": "non-duck",
+      "name": "White Castle-Style Sliders",
+      "short": "Sliders",
+      "components": [
+        "White Castle-Style Sliders"
+      ]
     }
   },
   "_salads_soups_note": "Salads & Soups is part of the dinner, one choice per night, served at 7 PM (course 'salad'). Appetizers are separate. Chef's list of 2026-10-23, numbered as he numbered it. That list replaced the SOP-derived gumbo tasks of 2026-10-22.",
@@ -593,11 +601,13 @@
       ]
     },
     "Duck Confit Crab Cakes": {
+      "_note": "Chef's call of 2026-11-09: make and freeze the cakes 10 days ahead, per the SOP's revised Step 1 plan. Base A confit thaws at -11 days; crab picked, mix chilled, cakes formed, breaded, frozen, and double-bagged at -10 days (the frozen hold is 30 days). The aioli stays at -1 day because it holds only 5 days, and the chives stay on the service timeline.",
       "course": "appetizers",
       "tasks": [
-        "-2 days, move Base A confit (1 pack plus 225 g) to reefer to thaw",
-        "-1 days, pick crab; chop confit; mix per SOP; chill 2 hours",
-        "-1 days, form 50 g cakes, chill 1 hour, bread, set 30 minutes, freeze, bag",
+        "-11 days, move Base A confit (1 pack plus 225 g) to reefer to thaw; confirm crab in house",
+        "-10 days, pick crab; chop confit; mix per SOP; chill 2 hours",
+        "-10 days, form 50 g cakes, chill 1 hour, bread, set 30 minutes, freeze",
+        "-10 days, double-bag frozen cakes; label freeze date and event date",
         "-1 days, make Meyer lemon aioli, load piping bag",
         "-1 hours, mince chives for garnish",
         "-30 minutes, heat fryer to 340°F; fry a test cake, check 165°F",
@@ -1318,6 +1328,20 @@
         "-30 minutes, fry 4, then 3 eggs, 4-5 min; oven to 160°F meat",
         "-10 minutes, rest 2 min; cut check egg; slice 12 halves",
         "0 hours, halves on 8 g mayo dots; garnish; pass within 10 min"
+      ]
+    },
+    "White Castle-Style Sliders": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-09 from FiveOaks_SOP_White_Castle_Style_Sliders (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 timeline (ChefSteps-inspired steamed sliders): 907 g 80/20 beef seasoned with 1% salt and 0.5% MSG, rolled into 2 sheets of 8 x 12 in between parchment, scored into 12 squares of 4 x 4 in, perforated with 4 holes each, frozen 60-90 minutes, cut, and stacked frozen at -1 day (the SOP allows any day up to 3 months ahead, held frozen); 225 g white onion fine-diced at -1 day (or the event morning); oven to 200°F, flat-top on low-medium, King's Hawaiian slider rolls split, and service mise at -50 minutes; onions sweated 5-8 minutes without color and held warm at 135°F or above at -40 minutes; batch 1 of 6 patties steamed from frozen about 5 minutes to 160°F and the buns steamed over them 20-30 seconds at -25 minutes; batch 1 assembled (onions, American cheese, top bun) into the 200°F oven under foil at -18 minutes, then batch 2 steamed and assembled into the oven by -10 minutes (15 minute oven limit), one row; ketchup and 2-3 pickle chips, 2 trays of 6, and passed at 6:00 PM at -5 minutes. The SOP's separate -10 minute and 0 rows are folded in: 7 service rows swept to 718.1 pt (2 maySpill), 5 rows to 696.6 pt (0). Chef's calls: passed whole sliders at the source size, 1 per guest, and King's Hawaiian rolls. One SOP batch is 12 sliders.",
+      "tasks": [
+        "-1 days, season 907 g beef; roll 2 sheets 8 x 12 in; score 12",
+        "-1 days, punch 4 holes each; freeze 60-90 min; cut; stack frozen",
+        "-1 days, fine-dice 225 g white onion; lidded, cooler",
+        "-50 minutes, oven 200°F; flat-top low-med; split 12 buns; mise",
+        "-40 minutes, sweat onions 5-8 min, no color; hold warm",
+        "-25 minutes, steam 6 frozen patties 5 min to 160°F; buns 20-30 sec",
+        "-18 minutes, assemble batch 1, oven; steam, assemble batch 2",
+        "-5 minutes, ketchup, 2-3 pickles; 2 trays of 6; pass at 6:00"
       ]
     }
   }
