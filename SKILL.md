@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 42 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 43 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -562,7 +562,16 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     at -1 hour; water bath on and shells warmed at -20 minutes; custard cooked over the water
     from -15 minutes and pulled at 155-160°F; piped 35 g a shell and passed within 5 minutes
     at 6:00 PM. Its 9 rows put the heaviest menu at 696.6 pt with no spill, level with the
-    Leek Tartlets. Their prep
+    Leek Tartlets. The Louisiana Boudin Scotch Eggs ("Scotch Eggs") joined the Non-duck
+    group on 2026-11-09 from their new SOP (after Tom Kerridge; Chef picked passed
+    large-egg halves, 1 per guest, from 7 eggs with the source's 100 g wrap): 8 pasteurized
+    large eggs boiled 6 1/2 minutes, iced, and peeled, the pork sausage and boudin filling
+    mixed off a test patty, 7 eggs wrapped at 100 g, the Rosemary Dijon mayo bottled, and
+    the eggs breaded in flour, egg wash, and dry Paxo at -1 day; fryer to 350°F and oven to
+    375°F at -50 minutes; 4 eggs, then 3, fried 4-5 minutes from -30 minutes and
+    oven-finished to 160°F in the meat; rested, the check egg cut, and 12 halves sliced at
+    -10 minutes; set on mayo dots and passed within 10 minutes at 6:00 PM. Its 8 rows put
+    the heaviest menu at 696.6 pt with no spill, level with the Nest Egg. Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.

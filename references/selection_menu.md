@@ -95,6 +95,7 @@ question tool: it caps a question at 4 options, and there are 24 duck appetizers
         <button type="button" class="elicit-pill" data-value="curried-sausage-puff-pastry-bites">Curried Sausage Puff Pastry Bites</button>
         <button type="button" class="elicit-pill" data-value="leek-and-walnut-tartlets-fontina-or-brie">Leek &amp; Walnut Tartlets with Fontina or Brie</button>
         <button type="button" class="elicit-pill" data-value="lemon-shrimp-cheesecake-tartlets">Lemon Shrimp Cheesecake Tartlets</button>
+        <button type="button" class="elicit-pill" data-value="louisiana-boudin-scotch-eggs">Louisiana Boudin Scotch Eggs</button>
         <button type="button" class="elicit-pill" data-value="mushroom-and-cheese-arancini">Mushroom &amp; Cheese Arancini</button>
         <button type="button" class="elicit-pill" data-value="nest-egg-coddled-egg-smoked-butter-mushrooms">Nest Egg (Coddled Egg, Smoked Butter &amp; Mushrooms)</button>
         <button type="button" class="elicit-pill" data-value="rustic-eggplant-caponata-crostini">Rustic Eggplant Caponata Crostini</button>
