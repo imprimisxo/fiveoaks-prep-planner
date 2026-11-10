@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day. The Shrimp Toast joined the Non-duck group on 2026-11-10. The Crispy Air-Fried Smashed Potatoes joined the Non-duck group the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day. The Shrimp Toast joined the Non-duck group on 2026-11-10. The Crispy Air-Fried Smashed Potatoes joined the Non-duck group the same day. The Homemade Hummus with Grilled Vegetables & Pita joined the Non-duck group the same day.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -383,6 +383,14 @@
       "short": "Smashed Potatoes",
       "components": [
         "Crispy Smashed Potatoes"
+      ]
+    },
+    "homemade-hummus-grilled-vegetables-pita": {
+      "category": "non-duck",
+      "name": "Homemade Hummus with Grilled Vegetables & Pita",
+      "short": "Hummus Board",
+      "components": [
+        "Hummus Board"
       ]
     }
   },
@@ -1403,6 +1411,18 @@
         "-35 minutes, oil, season, air-fry first 12 at 450°F, 25-30 min",
         "-5 minutes, load 1 out, load 2 in; toss, top, tray 1 of 12",
         "0 hours, pass tray 1 hot; tray 2 about 25 min later"
+      ]
+    },
+    "Hummus Board": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-10 from FiveOaks_SOP_Homemade_Hummus_with_Grilled_Vegetables_and_Pita (SOP/Appetizers/Non-Duck Appetizers; Pampered Chef), on the SOP's Step 1 timeline. Chef picked 2 shared boards, 1 per 6 guests, with the source batch kept at 1x (12 servings, about 620 g hummus, 300 g a bowl), and grilled zucchini, red bell pepper, and red onion with warm grilled pita as the dippers. Hummus blended in the high-speed blender and chilled in a shallow container at -1 day (the SOP allows -3 days; it keeps 4); 2 zucchini, 2 red peppers, and 1 red onion cut, and 6 pitas oiled and salted, at -1 1/4 hours; grill lit to 425-450°F at -1 hour (a cast-iron grill pan on the range in bad weather, vegetables from -1 hour); vegetables seasoned and grilled in 2 batches, rested, and cut from -45 minutes; hummus into 2 bowls of 300 g with olive oil and 6 chickpeas each at -20 minutes; pitas grilled and cut into 48 triangles at -15 minutes; 2 boards built at -5 minutes (about 400 g vegetables and 24 triangles each); boards out at 6:00 PM, 1 per 6 guests, and back to the kitchen 2 hours later. The 7 service-day rows of the SOP are combined into 5 to keep the heaviest service day on one page; the task text keeps the SOP times for the grill (-1 hour) and the pita (-15 minutes).",
+      "tasks": [
+        "-1 days, blend hummus per SOP; chill; check veg, pita on hand",
+        "-1 1/4 hours, cut veg; oil, salt pita; light grill 15 min later",
+        "-45 minutes, season, grill veg in 2 batches; rest and cut",
+        "-20 minutes, hummus in 2 bowls, oil, chickpeas; grill pita 5 min later",
+        "-5 minutes, build 2 boards: hummus, veg, 24 pita each",
+        "0 hours, boards out, 1 per 6 guests; back in after 2 h"
       ]
     }
   }
