@@ -492,7 +492,8 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     Sushi Rolls with Cured Smoked Duck ("Sushi Rolls"), came on 2026-11-06 from its new SOP
     (24 passed pieces, three sauces Chef picks from per dinner): sauce made and duck on hand
     at -1 day, rice cooked at -2 1/4 hours and held under a 4-hour time limit, duck sliced
-    and sweet potato fries cooked at -1 1/4 hours, avocado and apple cut and rolls rolled
+    and sweet potato fries deep-fried from -1 1/4 hours (fryer to 350°F; no air fryer at
+    Five Oaks, Chef 2026-11-09), avocado and apple cut and rolls rolled
     from -40 minutes, cut and sauced from -15 minutes, passed at cool room temperature. Its
     8 service-day SOP steps share 6 short rows: the first 10-row draft pushed the heaviest
     menu to 829 pt, and the 6 rows bring it to 727 pt, in line with Duck Wings. It uses a
