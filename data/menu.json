@@ -565,12 +565,14 @@
       ]
     },
     "Duck Asian Egg Rolls": {
+      "_note": "Chef's call of 2026-11-09: make and freeze the rolls 9 days ahead, per the SOP's revised Step 1 plan. Base A confit and wrappers thaw at -10 days; filling cooked, chilled, squeezed, rolled, frozen, and double-bagged at -9 days (the frozen hold is 60 days). Nothing else moves: the fry stays on the service timeline.",
       "course": "appetizers",
       "tasks": [
-        "-2 days, move 3 Base A confit packs and egg roll wrappers to reefer to thaw",
-        "-1 days, prep vegetables, cook filling per SOP, cool to 41°F",
-        "-1 days, squeeze filling, reduce the liquid to syrup and fold back, add cornstarch",
-        "-1 days, portion 57 g logs, roll 40 egg rolls, freeze 2 hours, bag 10 per bag",
+        "-10 days, move 3 Base A confit packs and egg roll wrappers to reefer to thaw",
+        "-9 days, prep vegetables, cook filling per SOP, cool to 41°F",
+        "-9 days, squeeze filling, reduce the liquid to syrup and fold back, add cornstarch",
+        "-9 days, portion 57 g logs, roll 40 egg rolls, freeze 2 hours",
+        "-9 days, double-bag frozen rolls 10 per bag; label roll date and event date",
         "-30 minutes, heat fryer to 340°F; fry a test roll, check 165°F center",
         "-20 minutes, fry 8 at a time from frozen, 7 minutes; rest 2 minutes; cut on the bias",
         "0 hours, tray 20 halves around plum sauce with sesame seeds and pass; fry in waves"
