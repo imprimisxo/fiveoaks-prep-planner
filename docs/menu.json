@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day. The Shrimp Toast joined the Non-duck group on 2026-11-10.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -367,6 +367,14 @@
       "short": "Hummus Cups",
       "components": [
         "Hummus Tortilla Cups"
+      ]
+    },
+    "shrimp-toast": {
+      "category": "non-duck",
+      "name": "Shrimp Toast",
+      "short": "Shrimp Toast",
+      "components": [
+        "Shrimp Toast"
       ]
     }
   },
@@ -1362,6 +1370,18 @@
         "-1 hours, check cups; bag hummus; 24 cucumber roses; pick basil",
         "-30 minutes, pipe 10 g hummus; rose, basil, oil drops; cooler",
         "0 hours, 2 trays of 12; pass at 6:00; pull after 30 min"
+      ]
+    },
+    "Shrimp Toast": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-10 from FiveOaks_SOP_Shrimp_Toast (SOP/Appetizers/Non-Duck Appetizers; ChefSteps, Tim Chin), on the SOP's Step 1 timeline. Chef picked 24 triangles (6 toasts, double the source, each cut corner to corner both ways, 2 per guest) and shokupan as written. BEK #138973 61/70 shrimp moved to the walk-in to thaw and the shokupan in house at -2 days; 460 g shrimp brined 15 minutes in salt and baking soda, 170 g diced with water chestnut, scallion, cilantro, and ginger, 290 g processed into the mousse in a chilled bowl, a cooked taste test, 7 slices of 1 in shokupan trimmed to 4 in squares, 125 g mixture spread on each, sesame-coated, covered, and chilled at -1 day (the SOP holds built toasts 2 days); 3 x 12 in nonstick skillets, oil in 45 g cups, rack, probe, board, serrated knife, and trays set out at -40 minutes; 6 toasts fried 2 per skillet, sesame side down 8-10 minutes to a 140°F flip cue, then bread side 2-3 minutes to 155°F, onto the rack, from -25 minutes (no house fryer); 3 toasts cut into 12 triangles for tray 1 at -5 minutes, the other 3 kept whole and warm; tray 1 passed at 6:00 PM and tray 2 cut and passed when tray 1 comes back, 20 minutes max on a tray.",
+      "tasks": [
+        "-2 days, shrimp to walk-in to thaw; shokupan in house",
+        "-1 days, brine, dice, mousse; build and seed 6 toasts; chill",
+        "-40 minutes, 3 x 12 in skillets, oil, rack, probe, board, trays",
+        "-25 minutes, fry 6 toasts, 2 per skillet, to 155°F; onto rack",
+        "-5 minutes, cut 3 toasts into 12 triangles; 3 stay whole, warm",
+        "0 hours, pass tray 1; cut and pass tray 2 when it comes back"
       ]
     }
   }
