@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 46 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 47 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -616,6 +616,17 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     house fryer; 3 toasts cut into 12 triangles at -5 minutes, the other 3 kept whole and
     warm; tray 1 passed at 6:00 PM and tray 2 cut and passed when tray 1 comes back. Its
     6 rows put the heaviest menu at 696.6 pt with no spill, level with the Hummus Cups.
+    The Crispy Air-Fried Smashed Potatoes ("Smashed Potatoes") joined the Non-duck group
+    the same day from their new SOP (ChefSteps; Chef picked 24 passed, 2 per guest, the air
+    fryer he is providing for duck season, and three toppings, one per dinner: rosemary-garlic
+    only, Lemon-Chive Crème Fraîche, or Southern Comeback Sauce, each per its own SOP):
+    850 g baby potatoes simmered, smashed warm to 1/2 in, and chilled uncovered, and the
+    chosen sauce made, at -1 day; rosemary-garlic oil, seasoning, liners, and the topping
+    bag at -1 hour; air fryer preheated empty to 450°F for a full 10 minutes at -45 minutes;
+    the first 12 oiled, seasoned, and air-fried 25-30 minutes from -35 minutes; load 1 out
+    and load 2 in, load 1 tossed, topped, and set on tray 1 at -5 minutes; tray 1 passed hot
+    at 6:00 PM and tray 2 about 25 minutes later. Its 7 rows put the heaviest menu at
+    696.6 pt with no spill, level with the Shrimp Toast.
     Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at

@@ -91,6 +91,7 @@ question tool: it caps a question at 4 options, and there are 24 duck appetizers
         <button type="button" class="elicit-pill" data-value="caramelized-onion-baked-brie-crostini">Caramelized Onion Baked Brie Crostini</button>
         <button type="button" class="elicit-pill" data-value="cider-glazed-cocktail-sausages">Cider-Glazed Cocktail Sausages</button>
         <button type="button" class="elicit-pill" data-value="crab-puff-pastry-napoleons">Crab Puff Pastry Napoleons</button>
+        <button type="button" class="elicit-pill" data-value="crispy-air-fried-smashed-potatoes">Crispy Air-Fried Smashed Potatoes</button>
         <button type="button" class="elicit-pill" data-value="crispy-wonton-cups-sausage-cheddar">Crispy Wonton Cups with Sausage &amp; Cheddar</button>
         <button type="button" class="elicit-pill" data-value="curried-sausage-puff-pastry-bites">Curried Sausage Puff Pastry Bites</button>
         <button type="button" class="elicit-pill" data-value="hummus-tortilla-cups">Hummus Tortilla Cups</button>
