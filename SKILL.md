@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 45 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 46 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -605,6 +605,16 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     24 cucumber roses rolled, and basil picked at -1 hour; 10 g hummus piped per cup with
     the rose, basil, and oil drops, into the cooler at -30 minutes; 2 trays of 12 passed at
     6:00 PM and pulled after 30 minutes.
+    The Shrimp Toast ("Shrimp Toast") joined the Non-duck group on 2026-11-10 from its new
+    SOP (ChefSteps, Tim Chin; Chef picked 24 triangles from 6 toasts, 2 per guest, and
+    shokupan as written; BEK #138973 61/70 shrimp): shrimp moved to the walk-in to thaw and
+    the shokupan in house at -2 days; shrimp brined, diced, and processed into the mousse,
+    and 6 toasts of 1 in shokupan built at 125 g, sesame-coated, and chilled at -1 day;
+    3 x 12 in skillets, oil, rack, probe, board, and trays set out at -40 minutes; 6 toasts
+    fried 2 per skillet, sesame side first, to 155°F from -25 minutes, on the stove, not the
+    house fryer; 3 toasts cut into 12 triangles at -5 minutes, the other 3 kept whole and
+    warm; tray 1 passed at 6:00 PM and tray 2 cut and passed when tray 1 comes back. Its
+    6 rows put the heaviest menu at 696.6 pt with no spill, level with the Hummus Cups.
     Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at

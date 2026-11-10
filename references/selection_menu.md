@@ -101,6 +101,7 @@ question tool: it caps a question at 4 options, and there are 24 duck appetizers
         <button type="button" class="elicit-pill" data-value="nest-egg-coddled-egg-smoked-butter-mushrooms">Nest Egg (Coddled Egg, Smoked Butter &amp; Mushrooms)</button>
         <button type="button" class="elicit-pill" data-value="rustic-eggplant-caponata-crostini">Rustic Eggplant Caponata Crostini</button>
         <button type="button" class="elicit-pill" data-value="sausage-stuffed-mushroom-caps">Sausage-Stuffed Mushroom Caps</button>
+        <button type="button" class="elicit-pill" data-value="shrimp-toast">Shrimp Toast</button>
         <button type="button" class="elicit-pill" data-value="southern-fried-catfish-bites">Southern Fried Catfish Bites</button>
         <button type="button" class="elicit-pill" data-value="southwest-savory-cheesecake-squares">Southwest Savory Cheesecake Squares</button>
         <button type="button" class="elicit-pill" data-value="sweet-and-spicy-kielbasa-bites">Sweet &amp; Spicy Kielbasa Bites</button>
