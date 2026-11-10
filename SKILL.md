@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 43 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 44 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -584,7 +584,19 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     the heaviest menu at 696.6 pt with no spill, level with the Nest Egg. Later that day
     Chef added a ninth row, Paxo ordered at -7 days (a Walmart online order that takes
     about 5 days; skipped when a box is on hand), matching the SOP's Step 1 Order line;
-    the sweep stayed at 696.6 pt with no spill. Their prep
+    the sweep stayed at 696.6 pt with no spill. The White Castle-Style Sliders ("Sliders")
+    joined the Non-duck group the same day from their new SOP (ChefSteps-inspired steamed
+    sliders; Chef picked passed whole sliders at the source size, 1 per guest, on King's
+    Hawaiian slider rolls): 907 g 80/20 beef seasoned with 1% salt and 0.5% MSG, rolled into
+    2 sheets of 8 x 12 in, scored into 12 squares, punched with 4 holes each, frozen, cut,
+    and stacked frozen, and 225 g onion fine-diced at -1 day; oven to 200°F, flat-top on,
+    and buns split at -50 minutes; onions sweated without color and held warm at -40
+    minutes; 6 frozen patties steamed about 5 minutes to 160°F with the buns steamed over
+    them at -25 minutes; batch 1 assembled into the oven, then batch 2 steamed and
+    assembled, at -18 minutes; ketchup, pickles, 2 trays of 6, and passed at -5 minutes.
+    The SOP's 7 service-day times share 5 rows: 7 rows swept to 718.1 pt with 2 spills, and
+    5 rows put the heaviest menu at 696.6 pt with no spill, level with the Scotch Eggs.
+    Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
     -21 days.
