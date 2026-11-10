@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 47 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 48 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -627,6 +627,16 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     and load 2 in, load 1 tossed, topped, and set on tray 1 at -5 minutes; tray 1 passed hot
     at 6:00 PM and tray 2 about 25 minutes later. Its 7 rows put the heaviest menu at
     696.6 pt with no spill, level with the Shrimp Toast.
+    The Homemade Hummus with Grilled Vegetables & Pita ("Hummus Board") joined the Non-duck
+    group the same day from its new SOP (Pampered Chef; Chef picked 2 shared boards, 1 per 6
+    guests, with the source batch at 1x, and grilled zucchini, red bell pepper, and red onion
+    with warm grilled pita as the dippers): hummus blended and chilled at -1 day (the SOP
+    allows -3); vegetables cut and pitas oiled and salted at -1 1/4 hours, grill lit 15
+    minutes later; vegetables seasoned and grilled in 2 batches from -45 minutes; hummus
+    into 2 bowls of 300 g at -20 minutes, pita grilled and cut 5 minutes later; 2 boards
+    built at -5 minutes; boards out at 6:00 PM and back in 2 hours later. The SOP's 7
+    service-day rows run as 5 here: 8 rows put the heaviest menu at 718.1 pt (2 spills),
+    and its 6 rows put it at 696.6 pt with no spill, level with the Smashed Potatoes.
     Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
