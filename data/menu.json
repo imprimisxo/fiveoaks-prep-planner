@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -359,6 +359,14 @@
       "short": "Sliders",
       "components": [
         "White Castle-Style Sliders"
+      ]
+    },
+    "hummus-tortilla-cups": {
+      "category": "non-duck",
+      "name": "Hummus Tortilla Cups",
+      "short": "Hummus Cups",
+      "components": [
+        "Hummus Tortilla Cups"
       ]
     }
   },
@@ -1344,6 +1352,16 @@
         "-25 minutes, steam 6 frozen patties 5 min to 160°F; buns 20-30 sec",
         "-18 minutes, assemble batch 1, oven; steam, assemble batch 2",
         "-5 minutes, ketchup, 2-3 pickles; 2 trays of 6; pass at 6:00"
+      ]
+    },
+    "Hummus Tortilla Cups": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-09 from FiveOaks_SOP_Hummus_Tortilla_Cups (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 timeline: 6 flour tortillas of 8 in warmed in foil, cut into 24 rounds of 3 in, pressed into a 24-cup mini muffin tin, brushed with 15 g olive oil, baked at 350°F 8-10 minutes until golden and crisp, cooled, and stored airtight at room temperature at -1 day (the SOP allows 2 days); cups checked for crispness, 300 g hummus bagged, 12 cucumber ribbons rolled and halved into 24 roses, and basil picked (kept out of the cooler) at -1 hour; 10 g hummus piped per cup, rose, basil leaf, and 2-3 drops of oil, then into the cooler at -30 minutes (never filled before -1 hour); 2 trays of 12 passed at 6:00 PM and pulled after 30 minutes on the trays. One SOP batch is 24 cups, 2 per guest.",
+      "tasks": [
+        "-1 days, bake 24 tortilla cups 350°F 8-10 min; cool; airtight",
+        "-1 hours, check cups; bag hummus; 24 cucumber roses; pick basil",
+        "-30 minutes, pipe 10 g hummus; rose, basil, oil drops; cooler",
+        "0 hours, 2 trays of 12; pass at 6:00; pull after 30 min"
       ]
     }
   }
