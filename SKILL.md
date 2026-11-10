@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 44 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 45 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -597,6 +597,14 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     assembled, at -18 minutes; ketchup, pickles, 2 trays of 6, and passed at -5 minutes.
     The SOP's 7 service-day times share 5 rows: 7 rows swept to 718.1 pt with 2 spills, and
     5 rows put the heaviest menu at 696.6 pt with no spill, level with the Scotch Eggs.
+    The Hummus Tortilla Cups ("Hummus Cups") joined the Non-duck group the same day from
+    their new SOP (24 passed cups, 2 per guest, one 24-cup mini muffin tin; the source gave
+    no amounts, so the weights and holds are the SOP's): 24 rounds of 3 in cut from 6 warmed
+    8 in flour tortillas, pressed into the tin, brushed with olive oil, baked at 350°F
+    8-10 minutes, cooled, and stored airtight at -1 day; cups checked, hummus bagged,
+    24 cucumber roses rolled, and basil picked at -1 hour; 10 g hummus piped per cup with
+    the rose, basil, and oil drops, into the cooler at -30 minutes; 2 trays of 12 passed at
+    6:00 PM and pulled after 30 minutes.
     Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
