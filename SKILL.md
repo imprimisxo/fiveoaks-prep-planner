@@ -609,7 +609,8 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     SOP (ChefSteps, Tim Chin; Chef picked 24 triangles from 6 toasts, 2 per guest, and
     shokupan as written; BEK #138973 61/70 shrimp): shrimp moved to the walk-in to thaw and
     the shokupan in house at -2 days; shrimp brined, diced, and processed into the mousse,
-    and 6 toasts of 1 in shokupan built at 125 g, sesame-coated, and chilled at -1 day;
+    and 6 toasts of 1 in shokupan, trimmed to 3 1/2 in squares (Chef, 2026-11-10), built at
+    90 g, sesame-coated, and chilled at -1 day;
     3 x 12 in skillets, oil, rack, probe, board, and trays set out at -40 minutes; 6 toasts
     fried 2 per skillet, sesame side first, to 155°F from -25 minutes, on the stove, not the
     house fryer; 3 toasts cut into 12 triangles at -5 minutes, the other 3 kept whole and
