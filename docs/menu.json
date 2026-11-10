@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day. The Shrimp Toast joined the Non-duck group on 2026-11-10.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day. The Shrimp Toast joined the Non-duck group on 2026-11-10. The Crispy Air-Fried Smashed Potatoes joined the Non-duck group the same day.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -375,6 +375,14 @@
       "short": "Shrimp Toast",
       "components": [
         "Shrimp Toast"
+      ]
+    },
+    "crispy-air-fried-smashed-potatoes": {
+      "category": "non-duck",
+      "name": "Crispy Air-Fried Smashed Potatoes",
+      "short": "Smashed Potatoes",
+      "components": [
+        "Crispy Smashed Potatoes"
       ]
     }
   },
@@ -1382,6 +1390,19 @@
         "-25 minutes, fry 6 toasts, 2 per skillet, to 155°F; onto rack",
         "-5 minutes, cut 3 toasts into 12 triangles; 3 stay whole, warm",
         "0 hours, pass tray 1; cut and pass tray 2 when it comes back"
+      ]
+    },
+    "Crispy Smashed Potatoes": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-10 from FiveOaks_SOP_Crispy_Air_Fried_Smashed_Potatoes (SOP/Appetizers/Non-Duck Appetizers; ChefSteps), on the SOP's Step 1 timeline. Chef picked 24 passed, 2 per guest; the air fryer he is providing for duck season (the source's 450°F air fry is kept); and all three toppings as options, one per dinner: Option 1 rosemary-garlic only (the source), Option 2 Lemon-Chive Crème Fraîche, Option 3 Southern Comeback Sauce, each made per its own SOP at -1 day and dotted 8 g a potato. 850 g baby potatoes (about 28 at 30 g) simmered in 3 kg water with 15 g salt, steam-dried, smashed warm to 1/2 in, and chilled uncovered at -1 day (the SOP allows -2 days); rosemary-garlic oil, seasoning ramekins, liners, and the topping bag or bottle at -1 hour; air fryer preheated empty to 450°F for a full 10 minutes at -45 minutes (a 400°F-max unit runs about 5 minutes longer); first 12 oiled, seasoned, and air-fried 25-30 minutes to 165°F from -35 minutes; load 1 out and load 2 in at -5 minutes, load 1 tossed in the rosemary-garlic oil, topped after a 2-minute stand, and set on tray 1; tray 1 passed hot at 6:00 PM and tray 2 about 25 minutes later as tray 1 empties (both at 6:00 if the air fryer holds all 24), 20 minutes max on a tray.",
+      "tasks": [
+        "-1 days, simmer, smash, chill 24 potatoes uncovered per SOP",
+        "-1 days, Option 2 or 3: make Lemon-Chive or Comeback sauce per SOP",
+        "-1 hours, rosemary-garlic oil; seasoning; liners; topping in bag",
+        "-45 minutes, preheat air fryer empty to 450°F, full 10 min",
+        "-35 minutes, oil, season, air-fry first 12 at 450°F, 25-30 min",
+        "-5 minutes, load 1 out, load 2 in; toss, top, tray 1 of 12",
+        "0 hours, pass tray 1 hot; tray 2 about 25 min later"
       ]
     }
   }
