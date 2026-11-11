@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 48 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 49 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -643,6 +643,17 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     built at -5 minutes; boards out at 6:00 PM and back in 2 hours later. The SOP's 7
     service-day rows run as 5 here: 8 rows put the heaviest menu at 718.1 pt (2 spills),
     and its 6 rows put it at 696.6 pt with no spill, level with the Smashed Potatoes.
+    The Shrimp & Crab Dip ("Shrimp & Crab Dip") joined the Non-duck group on 2026-11-11
+    from its new SOP (King & Prince Shrimp & Crab Dip, BEK #462073, 4 x 2.5 lb frozen
+    packs; Chef picked 2 cast-iron skillets of 10 in, 1 per 6 guests, 8 oz claw crab folded
+    in and 8 oz claw crab on top per pack, and house-toasted pita chips): one pack moved to
+    the cooler to thaw the morning of -1 day (about 12 hours, per the label), 96 pita chips
+    toasted, and the crab checked at -1 day; oven to 400°F and claw crab picked at -1 hour,
+    skillets built 15 minutes later; baked covered from -35 minutes, uncovered, stirred,
+    and topped with crab 10 minutes later; 165°F center and out at -12 minutes, chips
+    warmed; chives on and skillets onto boards at -5 minutes; out at 6:00 PM and back in
+    2 hours later. The SOP's 7 service-day rows run as 5 here, and its 6 rows put the
+    heaviest menu at 696.6 pt with no spill, level with the Hummus Board.
     Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
