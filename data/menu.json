@@ -230,7 +230,8 @@
       "name": "Sweet Potato Sushi Rolls with Cured Smoked Duck",
       "short": "Sushi Rolls",
       "components": [
-        "Sweet Potato Sushi Rolls"
+        "Sweet Potato Sushi Rolls",
+        "Duck Skin Crumble"
       ]
     },
     "southern-fried-catfish-bites": {
@@ -807,16 +808,24 @@
     },
     "Sweet Potato Sushi Rolls": {
       "course": "appetizers",
-      "_note": "Added 2026-11-06 from FiveOaks_SOP_Sweet_Potato_Sushi_Rolls_with_Cured_Smoked_Duck (SOP/Appetizers/Duck Apps), on the SOP's Step 1 plan: chosen sauce made and duck on hand at -1 day; rice rinsed and cooked at -2 1/4 hours, seasoned and cooled from -1 3/4 hours under a 4-hour time limit; fryer heated to 350°F, duck sliced, and sweet potato fries deep-fried from -1 1/4 hours (2026-11-09: Five Oaks has no air fryer, so the SOP deep-fries them at about -1 hour); sauce out, avocado and apple cut, and rolls rolled from -40 minutes (the SOP rolls at -35); cut and plated from -15 minutes, sauce and onions last (the SOP dots them at -5); passed at cool room temperature at 6:00 PM. One SOP batch is 3 rolls cut 8 each, 24 pieces, 2 per guest for 12. Chef keeps all three sauces as options and picks one per dinner. The duck is a house Smoked Duck Breast (4-day build, its own SOP) or a commercial ready-to-eat breast, so the planner adds no smoking tasks. The service-day rows are combined (8 SOP steps in 6 rows) to keep the heaviest service day on one page.",
+      "_note": "Added 2026-11-06 from FiveOaks_SOP_Sweet_Potato_Sushi_Rolls_with_Cured_Smoked_Duck (SOP/Appetizers/Duck Apps), on the SOP's Step 1 plan: chosen sauce made and duck on hand at -1 day; rice rinsed and cooked at -2 1/4 hours, seasoned and cooled from -1 3/4 hours under a 4-hour time limit; fryer heated to 350°F, duck sliced, and sweet potato fries deep-fried from -1 1/4 hours (2026-11-09: Five Oaks has no air fryer, so the SOP deep-fries them at about -1 hour); sauce out, avocado and apple cut, and rolls rolled from -40 minutes (the SOP rolls at -35); cut and plated from -15 minutes, sauce and onions last (the SOP dots them at -5); passed at cool room temperature at 6:00 PM. One SOP batch is 3 rolls cut 8 each, 24 pieces, 2 per guest for 12. Chef keeps all three sauces as options and picks one per dinner. The duck is a house Smoked Duck Breast (4-day build, its own SOP) or a commercial ready-to-eat breast, so the planner adds no smoking tasks. The service-day rows are combined (8 SOP steps in 6 rows) to keep the heaviest service day on one page. 2026-11-11: the SOP now finishes with house Duck Skin Crumble (its own component, made Day -1) tossed with toasted sesame and orange zest, in place of the French-fried onions. The crumble is ground at -40 minutes and goes on last at -15; row count and row length kept so heavy service days still fit one page.",
       "tasks": [
         "-1 days, make the chosen sauce per SOP (Maple-Mirin Soy, Orange-Ginger, or Tart Cherry-Miso)",
         "-1 days, have 2 smoked duck breasts in the walk-in (house or commercial ready-to-eat)",
         "-2 1/4 hours, rinse and cook 400 g sushi rice per SOP",
         "-1 3/4 hours, season rice; cool under damp towel; label time (4-hour limit)",
-        "-1 1/4 hours, fryer to 350°F; slice duck 3 x 57 g; fry fries; chop onions",
-        "-40 minutes, sauce out; cut avocado and apple; roll 3 rolls per SOP",
-        "-15 minutes, cut 8 per roll, wet knife; 12 per platter; sauce, then onions",
+        "-1 1/4 hours, fryer to 350°F; slice duck 3 x 57 g; fry fries",
+        "-40 minutes, sauce out; cut avocado, apple; grind crumble; roll 3 rolls",
+        "-15 minutes, cut 8 per roll, wet knife; 12 per platter; sauce, then crumble",
         "0 hours, pass 24 at cool room temp; discard at the 4-hour rice limit"
+      ]
+    },
+    "Duck Skin Crumble": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-11 from FiveOaks_SOP_Oven_Rendered_Duck_Skin_Crumble (SOP/Appetizers/Duck Apps), as a Day -1 task at Chef's request: 200 g raw, uncured duck skin rendered at 275°F (35-50 min), crisped at 325°F (15-30 min), cooled, and stored as whole crisp pieces (5 days at 41°F); rendered fat strained to Base C. One batch gives about 40-70 g, enough for about 20-35 rolls at 2 g each. Raw skin keeps 2 days in the reefer or 90 days frozen, so the -2 day row thaws frozen skin. Grinding and the service finish sit in the Sushi Rolls rows.",
+      "tasks": [
+        "-2 days, move 200 g frozen raw duck skin to the reefer to thaw",
+        "-1 days, render and crisp duck skin per SOP (275°F, then 325°F); strain fat to Base C; store pieces airtight"
       ]
     },
     "Mushroom & Cheese Arancini": {
