@@ -498,7 +498,13 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     8 service-day SOP steps share 6 short rows: the first 10-row draft pushed the heaviest
     menu to 829 pt, and the 6 rows bring it to 727 pt, in line with Duck Wings. It uses a
     house Smoked Duck Breast or a commercial ready-to-eat breast, so it adds no smoking
-    tasks. The component is named "Sweet Potato Sushi Rolls" to keep rows short. The
+    tasks. The component is named "Sweet Potato Sushi Rolls" to keep rows short. On
+    2026-11-11, at Chef's request, the rolls began finishing with house Duck Skin Crumble, its own component
+    from FiveOaks_SOP_Oven_Rendered_Duck_Skin_Crumble: frozen raw skin thawed at -2 days,
+    200 g rendered at 275°F and crisped at 325°F at -1 day, fat strained to Base C. The
+    crumble is ground in the -40 minute row and goes on last in the -15 minute row, tossed
+    with sesame and orange zest, in place of the French-fried onions. The row wording was
+    kept short so the heaviest menus print on the same number of pages as before. The
     Blackened Ahi Tuna & Sweet Potato Sushi Rolls ("Tuna Sushi Rolls") joined the Non-duck
     group the same day from their new SOP (24 passed pieces, 360 g tuna, three sauces Chef
     picks from per dinner): tuna thawed with the vacuum bag cut open, spice mixed, and sauce
