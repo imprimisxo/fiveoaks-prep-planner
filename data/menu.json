@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day. The Shrimp Toast joined the Non-duck group on 2026-11-10. The Crispy Air-Fried Smashed Potatoes joined the Non-duck group the same day. The Homemade Hummus with Grilled Vegetables & Pita joined the Non-duck group the same day.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day. The Shrimp Toast joined the Non-duck group on 2026-11-10. The Crispy Air-Fried Smashed Potatoes joined the Non-duck group the same day. The Homemade Hummus with Grilled Vegetables & Pita joined the Non-duck group the same day. The Shrimp & Crab Dip joined the Non-duck group on 2026-11-11.",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -392,6 +392,14 @@
       "short": "Hummus Board",
       "components": [
         "Hummus Board"
+      ]
+    },
+    "shrimp-and-crab-dip": {
+      "category": "non-duck",
+      "name": "Shrimp & Crab Dip",
+      "short": "Shrimp & Crab Dip",
+      "components": [
+        "Shrimp & Crab Dip"
       ]
     }
   },
@@ -1432,6 +1440,18 @@
         "-20 minutes, hummus in 2 bowls, oil, chickpeas; grill pita 5 min later",
         "-5 minutes, build 2 boards: hummus, veg, 24 pita each",
         "0 hours, boards out, 1 per 6 guests; back in after 2 h"
+      ]
+    },
+    "Shrimp & Crab Dip": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-11 from FiveOaks_SOP_Shrimp_and_Crab_Dip (SOP/Appetizers/Non-Duck Appetizers), on the SOP's Step 1 timeline. King & Prince Shrimp & Crab Dip, BEK #462073 (4 x 2.5 lb frozen packs). Chef picked 2 cast-iron skillets of 10 in, 1 per 6 guests; per 2.5 lb pack, 8 oz claw crab folded in and 8 oz claw crab on top; house-toasted pita chips. One pack moved to the cooler to thaw the morning of -1 day (about 12 h, per the label), 6 pocket pitas split into 96 chips and toasted at 375°F at -1 day, claw crab checked; oven to 400°F and claw crab drained and picked at -1 hour; dip split 567 g a skillet, 113 g crab folded into each, filled and foiled at -45 minutes; baked covered 10-12 minutes from -35 minutes; uncovered, stirred, and topped with 113 g buttered claw crab each at -25 minutes, baked uncovered 10-12 minutes; 165°F center and out at -12 minutes, chips warmed 2-3 minutes; chives on and skillets onto boards with 48 chips each at -5 minutes; skillets out at 6:00 PM, 1 per 6 guests, and back to the kitchen 2 hours later. The SOP's 7 service-day rows are combined into 5 to keep the heaviest service day on one page; the task text keeps the SOP times for the skillet build (-45 minutes) and the uncovered bake (-25 minutes).",
+      "tasks": [
+        "-1 days, thaw dip pack in cooler AM (12 h); toast chips; check crab",
+        "-1 hours, oven 400°F; pick crab; build 2 skillets 15 min later",
+        "-35 minutes, bake covered; uncover, stir, top crab 10 min later",
+        "-12 minutes, 165°F center; skillets out; warm chips 2-3 min",
+        "-5 minutes, chives; skillets on boards, 48 chips each",
+        "0 hours, skillets out, 1 per 6 guests; back in after 2 h"
       ]
     }
   }
