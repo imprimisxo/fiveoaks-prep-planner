@@ -646,14 +646,14 @@
       ]
     },
     "Duck Confit Crab Cakes": {
-      "_note": "Chef's call of 2026-11-09: make and freeze the cakes 10 days ahead, per the SOP's revised Step 1 plan. Base A confit thaws at -11 days; crab picked, mix chilled, cakes formed, breaded, frozen, and double-bagged at -10 days (the frozen hold is 30 days). The aioli stays at -1 day because it holds only 5 days, and the chives stay on the service timeline. Chef's call of 2026-11-10: Louisiana Creole Rémoulade replaces the Meyer lemon aioli; its tasks come from the rémoulade component (FiveOaks_SOP_Louisiana_Creole_Remoulade).",
+      "_note": "Chef's call of 2026-11-09: make and freeze the cakes 10 days ahead, per the SOP's revised Step 1 plan. Base A confit thaws at -11 days; crab picked, mix chilled, cakes formed, breaded, frozen, and double-bagged at -10 days (the frozen hold is 30 days). The aioli stays at -1 day because it holds only 5 days, and the chives stay on the service timeline. Chef's call of 2026-11-10: Louisiana Creole Rémoulade replaces the Meyer lemon aioli; its tasks come from the rémoulade component (FiveOaks_SOP_Louisiana_Creole_Remoulade). Since 2026-11-11 the -1 hour chives row also folds, tastes, thins, and bottles the rémoulade (SOP Step 6).",
       "course": "appetizers",
       "tasks": [
         "-11 days, move Base A confit (1 pack plus 225 g) to reefer to thaw; confirm crab in house",
         "-10 days, pick crab; chop confit; mix per SOP; chill 2 hours",
         "-10 days, form 50 g cakes, chill 1 hour, bread, set 30 minutes, freeze",
         "-10 days, double-bag frozen cakes; label freeze date and event date",
-        "-1 hours, mince chives for garnish",
+        "-1 hours, mince chives; fold, taste, thin rémoulade; fill bottle",
         "-30 minutes, heat fryer to 340°F; fry a test cake, check 165°F",
         "-20 minutes, fry 10 from frozen, 6 minutes; hold at 200°F up to 30 minutes",
         "0 hours, rémoulade dot and chive, pass each tray; fry the next 10 as each tray goes out"
@@ -856,26 +856,24 @@
     },
     "Southern Fried Catfish Bites": {
       "course": "appetizers",
-      "_note": "Added 2026-10-30; retimed 2026-11-09 to Chef's rewrite of FiveOaks_SOP_Southern_Fried_Catfish_Bites_on_Hushpuppy_Patties, which uses Walmart products (Louisiana Fish Fry, Martha White Hush Puppy Mix with Onion Flavor, Great Value Tartar Sauce): thaw and tartar check -2 days; cut and dredge pan -1 day; batter, fryer 340°F, and buttermilk soak -2 hours; patties fried, thumb-dimpled, and held at 200°F from -1 1/2 hours; breading, fryer 350°F, and tartar bag -1 hour; catfish fried -45 minutes and held at 200°F; plated -15 minutes. One SOP batch is 12 plates of 3 bites, 1 plate per guest. The catfish now fries at 5:15 PM, before most fried duck appetizers, and oil that has fried catfish carries the fish allergen; fryer order is Chef's call on site. Chef's call of 2026-11-10: Louisiana Creole Rémoulade replaces the Great Value tartar sauce; its tasks come from the rémoulade component (FiveOaks_SOP_Louisiana_Creole_Remoulade).",
+      "_note": "Added 2026-10-30; retimed 2026-11-09 to Chef's rewrite of FiveOaks_SOP_Southern_Fried_Catfish_Bites_on_Hushpuppy_Patties, which uses Walmart products (Louisiana Fish Fry, Martha White Hush Puppy Mix with Onion Flavor, Great Value Tartar Sauce): thaw and tartar check -2 days; cut and dredge pan -1 day; batter, fryer 340°F, and buttermilk soak -2 hours; patties fried, thumb-dimpled, and held at 200°F from -1 1/2 hours; breading, fryer 350°F, and tartar bag -1 hour; catfish fried -45 minutes and held at 200°F; plated -15 minutes. One SOP batch is 12 plates of 3 bites, 1 plate per guest. The catfish now fries at 5:15 PM, before most fried duck appetizers, and oil that has fried catfish carries the fish allergen; fryer order is Chef's call on site. Chef's call of 2026-11-10: Louisiana Creole Rémoulade replaces the Great Value tartar sauce; its tasks come from the rémoulade component (FiveOaks_SOP_Louisiana_Creole_Remoulade). Since 2026-11-11 the -1 hour row also folds, tastes, and thins the rémoulade (SOP Step 6), which keeps the service day on one page.",
       "tasks": [
         "-2 days, thaw catfish in reefer, sealed, in a drip pan: 795 g per 12 guests",
         "-1 days, cut catfish 17-19 g, 3 per guest plus 2; log trim; refrigerate",
         "-1 days, pour 1 bag Louisiana Fish Fry into a dredge pan, cover",
         "-2 hours, hushpuppy patties, chill; fryer 340°F; catfish in buttermilk",
         "-1 1/2 hours, fry patties; thumb dimple; hold at 200°F",
-        "-1 hours, bread catfish; fryer to 350°F",
+        "-1 hours, bread catfish; fryer to 350°F; fold, taste, thin rémoulade",
         "-45 minutes, fry catfish 2-3 minutes to 145°F; hold at 200°F",
         "-15 minutes, plate 3 bites: patty, 5-6 g rémoulade, catfish, dill"
       ]
     },
     "Louisiana Creole Rémoulade": {
       "course": "appetizers",
-      "_note": "Added 2026-11-10 from FiveOaks_SOP_Louisiana_Creole_Remoulade (SOP/Sauces), Chef's call: replaces the Meyer lemon aioli on the Duck Confit Crab Cakes and the tartar on the Southern Fried Catfish Bites. The SOP makes a 1 kg batch on Day -1 and rests it overnight (2 hours minimum); it holds 4 days at 41°F and does not freeze. Listed in both dishes, it prints once per dinner when both are served.",
+      "_note": "Added 2026-11-10 from FiveOaks_SOP_Louisiana_Creole_Remoulade (SOP/Sauces), Chef's call: replaces the Meyer lemon aioli on the Duck Confit Crab Cakes and the tartar on the Southern Fried Catfish Bites. The SOP makes a 1 kg batch on Day -1 and rests it overnight (2 hours minimum); it holds 4 days at 41°F and does not freeze. Listed in both dishes, it prints once per dinner when both are served. Since 2026-11-11 its SOP Step 6 service work (fold from the bottom, taste, thin the service portion, fill the squeeze bottle) rides in each dish's own -1 hour row instead of two rémoulade rows, so a catfish or crab cake night prints no extra service rows. The two separate rows put the heaviest catfish nights over one page (738.1 pt, 22 of 3,000 menus). On a night with both dishes, each row thins and bottles that dish's own portion.",
       "tasks": [
         "-2 days, check Duke's mayo, Creole mustard, Heinz chili sauce, horseradish, capers, dill pickle, lemons, celery, green onions, parsley",
-        "-1 days, make Louisiana Creole rémoulade per SOP; rest in reefer overnight",
-        "-1 hours, fold rémoulade from the bottom; taste and adjust per SOP Step 6",
-        "-1 hours, thin the service portion with lemon per SOP; fill squeeze bottle, 1/4 in tip"
+        "-1 days, make Louisiana Creole rémoulade per SOP; rest in reefer overnight"
       ]
     },
     "3 Cheese Spinach Dip": {
