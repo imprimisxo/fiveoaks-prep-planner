@@ -438,12 +438,17 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   is its own component, from FiveOaks_SOP_Louisiana_Creole_Remoulade (SOP/Sauces), listed in
   both dishes, so it prints once on a night that serves both: ingredients checked at -2 days,
   a 1 kg batch made and rested in the reefer overnight at -1 day (it holds 4 days and does
-  not freeze), folded and tasted at -1 hour, and the service portion thinned with lemon into
-  a squeeze bottle at -1 hour. The dishes' plating rows name the rémoulade. It ran on the
-  Claude artifact from 2026-11-10 and reached the website on 2026-11-11. Its two -1 hour rows
-  put the heaviest catfish nights over one page (Non-duck sweep, 3,000 runs: worst 738.1 pt,
-  22 maySpill sheets; 696.6 pt and none without it); merging them into one row still gives
-  707.1 pt, 2 sheets.
+  not freeze). Its SOP Step 6 service work (fold, taste, thin the service portion, fill the
+  squeeze bottle) has no row of its own: it rides in each dish's existing -1 hour row (the
+  catfish breading row, the crab cakes chives row), so on a night with both dishes each row
+  readies that dish's own portion. The dishes' plating rows name the rémoulade. It ran on
+  the Claude artifact from 2026-11-10 and reached the website on 2026-11-11 with two
+  rémoulade rows at -1 hour, which put the heaviest catfish nights over one page (Non-duck
+  sweep, 3,000 runs: worst 738.1 pt, 22 maySpill sheets) and crab cake nights too (worst
+  747.1 pt, 32). One merged row still gave 707.1 pt, 2 sheets. Folding the work into the
+  dishes' rows (Chef's OK, 2026-11-11) brings catfish back to 696.6 pt, 0 sheets, and crab
+  cakes back to their pre-swap numbers (worst 705.1 pt with the Mushroom Arancini, 4
+  sheets, all with the Arancini or Mushroom Tart, as before).
 - **Duck Asian Egg Rolls make-ahead:** filling cooked, squeezed, rolled, and frozen at -9 days,
   not -1 day. Chef changed the SOP's Step 1 plan on 2026-11-09. The confit and wrappers thaw
   at -10 days, and the frozen rolls hold 60 days.
@@ -482,7 +487,8 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     -1 1/2 hours, catfish breaded at -1 hour, fried at -45 minutes, plated at -15 minutes.
     The two -2 hours rows are one task so the service day fits one page. Since 2026-11-10
     the Louisiana Creole Rémoulade replaces the tartar (see above), so the tartar check and
-    tartar bag are gone and the plate takes 5-6 g rémoulade. A fourth, the
+    tartar bag are gone, the -1 hour row also readies the rémoulade, and the plate takes
+    5-6 g rémoulade. A fourth, the
     Mushroom & Cheese Arancini, was added on 2026-10-30: risotto at -2 days, balls formed
     and breaded at -1 day, fried at -40 minutes and oven-finished from -20 minutes. A
     fifth, the Crispy Wonton Cups with Sausage & Cheddar ("Wonton Cups"), was added on
