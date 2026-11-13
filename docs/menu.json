@@ -7,7 +7,7 @@
     "dessert": "20:00"
   },
   "_service_times_note": "Chef's times (2026-10-22): appetizers 6 PM, salad or soup 7 PM, entrees 7:30 PM, dessert 8 PM. Entrees were 7 PM and dessert 7:30 PM until the Salad or Soup course was added.",
-  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day. The Shrimp Toast joined the Non-duck group on 2026-11-10. The Crispy Air-Fried Smashed Potatoes joined the Non-duck group the same day. The Homemade Hummus with Grilled Vegetables & Pita joined the Non-duck group the same day. The Shrimp & Crab Dip joined the Non-duck group on 2026-11-11.",
+  "_appetizers_note": "Chef's appetizer course of 2026-10-25, served at 6 PM (course 'appetizers'). Each dinner takes one Duck and one Non-duck appetizer, or none of either (request fields appetizer_duck and appetizer_nonduck). Every task comes from the dish's html SOP in /Users/cheflance/Five_Oaks/SOP (reports/SOP Prep Activities by Dish.md in the Five Oaks workspace), with Chef's 10/25 calls: pizza and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at -21 days. Non-duck appetizers will be added later; the Wild Mushroom & Gruyère Tart joined the 3 Cheese Spinach Dip on 2026-10-26, the Southern Fried Catfish Bites on 2026-10-30, the Mushroom & Cheese Arancini the same day, the Crispy Wonton Cups with Sausage & Cheddar on 2026-11-05, the Rustic Eggplant Caponata Crostini the same day, the Curried Sausage Puff Pastry Bites the same day, and the Lemon Shrimp Cheesecake Tartlets the same day. On 2026-11-06 the Sweet Potato Sushi Rolls with Cured Smoked Duck became the first Duck appetizer added after the book's 23. The Blackened Ahi Tuna & Sweet Potato Sushi Rolls joined the Non-duck group the same day. The Sweet & Spicy Kielbasa Bites joined the Non-duck group the same day. The Southwest Savory Cheesecake Squares joined the Non-duck group the same day. The Crab Puff Pastry Napoleons joined the Non-duck group the same day. The Caramelized Onion Baked Brie Crostini joined the Non-duck group the same day. The Leek & Walnut Tartlets with Fontina or Brie joined the Non-duck group the same day. The Nest Egg (Coddled Egg, Smoked Butter & Mushrooms) joined the Non-duck group on 2026-11-08. The Louisiana Boudin Scotch Eggs joined the Non-duck group on 2026-11-09. The White Castle-Style Sliders and the Hummus Tortilla Cups joined the Non-duck group the same day. The Shrimp Toast joined the Non-duck group on 2026-11-10. The Crispy Air-Fried Smashed Potatoes joined the Non-duck group the same day. The Homemade Hummus with Grilled Vegetables & Pita joined the Non-duck group the same day. The Shrimp & Crab Dip joined the Non-duck group on 2026-11-11. The Hushpuppies joined the Non-duck group on 2026-11-13 (SOP in Side Dishes, like the Mushroom & Cheese Arancini).",
   "appetizers": {
     "asian-grilled-duck": {
       "category": "duck",
@@ -402,6 +402,14 @@
       "short": "Shrimp & Crab Dip",
       "components": [
         "Shrimp & Crab Dip"
+      ]
+    },
+    "hushpuppies": {
+      "category": "non-duck",
+      "name": "Hushpuppies",
+      "short": "Hushpuppies",
+      "components": [
+        "Hushpuppies"
       ]
     }
   },
@@ -1460,6 +1468,18 @@
         "-12 minutes, 165°F center; skillets out; warm chips 2-3 min",
         "-5 minutes, chives; skillets on boards, 48 chips each",
         "0 hours, skillets out, 1 per 6 guests; back in after 2 h"
+      ]
+    },
+    "Hushpuppies": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-13 from FiveOaks_SOP_Hushpuppies (SOP/Side Dishes; written as a side, joined the Non-duck appetizers at Chef's call the same day, like the Mushroom & Cheese Arancini), on the SOP's Step 1 timeline for a 6:00 PM service. Scratch batter, half of Chef's source batch: 4 hushpuppies per guest at 20 g raw (#60 disher, 1 tbsp), about 64 from 1.34 kg of batter (48 served, 2 test fries, spares); corn from a 2.5 lb foodservice bag (284 g, 1/4 bag); salt and sugar added at Chef's call. Dry mix weighed, 75 g onion and 30 g seeded fresh jalapeño minced, and 284 g frozen corn into the cooler to thaw at -1 day; fryer to 350°F and corn drained and blotted dry at -1 hour; batter mixed, mix-ins folded, rested 15 minutes at -50 minutes; 2 test fries at 20 g, 3-4 minutes, 160°F center, batter adjusted at -35 minutes; fried in 4-5 batches of 12-16, 3-4 minutes, finishing salt, held uncovered on racks in a 200°F oven up to 30 minutes, from -30 minutes; out at 6:00 PM in 2 lined baskets of 24, 1 per 6 guests, or 4 a plate. Batter fried within 2 hours of mixing. Fryer order on nights with a fried duck appetizer is Chef's call on site.",
+      "tasks": [
+        "-1 days, dry mix; mince onion, jalapeño; 284 g corn into cooler",
+        "-1 hours, fryer 350°F; drain and blot the corn dry",
+        "-50 minutes, mix batter; fold in corn, onion, jalapeño; rest 15 min",
+        "-35 minutes, test fry 2 at 20 g; 160°F center; adjust batter",
+        "-30 minutes, fry 4-5 batches, 3-4 min; salt; hold 200°F uncovered",
+        "0 hours, 2 lined baskets of 24, 1 per 6 guests, or 4 a plate"
       ]
     }
   }
