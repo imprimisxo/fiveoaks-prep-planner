@@ -379,7 +379,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
   Then add its card to `references/selection_menu.md` with the same key.
-- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 49 dishes, each with a
+- **Appetizers:** the `appetizers` map (Chef, 2026-10-25) holds 50 dishes, each with a
   `category` (`duck` or `non-duck`), `name`, `short`, and `components`. Each component has
   `"course": "appetizers"`, which keys off 6:00 PM, and its tasks come from the dish's html
   SOP in `/Users/cheflance/Five_Oaks/SOP`. To add an appetizer, add its component and an
@@ -674,6 +674,18 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     warmed; chives on and skillets onto boards at -5 minutes; out at 6:00 PM and back in
     2 hours later. The SOP's 7 service-day rows run as 5 here, and its 6 rows put the
     heaviest menu at 696.6 pt with no spill, level with the Hummus Board.
+    The Hushpuppies ("Hushpuppies") joined the Non-duck group on 2026-11-13 from
+    FiveOaks_SOP_Hushpuppies, a scratch batter written as a side (it stays in SOP/Side
+    Dishes, like the Mushroom & Cheese Arancini); Chef put it in the Non-duck group, at
+    6:00 PM, rather than adding a side picker. Chef's SOP calls: half his source batch, 4 per
+    guest at 20 g (1 tbsp disher), corn from a 2.5 lb foodservice bag, salt and sugar added.
+    Dry mix, onion and jalapeño minced, and 284 g corn into the cooler at -1 day; fryer to
+    350°F and corn blotted dry at -1 hour; batter mixed and rested 15 minutes at -50
+    minutes; 2 test fries to a 160°F center at -35 minutes; 4-5 batches fried 3-4 minutes,
+    salted, and held uncovered at 200°F up to 30 minutes from -30 minutes; out at 6:00 PM in
+    2 lined baskets of 24, 1 per 6 guests, or 4 a plate. Its 6 rows put the heaviest menu
+    at 697.0 pt with no spill (3,125 single-dinner menus), level with the Shrimp & Crab Dip
+    on the same sweep.
     Their prep
     lists carry Chef's calls: pizza
     and flatbread toppings at -2 days, spinach dip made at -3 days, prosciutto started at
