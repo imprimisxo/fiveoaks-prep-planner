@@ -130,6 +130,12 @@ Optional fields:
   "(double batch for <host> <m/d> + <host> <m/d>)". Each dinner keeps its own later tasks
   (thaw, reheat, plate). Only components with `batch_steps` can be batched; today that's
   the cheesecake and the hot fudge.
+- `done` on a service: the tasks already ticked off, as the web app saves them (task key
+  -> the day it was ticked, `YYYY-MM-DD`), or a plain list of task keys (read as ticked
+  before today). Ticked rows print with a check instead of an empty box; past-due rows
+  ticked before today drop off. `id` on a service is the web app's dinner id, carried back
+  on each row's `tasks` so a tick saves to the right dinner. A chat request leaves both
+  out. See "Check-offs" under Web app.
 
   Chef's standing preference (2026-10-22) is to combine and double these "to the earliest
   date". So when a run has the cheesecake or the hot fudge on more than one night,
@@ -195,7 +201,8 @@ These are the rules the generator applies. Know them so you can explain a sheet 
   today goes to the top of today's sheet under **Past Due: Do First**, with its original
   date. A cheesecake ordered for four days out can't be baked seven days out. When the
   run has past-due lines, lead the delivery message with them. Chef may need to change
-  the menu, not just rush the prep.
+  the menu, not just rush the prep. A task ticked off in the web app before today is done,
+  so it never moves to today.
 
 ## Step 4: Validate
 
@@ -315,6 +322,24 @@ was slow. The artifact still works.
   carries advance prep for later nights too. `build()` takes `only: "<date>"` for the
   one-day document, and without `docx` it returns the schedule alone (`doc` is null),
   which is what the on-screen sheet uses.
+- **Check-offs** (Chef asked 2026-11-14: done tasks kept showing as late). Every box on
+  the on-screen sheet is a checkbox; tapping the box or anywhere on the row ticks it, and
+  tapping again unticks it. A tick saves on the dinner as `done.<task key>` = the day it
+  was ticked. The key (`taskKey` in `prep_core.js`, FNV-1a of component, task text before
+  any batch note, scheduled date and clock time) stays the same across loads, so a tick
+  sticks; moving a dinner to another date gives its tasks new keys. Rules: a past-due task
+  ticked before today drops off the sheet; one ticked today stays in Past Due, checked, so
+  a mis-tap can be undone that day; a future task ticked early shows checked on its day. A
+  merged timeline row covering two parties saves to both dinners and is checked only when
+  both are. A batch row (cheesecake, hot fudge) saves to every dinner in the batch and
+  reads as done when any has it, so the tick survives the batch changing hands. The day
+  summary counts only unticked past-due tasks and adds "N of M checked off"; a day chip
+  gets a check when everything on it is ticked; a dinner's ticket shows a late note only
+  for its unticked past-due tasks. The downloaded .docx prints a check for ticked rows.
+  Website: each tick writes the dotted path `done.<key>` (unticks delete it), so two
+  devices ticking one dinner don't overwrite each other. Artifact: its store merges
+  nested objects, so an untick saves `null`. Firestore refuses `done` until the
+  2026-11-14 `firestore.rules` are pasted into the console.
 - **Same output as the generator.** The page runs the same `prep_core.js` and
   `menu.json`, with the same `batch` default (cheesecake and hot fudge), and loads docx
   9.8.1 from jsDelivr. On 2026-10-23 a three-dinner run gave the same schedule text and
@@ -343,10 +368,11 @@ was slow. The artifact still works.
   database is.
 - **Dinner fields**, the same in both stores, one document per dinner: `host`, `date`
   (YYYY-MM-DD), `guests`, `appetizer_duck` and `appetizer_nonduck` (key or `none`),
-  `salad` (key or `none`), `meal` (`"1"` to `"5"`), `dessert` (key or `none`), `created`.
+  `salad` (key or `none`), `meal` (`"1"` to `"5"`), `dessert` (key or `none`), `created`,
+  and `done` (the check-offs, a map of task key to the day ticked; up to 400 keys).
   A course that is still `null` (or missing) hasn't been picked. `firestore.rules` allows
-  the two appetizer fields since 2026-10-25; paste the rules into the Firebase console
-  before the website takes appetizer picks, or Firestore refuses them. When Chef
+  the two appetizer fields since 2026-10-25 and `done` since 2026-11-14; paste the rules
+  into the Firebase console before the website takes them, or Firestore refuses them. When Chef
   wants the PDF of artifact dinners, read them with ArtifactData `list` on the artifact
   URL. Website dinners are out of Claude's reach unless Chef shares his kitchen code, so
   ask him for the dinners instead. Then run them through Steps 2 to 5.
