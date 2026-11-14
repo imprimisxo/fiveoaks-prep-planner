@@ -74,6 +74,17 @@ const parseTask = (line, where) => {
   return { minutes, text };
 };
 
+// A task's check-off key: its component, its text as menu.json writes it, and the day (and
+// clock time) it was scheduled for, hashed (FNV-1a) to a short field name. The same task
+// gets the same key on every load; a dinner moved to another date gets fresh keys, so old
+// checkmarks don't land on the new schedule.
+const taskKey = (component, text, dateStr, minute) => {
+  const s = `${component}|${text}|${dateStr}|${minute == null ? '' : minute}`;
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+  return 't' + (h >>> 0).toString(36);
+};
+
 // ==========================================================================
 // TEMPLATE CONSTANTS: Five Oaks house format
 // ==========================================================================
@@ -195,7 +206,14 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     const menuLabel = [...appetizers.map(a => a.short), salad ? salad.short : null, mealLabel, dessert ? dessert.short : null]
       .filter(Boolean).join(' + ') || 'Extras only';
     const host = s.host ? String(s.host).trim() : null;
-    return { i, date, key: ymd(date), host, guests, appetizers, salad, meal, dessert, times, componentNames, menuLabel };
+    // Check-offs: task key -> the day it was ticked (YYYY-MM-DD), as the web app saves them
+    // per dinner. A plain list of keys counts as ticked before today. `id` is the dinner's
+    // id in the web app, carried back on every row so a tick saves to the right dinner.
+    const done = new Map();
+    if (Array.isArray(s.done)) for (const k of s.done) done.set(String(k), true);
+    else if (s.done && typeof s.done === 'object') for (const [k, v] of Object.entries(s.done)) if (v) done.set(k, v === true ? true : String(v));
+    const ref = s.id == null ? null : String(s.id);
+    return { i, date, key: ymd(date), host, guests, appetizers, salad, meal, dessert, times, componentNames, menuLabel, done, ref };
   }).sort((a, b) => a.date - b.date || a.i - b.i);
 
   const guestText = (s) => s.guests ? `${s.guests} guests` : 'guest count TBD';
@@ -243,6 +261,19 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     }
   }
 
+  // Each row carries its check-off key, the day it was ticked (or null), and `tasks`, the
+  // (dinner, key) pairs a tick saves to: its own dinner, until mergeTimed folds rows
+  // together. A batch made once for several dinners saves to every one of them and reads
+  // as done when any has it, so the tick survives a dinner joining or leaving the batch, or
+  // another dinner taking over as the batch's first. The key uses the task text before the
+  // batch note for the same reason.
+  const tick = (svc, name, text, date, minute, row, batch = null) => {
+    const id = taskKey(name, text, ymd(date), minute);
+    const owners = batch || [svc];
+    const done = owners.map((u) => u.done.get(id)).find(Boolean) || null;
+    return { ...row, id, done, tasks: owners.map((u) => ({ ref: u.ref, id })) };
+  };
+
   // Every task becomes one row on exactly one dated sheet.
   //   kind 'advance' : day offset, any time that day
   //   kind 'timed'   : hour or minute offset, at a clock time on the timeline
@@ -255,17 +286,20 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
       const users = batchUsers[name];
       comp.tasks.forEach((line, ti) => {
         const t = parseTask(line, name);
+        const base = t.text;
         const order = si * 1e6 + ci * 1e3 + ti;
         const batched = users && ti < comp.batch_steps && t.days != null;
         if (batched && users[0] !== svc) return;   // made in the earliest dinner's batch
         if (batched) t.text += ` (${multWord(users.length)} batch for ${users.map(svcShort).join(' + ')})`;
         if (t.days != null) {
-          rows.push({ kind: 'advance', date: addDays(svc.date, t.days), svc, component: name, text: t.text, order });
+          const date = addDays(svc.date, t.days);
+          rows.push(tick(svc, name, base, date, null, { kind: 'advance', date, svc, component: name, text: t.text, order }, batched ? users : null));
         } else {
           // Offsets can cross midnight; let the clock time roll the date.
           const total = anchor + t.minutes;
           const dayShift = Math.floor(total / 1440);
-          rows.push({ kind: 'timed', date: addDays(svc.date, dayShift), minute: total - dayShift * 1440, svc, component: name, text: t.text, order });
+          const date = addDays(svc.date, dayShift), minute = total - dayShift * 1440;
+          rows.push(tick(svc, name, base, date, minute, { kind: 'timed', date, minute, svc, component: name, text: t.text, order }));
         }
       });
     });
@@ -276,18 +310,25 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     const { freeze, thaw } = MENU.components[name].batch_freeze;
     const fill = (s) => { const t = s.replace('{share}', svcShort(svc)); return t.charAt(0).toUpperCase() + t.slice(1); };
     const order = services.indexOf(svc) * 1e6 + svc.componentNames.indexOf(name) * 1e3 + 900;
-    rows.push({ kind: 'advance', date: made, svc, component: name, text: fill(freeze), order });
-    rows.push({ kind: 'advance', date: addDays(svc.date, -1), svc, component: name, text: fill(thaw), order: order + 1 });
+    const thawOn = addDays(svc.date, -1);
+    rows.push(tick(svc, name, fill(freeze), made, null, { kind: 'advance', date: made, svc, component: name, text: fill(freeze), order }));
+    rows.push(tick(svc, name, fill(thaw), thawOn, null, { kind: 'advance', date: thawOn, svc, component: name, text: fill(thaw), order: order + 1 }));
   }
 
-  // Anything that should already have happened goes to the top of today's sheet.
-  for (const r of rows) {
+  // Anything that should already have happened goes to the top of today's sheet, unless it
+  // was ticked off before today: those are done and drop off. One ticked today stays on
+  // today's sheet, checked, so a mis-tap can still be undone.
+  let tickedEarlier = 0;
+  const live = rows.filter((r) => {
     r.key = ymd(r.date);
-    if (r.key < todayStr) { r.dueDate = r.date; r.kind = 'pastdue'; r.date = TODAY; r.key = todayStr; }
-  }
+    if (r.key >= todayStr) return true;
+    if (r.done && (r.done === true || r.done < todayStr)) { tickedEarlier++; return false; }
+    r.dueDate = r.date; r.kind = 'pastdue'; r.date = TODAY; r.key = todayStr;
+    return true;
+  });
 
   const byDate = new Map();
-  for (const r of rows) {
+  for (const r of live) {
     if (!byDate.has(r.key)) byDate.set(r.key, []);
     byDate.get(r.key).push(r);
   }
@@ -303,11 +344,14 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
       const k = `${r.minute}|${r.svc.key}|${norm(r.text)}`;
       if (seen.has(k)) {
         // Two parties on one night can share a component; name it once.
-        const c = seen.get(k).components;
-        if (!c.includes(r.component)) c.push(r.component);
+        const m = seen.get(k);
+        if (!m.components.includes(r.component)) m.components.push(r.component);
+        // One box for all of them: it's ticked only when every task under it is.
+        m.tasks.push(...r.tasks);
+        if (!r.done) m.done = null;
         continue;
       }
-      const row = { ...r, components: [r.component] };
+      const row = { ...r, components: [r.component], tasks: [...r.tasks] };
       seen.set(k, row);
       out.push(row);
     }
@@ -376,8 +420,9 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
   const headCell = (text, width, font) => cell(
     [new TextRun({ text, font: font || bodyFace, size: D.sz, bold: true, color: 'FFFFFF' })],
     width, GREEN, { align: font === BOX_FONT ? AlignmentType.CENTER : AlignmentType.LEFT });
-  const boxCell = (fill) => cell(
-    [new TextRun({ text: BOX_CHAR, font: BOX_FONT, size: D.box, color: GREEN })],   // 1pt over the text fits the exact line unclipped
+  // A task ticked off in the web app prints with a check instead of an empty box.
+  const boxCell = (fill, done) => cell(
+    [new TextRun({ text: done ? CHECK_CHAR : BOX_CHAR, font: BOX_FONT, size: D.box, color: GREEN })],   // 1pt over the text fits the exact line unclipped
     COL_BOX, fill, { align: AlignmentType.CENTER });
   const textCell = (text, width, fill, o) => cell([run(text, o)], width, fill);
 
@@ -414,7 +459,7 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
       body.push(groupRow(svc, cols));
       list.forEach((r, i) => {
         const fill = i % 2 === 1 ? LIGHT : null;
-        body.push(new TableRow({ cantSplit: true, children: [boxCell(fill), ...cellsFor(r, fill)] }));
+        body.push(new TableRow({ cantSplit: true, children: [boxCell(fill, r.done), ...cellsFor(r, fill)] }));
       });
     }
     return table(cols, header, body);
@@ -503,7 +548,7 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
         const fill = i % 2 === 1 ? LIGHT : null;
         const who = r.components.join(', ') + (r.svc.key !== sheet.key ? ` (for ${serviceTag(r.svc)})` : '');
         return new TableRow({ cantSplit: true, children: [
-          boxCell(fill),
+          boxCell(fill, r.done),
           textCell(clock(r.minute), TIME_COLS[1], fill, { bold: true }),
           textCell(who, TIME_COLS[2], fill),
           textCell(r.text, TIME_COLS[3], fill),
@@ -616,21 +661,29 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
   for (const f of frozenShares) report.push(`frozen share: ${f.name} for ${svcShort(f.svc)} (${f.gap} days after the ${shortDate(f.made)} batch): freeze ${shortDate(f.made)}, thaw ${shortDate(addDays(f.svc.date, -1))}`);
   report.push(`today: ${todayStr}`);
   for (const s of services) report.push(`service ${s.key}${hostTag(s)}  ${s.menuLabel}  ${guestText(s)}`);
+  if (tickedEarlier) report.push(`ticked off before today, left off the sheets: ${tickedEarlier}`);
   let boxes = 0;
   const count = (g) => g.reduce((k, [, l]) => k + l.length, 0);
+  const ticked = (l) => l.filter((r) => r.done).length;
+  const x = (r) => (r.done ? '[x] ' : '');
   for (const s of sheets) {
     s.counts = { pastDue: count(s.pastDue), advance: count(s.advance), timed: s.timed.length };
+    // pastDueOpen: past-due tasks not ticked yet. done: ticked rows anywhere on the sheet.
+    s.counts.pastDueOpen = s.counts.pastDue - s.pastDue.reduce((k, [, l]) => k + ticked(l), 0);
+    s.counts.done = [...s.pastDue, ...s.advance].reduce((k, [, l]) => k + ticked(l), 0) + ticked(s.timed);
+    s.counts.total = s.counts.pastDue + s.counts.advance + s.counts.timed;
     s.maySpill = s.estimate > BODY_PT - FIT_MARGIN;
-    boxes += s.counts.pastDue + s.counts.advance + s.counts.timed;
-    report.push(`\n== ${longDate(s.date)}  (past due ${s.counts.pastDue}, advance ${s.counts.advance}, timeline ${s.counts.timed})` +
+    boxes += s.counts.total;
+    report.push(`\n== ${longDate(s.date)}  (past due ${s.counts.pastDue}, advance ${s.counts.advance}, timeline ${s.counts.timed}` +
+      `${s.counts.done ? `, ticked ${s.counts.done}` : ''})` +
       `  [${s.density.name}, est ${Math.round(s.estimate)} of ${Math.round(BODY_PT)} pt${s.maySpill ? ', MAY SPILL' : ''}]`);
-    for (const [svc, l] of s.pastDue) for (const r of l) report.push(`  PAST DUE (was ${ymd(r.dueDate)}) [${serviceTag(svc)}${hostTag(svc)}] ${r.component}: ${r.text}`);
-    for (const [svc, l] of s.advance) for (const r of l) report.push(`  advance [${serviceTag(svc)}${hostTag(svc)}] ${r.component}: ${r.text}`);
-    for (const r of s.timed) report.push(`  ${clock(r.minute).padStart(8)}  ${r.components.join(', ')}: ${r.text}`);
+    for (const [svc, l] of s.pastDue) for (const r of l) report.push(`  ${x(r)}PAST DUE (was ${ymd(r.dueDate)}) [${serviceTag(svc)}${hostTag(svc)}] ${r.component}: ${r.text}`);
+    for (const [svc, l] of s.advance) for (const r of l) report.push(`  ${x(r)}advance [${serviceTag(svc)}${hostTag(svc)}] ${r.component}: ${r.text}`);
+    for (const r of s.timed) report.push(`  ${x(r)}${clock(r.minute).padStart(8)}  ${r.components.join(', ')}: ${r.text}`);
   }
 
-  return { doc, report, stem, sheets, boxes, services, warnings, frozenShares, batchUsers, todayStr, fonts: { head: headFace, body: bodyFace, box: BOX_FONT } };
+  return { doc, report, stem, sheets, boxes, services, warnings, frozenShares, batchUsers, todayStr, tickedEarlier, fonts: { head: headFace, body: bodyFace, box: BOX_FONT } };
 }
 
-return { build, PrepError, parseTask, longDate, shortDate, parseYMD, ymd, clock };
+return { build, PrepError, parseTask, taskKey, longDate, shortDate, parseYMD, ymd, clock };
 });

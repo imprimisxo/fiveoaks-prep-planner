@@ -223,8 +223,13 @@ details.past .tickets { margin-top: 10px; }
 .sheet tr.alt td { background: var(--brand-soft); }
 .sheet tr.band td { background: var(--band); }
 .sheet tr.band b { color: var(--brand); }
-.sheet td.box { width: 22px; }
-.sheet td.box::before { content: ""; display: inline-block; width: 14px; height: 14px; border: 1.5px solid var(--brand); border-radius: 2px; vertical-align: -2px; }
+.sheet td.box { width: 28px; padding-right: 4px; }
+.sheet input.tick { width: 22px; height: 22px; margin: 0; accent-color: var(--brand); cursor: pointer; vertical-align: -4px; }
+.sheet tr[data-action="tick-row"] { cursor: pointer; }
+.sheet tr.done td:not(.box) { color: var(--muted); }
+.sheet tr.done td:last-child { text-decoration: line-through; text-decoration-color: var(--muted); }
+.sheet .tick-hint { color: var(--muted); font-size: 14px; }
+.chip.all-done { color: var(--brand); }
 .sheet td.time { width: 5.2em; white-space: nowrap; font-weight: 700; font-variant-numeric: tabular-nums; }
 .sheet td.item { width: 32%; }
 .table-scroll { overflow-x: auto; }
@@ -359,7 +364,8 @@ details.past .tickets { margin-top: 10px; }
 
   const state = {
     menu: null,
-    items: [],            // dinner services: { id, host, date, guests, appetizer_duck, appetizer_nonduck, salad, meal, dessert }
+    items: [],            // dinner services: { id, host, date, guests, appetizer_duck, appetizer_nonduck, salad, meal, dessert, done }
+                          // done: { <task key>: 'YYYY-MM-DD' the day it was ticked off }, see prep_core.js taskKey
     mode: 'loading',      // loading | shared (Claude) | firebase | kitchen (needs the code) | local | error
     readOnly: false,
     formFor: null,        // 'new' or a service id while the guest form is open
@@ -496,6 +502,26 @@ details.past .tickets { margin-top: 10px; }
       state.items = state.items.filter((i) => i.id !== id);
       if (col) col.doc(id).delete().catch(writeError);
     },
+    // Check-offs live on the dinner as done.<task key> = the day it was ticked. Firestore
+    // writes each key by its dotted path, so two devices ticking different tasks on one
+    // dinner don't overwrite each other. Claude's store merges nested objects instead and
+    // can't drop a key, so an untick saves null there.
+    tick(id, keys, day) {
+      const it = state.items.find((i) => i.id === id);
+      if (!it) return;
+      const done = { ...(it.done || {}) };
+      for (const k of keys) { if (day) done[k] = day; else delete done[k]; }
+      it.done = done;
+      if (!col) return;
+      if (fsdb) {
+        const drop = firebase.firestore.FieldValue.delete();
+        col.doc(id).update(Object.fromEntries(keys.map((k) => [`done.${k}`, day || drop]))).catch(writeError);
+        return;
+      }
+      const patch = { done: Object.fromEntries(keys.map((k) => [k, day || null])) };
+      const next = (writeQueue[id] || Promise.resolve()).then(() => col.doc(id).update(patch));
+      writeQueue[id] = next.catch(writeError);
+    },
   };
 
   // ---- Derived lists ---------------------------------------------------------
@@ -507,8 +533,8 @@ details.past .tickets { margin-top: 10px; }
   const isComplete = (s) => COURSES.every((c) => s[c.field] != null);
   const included = () => upcoming().filter((s) => !state.excluded.has(s.id));
   const requestFor = (list) => ({
-    services: list.map((s) => ({ date: s.date, host: s.host, guests: s.guests, appetizer_duck: s.appetizer_duck,
-      appetizer_nonduck: s.appetizer_nonduck, salad: s.salad, meal: s.meal, dessert: s.dessert })),
+    services: list.map((s) => ({ id: s.id, date: s.date, host: s.host, guests: s.guests, appetizer_duck: s.appetizer_duck,
+      appetizer_nonduck: s.appetizer_nonduck, salad: s.salad, meal: s.meal, dessert: s.dessert, done: s.done || null })),
     // Chef's standing preference: make the cheesecake and hot fudge once, doubled, on the
     // earliest date, whenever more than one dinner uses them.
     batch: Object.keys(state.menu.components).filter((n) => state.menu.components[n].batch_steps),
@@ -522,7 +548,21 @@ details.past .tickets { margin-top: 10px; }
     const ch = choiceOf(c.field, v);
     return ch ? esc(c.field === 'meal' ? `#${ch.key} ${ch.title}` : ch.title) : `<span class="missing">Unknown choice "${esc(v)}"</span>`;
   };
+  // A dinner on today's prep list is late only for past-due tasks nobody has ticked off. One
+  // that isn't on the list (unticked, or its menu unfinished) falls back to the dishes' lead
+  // times.
   const lateNotes = (s) => {
+    const list = included();
+    if (list.some((x) => x.id === s.id) && list.every(isComplete)) {
+      const sched = scheduleFor(list);
+      if (!sched.error) {
+        const today = sched.sheets.find((x) => x.key === todayKey);
+        const open = today ? today.pastDue.flatMap(([, l]) => l).filter((r) => !r.done && r.tasks.some((t) => t.ref === s.id)) : [];
+        if (!open.length) return '';
+        const comps = [...new Set(open.map((r) => r.component))];
+        return `<p class="late-note">${open.length} past-due task${open.length === 1 ? '' : 's'} not checked off: ${esc(comps.join(', '))}. ${open.length === 1 ? 'It is' : 'They are'} at the top of today's prep list.</p>`;
+      }
+    }
     const late = COURSES.map((c) => {
       const ch = choiceOf(c.field, s[c.field]);
       const lead = ch ? leadOf(ch.comps) : null;
@@ -674,7 +714,9 @@ details.past .tickets { margin-top: 10px; }
     const sched = scheduleFor(list);
     if (sched.error) return blocked(`<p class="hint">The prep list couldn't be worked out: ${esc(sched.error)}</p>`);
     btn.disabled = false;
-    const days = `<div class="prep-days"><span>Days with prep:</span>${sched.sheets.map((s) => `<button type="button" class="chip" data-action="pick-day" data-date="${s.key}" data-key="day-${s.key}" aria-pressed="${s.key === state.prepDate}">${esc(P.shortDate(s.date))}</button>`).join('')}</div>`;
+    // A day whose every task is ticked off gets a check on its chip.
+    const allDone = (s) => s.counts.total > 0 && s.counts.done === s.counts.total;
+    const days = `<div class="prep-days"><span>Days with prep:</span>${sched.sheets.map((s) => `<button type="button" class="chip${allDone(s) ? ' all-done' : ''}" data-action="pick-day" data-date="${s.key}" data-key="day-${s.key}" aria-pressed="${s.key === state.prepDate}"${allDone(s) ? ` aria-label="${esc(P.shortDate(s.date))}, all checked off"` : ''}>${esc(P.shortDate(s.date))}${allDone(s) ? ' \u2713' : ''}</button>`).join('')}</div>`;
     let shown = '';
     const key = state.prepShown;
     if (key && key < todayKey) {
@@ -690,12 +732,13 @@ details.past .tickets { margin-top: 10px; }
   const guestWord = (s) => (s.guests ? `${s.guests} guests` : 'guest count TBD');
   const prepResult = (sheet) => {
     const n = sheet.counts;
-    const parts = [n.pastDue && `${n.pastDue} past due`, n.advance && `${n.advance} advance prep`, n.timed && `${n.timed} on the service timeline`].filter(Boolean);
+    const parts = [n.pastDueOpen && `${n.pastDueOpen} past due`, n.advance && `${n.advance} advance prep`, n.timed && `${n.timed} on the service timeline`,
+      n.done && (n.done === n.total ? 'all checked off' : `${n.done} of ${n.total} checked off`)].filter(Boolean);
     const tonight = sheet.tonight.length
       ? `Dinner tonight: ${sheet.tonight.map((s) => `${s.host || 'Dinner'}, ${s.menuLabel}, ${guestWord(s)}`).join('; ')}.`
       : 'No dinner service tonight. Advance prep only.';
     const notes = [];
-    if (n.pastDue) notes.push(`<li><b>${n.pastDue} task${n.pastDue === 1 ? ' is' : 's are'} past due.</b> ${n.pastDue === 1 ? 'It is' : 'They are'} at the top of the sheet under Past Due: Do First. Check whether the menu still works.</li>`);
+    if (n.pastDueOpen) notes.push(`<li><b>${n.pastDueOpen} task${n.pastDueOpen === 1 ? ' is' : 's are'} past due.</b> ${n.pastDueOpen === 1 ? 'It is' : 'They are'} at the top of the sheet under Past Due: Do First. If already done, press View Prep List and tick ${n.pastDueOpen === 1 ? 'it' : 'them'} off. If not, check whether the menu still works.</li>`);
     if (sheet.maySpill) notes.push('<li><b>A full day.</b> The printed sheet may run onto a second page, even in its smallest text.</li>');
     const canDownload = canSave() && !!window.docx;
     const status = !window.docx ? 'The document library did not load. Reload the page to download.'
@@ -719,10 +762,19 @@ details.past .tickets { margin-top: 10px; }
   const sheetView = (sheet) => {
     const svcTag = (s) => `${P.shortDate(s.date)} dinner${s.host ? ` | ${s.host}` : ''}`;
     const band = (svc, cols) => `<tr class="band"><td colspan="${cols}"><b>For ${esc(svcTag(svc))}</b> &nbsp; ${esc(svc.menuLabel)} &nbsp;|&nbsp; ${esc(guestWord(svc))}</td></tr>`;
+    // Each box is a real checkbox. Tapping anywhere on the row ticks it too, an easier target
+    // on the kitchen iPad. data-tasks names every (dinner, task key) the row stands for.
+    const tickCell = (r) => {
+      const tasks = r.tasks.map((t) => `${t.ref}:${t.id}`).join(' ');
+      const what = `${(r.components || [r.component]).join(', ')}: ${r.text}`;
+      return `<td class="box"><input type="checkbox" class="tick" data-action="tick" data-tasks="${esc(tasks)}" data-key="tick-${esc(tasks)}"
+        aria-label="${esc(`Done: ${what}`)}"${r.done ? ' checked' : ''}${state.readOnly ? ' disabled' : ''}></td>`;
+    };
+    const rowTag = (r, i) => `<tr class="${[i % 2 ? 'alt' : '', r.done ? 'done' : ''].join(' ').trim()}"${state.readOnly ? '' : ' data-action="tick-row"'}>`;
     const grouped = (groups, head, cells) => `<div class="table-scroll"><table>
       <thead><tr><th aria-label="Done"></th>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead>
       <tbody>${groups.map(([svc, rows]) => band(svc, head.length + 1) + rows.map((r, i) =>
-        `<tr${i % 2 ? ' class="alt"' : ''}><td class="box"></td>${cells(r)}</tr>`).join('')).join('')}</tbody></table></div>`;
+        `${rowTag(r, i)}${tickCell(r)}${cells(r)}</tr>`).join('')).join('')}</tbody></table></div>`;
     const tonight = sheet.tonight.length ? sheet.tonight.map((s) => {
       const served = new Set(s.componentNames.map((c) => state.menu.components[c].course));
       const courses = COURSE_LABELS.filter(([, c]) => s.times[c] != null && served.has(c))
@@ -736,13 +788,15 @@ details.past .tickets { margin-top: 10px; }
       <h3>Prep List: ${esc(P.longDate(sheet.date))}</h3>
       <div class="tonight">${tonight}</div>
       <p class="signoff"><span></span><span><b>Prepped: _________</b> &nbsp; <b>Checked: _________</b></span></p>
-      ${sheet.pastDue.length ? `<h4>Past Due: Do First</h4><p class="save-status">These were scheduled before today. Do them now, or tell the chef if the service plan has to change.</p>
+      <p class="tick-hint">${state.readOnly ? 'Checkmarks show what the kitchen has ticked off.'
+        : `Tap a task to check it off. ${{ firebase: 'Ticks save for every device opened with this kitchen code.', shared: 'Ticks save for everyone you share this page with.' }[state.mode] || 'Ticks here last until the page closes.'} A task ticked off never shows as past due.`}</p>
+      ${sheet.pastDue.length ? `<h4>Past Due: Do First</h4><p class="save-status">These were scheduled before today and aren't ticked off. Tick the ones already done. Do the rest now, or tell the chef if the service plan has to change.</p>
         ${grouped(sheet.pastDue, ['Was Due', 'Item', 'Task'], (r) => `<td class="time">${esc(P.shortDate(r.dueDate))}</td><td class="item">${esc(r.component)}</td><td>${esc(r.text)}</td>`)}` : ''}
       ${sheet.advance.length ? `<h4>Advance Prep<span>${esc(start != null ? `Any time today. Finish before the timeline starts at ${P.clock(start)}.` : 'Any time today, for the dinners named in each band.')}</span></h4>
         ${grouped(sheet.advance, ['Item', 'Task'], (r) => `<td class="item">${esc(r.component)}</td><td>${esc(r.text)}</td>`)}` : ''}
       ${sheet.timed.length ? `<h4>Service Timeline</h4><div class="table-scroll"><table>
         <thead><tr><th aria-label="Done"></th><th>Time</th><th>Item</th><th>Task</th></tr></thead>
-        <tbody>${sheet.timed.map((r, i) => `<tr${i % 2 ? ' class="alt"' : ''}><td class="box"></td><td class="time">${esc(P.clock(r.minute))}</td>
+        <tbody>${sheet.timed.map((r, i) => `${rowTag(r, i)}${tickCell(r)}<td class="time">${esc(P.clock(r.minute))}</td>
           <td class="item">${esc(r.components.join(', ') + (r.svc.key !== sheet.key ? ` (for ${P.shortDate(r.svc.date)} dinner)` : ''))}</td><td>${esc(r.text)}</td></tr>`).join('')}</tbody></table></div>` : ''}
     </article>`;
   };
@@ -960,11 +1014,31 @@ details.past .tickets { margin-top: 10px; }
       case 'close-view': state.viewOpen = false; render(); $('[data-action="view"]').focus(); break;
       case 'download': downloadDay(); break;
       case 'change-kitchen': leaveKitchen(); break;
+      case 'tick-row': {
+        // A tap on the row's text, not a drag to select it.
+        if (String(window.getSelection && window.getSelection()) !== '') break;
+        const box = el.querySelector('input.tick');
+        if (box && !box.disabled) { box.checked = !box.checked; setTicks(box); }
+        break;
+      }
     }
   });
+  // Ticks the row's tasks with today's date, or clears them, on each dinner they belong to.
+  const setTicks = (box) => {
+    if (state.readOnly) return;
+    const byDinner = new Map();
+    for (const pair of box.dataset.tasks.split(' ')) {
+      const [ref, key] = pair.split(':');
+      if (!byDinner.has(ref)) byDinner.set(ref, []);
+      byDinner.get(ref).push(key);
+    }
+    for (const [ref, keys] of byDinner) store.tick(ref, keys, box.checked ? todayKey : null);
+    render();
+  };
   document.addEventListener('change', (ev) => {
     const el = ev.target;
     if (el.id === 'prepDate') { pickDay(el.value || todayKey); return; }
+    if (el.dataset && el.dataset.action === 'tick') { setTicks(el); return; }
     if (el.dataset && el.dataset.action === 'include') {
       if (el.checked) state.excluded.delete(el.dataset.id); else state.excluded.add(el.dataset.id);
       render();
