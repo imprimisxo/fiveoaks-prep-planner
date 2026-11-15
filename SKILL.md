@@ -194,8 +194,14 @@ These are the rules the generator applies. Know them so you can explain a sheet 
   that night, so Appetizers shows only on nights with an appetizer picked. The picked
   appetizers lead the menu label ("Arancini + Spinach Dip + Duck Gumbo + ..."), so the
   Tonight line and the bands can wrap; the one-page height estimate counts those wraps.
-- **One sheet per day that has work.** A day with nothing due gets no sheet. Each sheet
-  starts on a new page with the logo, so one day can be pulled off the packet and posted.
+- **One sheet per day, every day.** Since 2026-11-14 every day from today through the last
+  dinner gets a sheet, because each opens with the daily tasks (below); a day with no other
+  prep carries just those. Each sheet starts on a new page with the logo, so one day can be
+  pulled off the packet and posted.
+- **Daily tasks open every sheet.** `daily_tasks` in `menu.json` (Chef, 2026-11-14: "Feed
+  sourdough starter", the first task each day; the Sourdough Starter SOP feeds the mother
+  every 24 hours) print under **Every Day**, ahead of Past Due. A daily task is never past
+  due: a missed day doesn't carry over. Report lines read `daily <item>: <task>`.
 - **Overlapping nights share a sheet.** On the Friday of a Fri-Sun stay, the sheet carries
   Friday's service timeline plus the advance prep due that day for Saturday and Sunday,
   each under its own band.
@@ -341,7 +347,10 @@ was slow. The artifact still works.
   today drops off Past Due for good. A
   merged timeline row covering two parties saves to both dinners and is checked only when
   both are. A batch row (cheesecake, hot fudge) saves to every dinner in the batch and
-  reads as done when any has it, so the tick survives the batch changing hands. The day
+  reads as done when any has it, so the tick survives the batch changing hands. A daily
+  task (the starter feeding) saves to the nearest dinner still ahead that day and reads as
+  done when any dinner still ahead has it, so no dinner collects a key for every day
+  before it (Firestore allows 400 per dinner). The day
   summary counts only unticked past-due tasks and adds "N of M checked off"; a day chip
   gets a check when everything on it is ticked; a dinner's ticket shows a late note only
   for its unticked past-due tasks.
@@ -410,6 +419,9 @@ All menu edits go in `data/menu.json`. The script needs no changes.
 - **New component:** add it under `components` with a `course` (`appetizers`, `salad`,
   `dinner`, or `dessert`) and its `tasks`, then list it in a salad or soup, meal, or
   dessert.
+- **Daily tasks:** `daily_tasks` is a list of `{ "item": ..., "task": ... }`, printed in
+  that order at the top of every day's sheet. Changing a task's wording gives it new
+  check-off keys, so earlier ticks on it no longer show.
 - **New salad, soup, meal, or dessert:** add an entry to `salads_soups`, `meals`, or
   `desserts` with `name`, a `short` name for headers, and its `components` in plating
   order. Meal keys are numbers. Salad, soup, and dessert keys are lowercase with hyphens.
@@ -444,8 +456,11 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   -1 day was dropped on 2026-10-25; see below.)
 - **Hot fudge:** the brownie and the skillet cookie share one Homemade Hot Fudge list,
   made 5 days ahead.
-- **Prime Rib:** steaks are cut from the roast at -1 hour, not -4 days. The -15 minute
-  slice step stays.
+- **Prime Rib** (Chef, 2026-11-14, replacing the 10/22 list): thaw -8 days, dry brine
+  -6 days for 72 hours, sous vide -3 days for 12 hours, out of the bath -2 days (bag juices
+  saved for the Red Wine Au Jus) and air dried on a rack, seared -1 day, warmed to 130°F at
+  -3 hours, sliced at -30 minutes. Chef wrote the warm-up as "day 0"; a 0-day task lands at
+  course time, after the slice, so he set -3 hours.
 - **Money Sauce:** made 2 days ahead per its SOP (no parsley), cooled and refrigerated,
   then warmed at -2 hours.
 - **Skillet Cookie:** no whipped cream. It is served with Blue Bell, using the scoop
