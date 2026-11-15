@@ -1078,16 +1078,15 @@
     },
     "Prime Rib with Au Jus": {
       "course": "dinner",
+      "_note": "Chef's prep timing of 2026-11-14, replacing the 2026-10-22 list (sous vide and dry on Day -1, grill mark at -3 hours, steaks cut at -1 hour, sliced at -15 minutes). Chef wrote the warm-up as 'day 0'; a 0-day task lands at course time, after the slice, so Chef put it at -3 hours (4:30 PM for a 7:30 PM entree) the same day. Chef also kept saving the bag juices for the Red Wine Au Jus (about 118 g; the SOP holds juices 2 days) on the Day -2 row. '0 hours, plate and serve' kept like every entree.",
       "tasks": [
-        "-8 days, put rib roast in reefer to thaw",
-        "-4 days, dry brine bone-in rib roast",
-        "-1 days, vacuum seal and sous vide bone-in rib roast",
-        "-1 days, remove bone-in rib roast from plastic, reserving juices for jus",
-        "-1 days, place bone-in rib roast on sheet pan with rack in reefer to dry",
-        "-3 hours, grill mark bone-in rib roast and rest in reefer",
-        "-1 hours, cut steaks from rib roast",
-        "-1 hours, warm bone-in rib roast in low oven to temp",
-        "-15 minutes, slice prime rib steaks",
+        "-8 days, move prime rib roast to reefer to thaw",
+        "-6 days, dry brine prime rib roast for 72 hours",
+        "-3 days, sous vide the prime rib roast for 12 hours",
+        "-2 days, remove prime rib roast from water bath, reserve the bag juices for jus, air dry on a rack in reefer",
+        "-1 days, sear the prime rib roast, return to reefer",
+        "-3 hours, warm the prime rib roast to 130°F for serving",
+        "-30 minutes, slice the prime rib roast for serving",
         "0 hours, plate and serve"
       ]
     },

@@ -228,8 +228,22 @@ details.past .tickets { margin-top: 10px; }
 .sheet tr[data-action="tick-row"] { cursor: pointer; }
 .sheet tr.done td:not(.box) { color: var(--muted); }
 .sheet tr.done td:last-child { text-decoration: line-through; text-decoration-color: var(--muted); }
-.sheet .tick-hint { color: var(--muted); font-size: 14px; }
+.sheet .tick-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; }
+.sheet .tick-hint { color: var(--muted); font-size: 14px; flex: 1 1 280px; }
+.sheet .btn.show-done { min-height: 36px; font-size: 14px; }
+.sheet .all-done-note { padding: 10px 12px; border-radius: 6px; background: var(--brand-soft); color: var(--brand); }
 .chip.all-done { color: var(--brand); }
+/* After a tick the row leaves the sheet; this bar names it, with Undo, for a few seconds. */
+.toast {
+  position: fixed; left: 50%; transform: translateX(-50%); z-index: 10;
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  width: min(560px, calc(100% - 32px)); box-sizing: border-box;
+  display: flex; align-items: center; gap: 12px; padding: 6px 6px 6px 16px;
+  background: var(--ink); color: var(--bg); border-radius: 8px; box-shadow: 0 4px 16px rgb(0 0 0 / 0.25);
+}
+.toast span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; }
+.toast .btn.quiet { color: var(--bg); }
+.toast .btn.quiet:hover { background: transparent; text-decoration: underline; }
 .sheet td.time { width: 5.2em; white-space: nowrap; font-weight: 700; font-variant-numeric: tabular-nums; }
 .sheet td.item { width: 32%; }
 .table-scroll { overflow-x: auto; }
@@ -335,6 +349,7 @@ details.past .tickets { margin-top: 10px; }
 
   <div class="status-row">
     <p class="status" id="status" role="status"></p>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
     <button type="button" class="btn quiet" id="changeKitchen" data-action="change-kitchen" hidden>Change kitchen code</button>
   </div>
 </div>
@@ -377,6 +392,8 @@ details.past .tickets { margin-top: 10px; }
     viewOpen: false,      // that day's sheet is open on screen
     dlStatus: '',
     notice: '',
+    showDone: false,      // the on-screen sheet also shows checked-off tasks
+    lastTick: null,       // { tasks, label } of the last task ticked, for Undo
   };
   let col = null, downloads = null, logoBytes = null, fsdb = null, unsubscribe = null;
   const writeQueue = {};
@@ -532,7 +549,10 @@ details.past .tickets { margin-top: 10px; }
   // have no appetizer fields, so they ask for those picks once.
   const isComplete = (s) => COURSES.every((c) => s[c.field] != null);
   const included = () => upcoming().filter((s) => !state.excluded.has(s.id));
-  const requestFor = (list) => ({
+  // Checked-off tasks come off the sheets (Chef, 2026-11-14); showDone puts them back on the
+  // on-screen sheet only. The download always leaves them off.
+  const requestFor = (list, showDone = false) => ({
+    show_done: showDone,
     services: list.map((s) => ({ id: s.id, date: s.date, host: s.host, guests: s.guests, appetizer_duck: s.appetizer_duck,
       appetizer_nonduck: s.appetizer_nonduck, salad: s.salad, meal: s.meal, dessert: s.dessert, done: s.done || null })),
     // Chef's standing preference: make the cheesecake and hot fudge once, doubled, on the
@@ -689,7 +709,7 @@ details.past .tickets { margin-top: 10px; }
   // The schedule for every ticked dinner, worked out once per change to the dinners.
   let schedCache = { sig: null, value: null };
   const scheduleFor = (list) => {
-    const request = requestFor(list);
+    const request = requestFor(list, state.showDone);
     const sig = JSON.stringify(request);
     if (schedCache.sig !== sig) {
       let value;
@@ -732,7 +752,7 @@ details.past .tickets { margin-top: 10px; }
   const guestWord = (s) => (s.guests ? `${s.guests} guests` : 'guest count TBD');
   const prepResult = (sheet) => {
     const n = sheet.counts;
-    const parts = [n.pastDueOpen && `${n.pastDueOpen} past due`, n.advance && `${n.advance} advance prep`, n.timed && `${n.timed} on the service timeline`,
+    const parts = [n.pastDueOpen && `${n.pastDueOpen} past due`, n.advanceOpen && `${n.advanceOpen} advance prep`, n.timedOpen && `${n.timedOpen} on the service timeline`,
       n.done && (n.done === n.total ? 'all checked off' : `${n.done} of ${n.total} checked off`)].filter(Boolean);
     const tonight = sheet.tonight.length
       ? `Dinner tonight: ${sheet.tonight.map((s) => `${s.host || 'Dinner'}, ${s.menuLabel}, ${guestWord(s)}`).join('; ')}.`
@@ -768,7 +788,7 @@ details.past .tickets { margin-top: 10px; }
       const tasks = r.tasks.map((t) => `${t.ref}:${t.id}`).join(' ');
       const what = `${(r.components || [r.component]).join(', ')}: ${r.text}`;
       return `<td class="box"><input type="checkbox" class="tick" data-action="tick" data-tasks="${esc(tasks)}" data-key="tick-${esc(tasks)}"
-        aria-label="${esc(`Done: ${what}`)}"${r.done ? ' checked' : ''}${state.readOnly ? ' disabled' : ''}></td>`;
+        data-label="${esc(what)}" aria-label="${esc(`Done: ${what}`)}"${r.done ? ' checked' : ''}${state.readOnly ? ' disabled' : ''}></td>`;
     };
     const rowTag = (r, i) => `<tr class="${[i % 2 ? 'alt' : '', r.done ? 'done' : ''].join(' ').trim()}"${state.readOnly ? '' : ' data-action="tick-row"'}>`;
     const grouped = (groups, head, cells) => `<div class="table-scroll"><table>
@@ -788,8 +808,13 @@ details.past .tickets { margin-top: 10px; }
       <h3>Prep List: ${esc(P.longDate(sheet.date))}</h3>
       <div class="tonight">${tonight}</div>
       <p class="signoff"><span></span><span><b>Prepped: _________</b> &nbsp; <b>Checked: _________</b></span></p>
-      <p class="tick-hint">${state.readOnly ? 'Checkmarks show what the kitchen has ticked off.'
-        : `Tap a task to check it off. ${{ firebase: 'Ticks save for every device opened with this kitchen code.', shared: 'Ticks save for everyone you share this page with.' }[state.mode] || 'Ticks here last until the page closes.'} A task ticked off never shows as past due.`}</p>
+      <div class="tick-bar">
+        <p class="tick-hint">${state.readOnly ? 'Tasks the kitchen has checked off are left off this list.'
+          : state.showDone ? 'Checked-off tasks show with a line through them. Tap one to put it back on the list.'
+          : `Tap a task when it's done and it comes off the list. ${{ firebase: 'Ticks save for every device opened with this kitchen code.', shared: 'Ticks save for everyone you share this page with.' }[state.mode] || 'Ticks here last until the page closes.'}`}</p>
+        ${sheet.counts.done ? `<button type="button" class="btn quiet show-done" data-action="show-done" data-key="show-done" aria-pressed="${state.showDone}">${state.showDone ? 'Hide checked tasks' : `Show checked tasks (${sheet.counts.done})`}</button>` : ''}
+      </div>
+      ${sheet.pastDue.length + sheet.advance.length + sheet.timed.length ? '' : '<p class="all-done-note"><b>Everything for this day is checked off.</b></p>'}
       ${sheet.pastDue.length ? `<h4>Past Due: Do First</h4><p class="save-status">These were scheduled before today and aren't ticked off. Tick the ones already done. Do the rest now, or tell the chef if the service plan has to change.</p>
         ${grouped(sheet.pastDue, ['Was Due', 'Item', 'Task'], (r) => `<td class="time">${esc(P.shortDate(r.dueDate))}</td><td class="item">${esc(r.component)}</td><td>${esc(r.text)}</td>`)}` : ''}
       ${sheet.advance.length ? `<h4>Advance Prep<span>${esc(start != null ? `Any time today. Finish before the timeline starts at ${P.clock(start)}.` : 'Any time today, for the dinners named in each band.')}</span></h4>
@@ -813,6 +838,11 @@ details.past .tickets { margin-top: 10px; }
     $('#status').textContent = state.notice || msg;
     $('#changeKitchen').hidden = state.mode !== 'firebase';
   };
+  const renderToast = () => {
+    const el = $('#toast'), t = state.lastTick;
+    el.hidden = !t;
+    el.innerHTML = t ? `<span>Checked off: ${esc(t.label)}</span><button type="button" class="btn quiet" data-action="undo-tick" data-key="undo-tick">Undo</button>` : '';
+  };
 
   const render = () => {
     const key = document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.key : null;
@@ -820,6 +850,7 @@ details.past .tickets { margin-top: 10px; }
     renderList();
     renderPrep();
     renderStatus();
+    renderToast();
     $('#addBtn').disabled = state.readOnly || state.mode === 'loading' || state.mode === 'kitchen' || !state.menu;
     $('#kitchenForm').hidden = state.mode !== 'kitchen';
     if (key) { const again = document.querySelector(`[data-key="${CSS.escape(key)}"]`); if (again) again.focus(); }
@@ -954,7 +985,8 @@ details.past .tickets { margin-top: 10px; }
     try {
       if (!logoBytes) logoBytes = new Uint8Array(await (await fetch('FiveOaksLogo.png')).arrayBuffer());
       const r = P.build({ menu: state.menu, request: requestFor(included()), docx: window.docx, logo: logoBytes, only: key });
-      if (!r.doc) state.dlStatus = 'Nothing to prep that day.';
+      const day = r.sheets.find((s) => s.key === key);
+      if (!r.doc) state.dlStatus = day && day.counts.total ? 'Everything that day is checked off. Nothing left to print.' : 'Nothing to prep that day.';
       else await saveFile(`${r.stem}.docx`, await window.docx.Packer.toBlob(r.doc));
     } catch (e) {
       state.dlStatus = e instanceof P.PrepError ? `The prep list couldn't be built: ${e.message}` : "The prep list couldn't be built. Reload the page and try again.";
@@ -1021,18 +1053,35 @@ details.past .tickets { margin-top: 10px; }
         if (box && !box.disabled) { box.checked = !box.checked; setTicks(box); }
         break;
       }
+      case 'show-done': state.showDone = !state.showDone; render(); break;
+      case 'undo-tick':
+        if (state.lastTick && !state.readOnly) applyTicks(state.lastTick.tasks, false);
+        clearTimeout(toastTimer);
+        state.lastTick = null;
+        render();
+        break;
     }
   });
-  // Ticks the row's tasks with today's date, or clears them, on each dinner they belong to.
-  const setTicks = (box) => {
-    if (state.readOnly) return;
+  // Ticks a row's tasks with today's date, or clears them, on each dinner they belong to.
+  // `tasks` is the row's data-tasks: "dinnerId:key dinnerId:key".
+  const applyTicks = (tasks, on) => {
     const byDinner = new Map();
-    for (const pair of box.dataset.tasks.split(' ')) {
+    for (const pair of tasks.split(' ')) {
       const [ref, key] = pair.split(':');
       if (!byDinner.has(ref)) byDinner.set(ref, []);
       byDinner.get(ref).push(key);
     }
-    for (const [ref, keys] of byDinner) store.tick(ref, keys, box.checked ? todayKey : null);
+    for (const [ref, keys] of byDinner) store.tick(ref, keys, on ? todayKey : null);
+  };
+  // A ticked row leaves the sheet at once, so the Undo bar names it for 10 seconds (the next
+  // tick replaces it).
+  let toastTimer = null;
+  const setTicks = (box) => {
+    if (state.readOnly) return;
+    applyTicks(box.dataset.tasks, box.checked);
+    clearTimeout(toastTimer);
+    state.lastTick = box.checked ? { tasks: box.dataset.tasks, label: box.dataset.label } : null;
+    if (state.lastTick) toastTimer = setTimeout(() => { state.lastTick = null; renderToast(); }, 10000);
     render();
   };
   document.addEventListener('change', (ev) => {

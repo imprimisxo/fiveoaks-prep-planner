@@ -379,6 +379,29 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     };
   });
 
+  // Checked-off tasks come off the sheets (Chef, 2026-11-14): once a task is ticked it no
+  // longer shows or prints for that dinner. The counts still hold them, so the page can say
+  // how many are done and show them again on request. `show_done: true` in the request
+  // keeps them on the sheets, checked (the page's "Show checked tasks").
+  const rowsOf = (g) => g.flatMap(([, l]) => l);
+  const openOnly = (g) => g.map(([svc, l]) => [svc, l.filter((r) => !r.done)]).filter(([, l]) => l.length);
+  for (const s of sheets) {
+    const past = rowsOf(s.pastDue), adv = rowsOf(s.advance), all = [...past, ...adv, ...s.timed];
+    s.counts = {
+      total: all.length,
+      done: all.filter((r) => r.done).length,
+      pastDueOpen: past.filter((r) => !r.done).length,
+      advanceOpen: adv.filter((r) => !r.done).length,
+      timedOpen: s.timed.filter((r) => !r.done).length,
+    };
+    if (!REQ.show_done) {
+      s.pastDue = openOnly(s.pastDue);
+      s.advance = openOnly(s.advance);
+      s.timed = s.timed.filter((r) => !r.done);
+    }
+  }
+  const hasRows = (s) => s.pastDue.length + s.advance.length + s.timed.length > 0;
+
   // ==========================================================================
   // TEMPLATE: Five Oaks house format
   // ==========================================================================
@@ -607,7 +630,8 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
   // Every sheet gets its density even when no document is built: the report and the web
   // app's on-screen sheet both use it.
   for (const s of sheets) { s.density = pickDensity(s); s.estimate = estimateSheet(s, s.density); }
-  const docSheets = only ? sheets.filter((s) => s.key === only) : sheets;
+  // A day with every task checked off has nothing left to print.
+  const docSheets = (only ? sheets.filter((s) => s.key === only) : sheets).filter(hasRows);
   const first = services[0], last = services[services.length - 1];
   const span = only ? shortDate(parseYMD(only))
     : first.key === last.key ? shortDate(first.date) : `${shortDate(first.date)} to ${shortDate(last.date)}`;
@@ -664,16 +688,13 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
   if (tickedEarlier) report.push(`ticked off before today, left off the sheets: ${tickedEarlier}`);
   let boxes = 0;
   const count = (g) => g.reduce((k, [, l]) => k + l.length, 0);
-  const ticked = (l) => l.filter((r) => r.done).length;
   const x = (r) => (r.done ? '[x] ' : '');
   for (const s of sheets) {
-    s.counts = { pastDue: count(s.pastDue), advance: count(s.advance), timed: s.timed.length };
-    // pastDueOpen: past-due tasks not ticked yet. done: ticked rows anywhere on the sheet.
-    s.counts.pastDueOpen = s.counts.pastDue - s.pastDue.reduce((k, [, l]) => k + ticked(l), 0);
-    s.counts.done = [...s.pastDue, ...s.advance].reduce((k, [, l]) => k + ticked(l), 0) + ticked(s.timed);
-    s.counts.total = s.counts.pastDue + s.counts.advance + s.counts.timed;
+    // Rows on the sheet as built (checked ones only with show_done). total, done and the
+    // *Open counts above cover every task that day, shown or not.
+    Object.assign(s.counts, { pastDue: count(s.pastDue), advance: count(s.advance), timed: s.timed.length });
     s.maySpill = s.estimate > BODY_PT - FIT_MARGIN;
-    boxes += s.counts.total;
+    boxes += s.counts.pastDue + s.counts.advance + s.counts.timed;
     report.push(`\n== ${longDate(s.date)}  (past due ${s.counts.pastDue}, advance ${s.counts.advance}, timeline ${s.counts.timed}` +
       `${s.counts.done ? `, ticked ${s.counts.done}` : ''})` +
       `  [${s.density.name}, est ${Math.round(s.estimate)} of ${Math.round(BODY_PT)} pt${s.maySpill ? ', MAY SPILL' : ''}]`);
