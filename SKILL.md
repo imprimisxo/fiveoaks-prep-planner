@@ -132,10 +132,14 @@ Optional fields:
   the cheesecake and the hot fudge.
 - `done` on a service: the tasks already ticked off, as the web app saves them (task key
   -> the day it was ticked, `YYYY-MM-DD`), or a plain list of task keys (read as ticked
-  before today). Ticked rows print with a check instead of an empty box; past-due rows
-  ticked before today drop off. `id` on a service is the web app's dinner id, carried back
-  on each row's `tasks` so a tick saves to the right dinner. A chat request leaves both
-  out. See "Check-offs" under Web app.
+  before today). Ticked rows come off the sheets and the .docx (Chef, 2026-11-14), and
+  `sheets[].counts` keeps the totals (`total`, `done`, and the open counts per section);
+  a day with every task ticked builds no document. `id` on a service is the web app's
+  dinner id, carried back on each row's `tasks` so a tick saves to the right dinner. A
+  chat request leaves both out. See "Check-offs" under Web app.
+- `show_done: true` at the top level keeps ticked rows on the sheets, marked done (the
+  web app's "Show checked tasks"). Ticked rows then print with a check instead of an
+  empty box. Default false.
 
   Chef's standing preference (2026-10-22) is to combine and double these "to the earliest
   date". So when a run has the cheesecake or the hot fudge on more than one night,
@@ -327,15 +331,20 @@ was slow. The artifact still works.
   tapping again unticks it. A tick saves on the dinner as `done.<task key>` = the day it
   was ticked. The key (`taskKey` in `prep_core.js`, FNV-1a of component, task text before
   any batch note, scheduled date and clock time) stays the same across loads, so a tick
-  sticks; moving a dinner to another date gives its tasks new keys. Rules: a past-due task
-  ticked before today drops off the sheet; one ticked today stays in Past Due, checked, so
-  a mis-tap can be undone that day; a future task ticked early shows checked on its day. A
+  sticks; moving a dinner to another date gives its tasks new keys. A ticked task comes
+  off that day's sheet and its download (Chef asked the same day: "Once the task is
+  checked as completed, remove it from the prep list for that meal"). Each tick brings up
+  a "Checked off: <task>" bar with **Undo** for 10 seconds. **Show checked tasks (N)**
+  brings the ticked rows back on screen, struck through, so one can be unticked later;
+  the download always leaves them off. A day with everything ticked says "Everything for
+  this day is checked off." and has nothing to download. A past-due task ticked before
+  today drops off Past Due for good. A
   merged timeline row covering two parties saves to both dinners and is checked only when
   both are. A batch row (cheesecake, hot fudge) saves to every dinner in the batch and
   reads as done when any has it, so the tick survives the batch changing hands. The day
   summary counts only unticked past-due tasks and adds "N of M checked off"; a day chip
   gets a check when everything on it is ticked; a dinner's ticket shows a late note only
-  for its unticked past-due tasks. The downloaded .docx prints a check for ticked rows.
+  for its unticked past-due tasks.
   Website: each tick writes the dotted path `done.<key>` (unticks delete it), so two
   devices ticking one dinner don't overwrite each other. Artifact: its store merges
   nested objects, so an untick saves `null`. Firestore refuses `done` until the
