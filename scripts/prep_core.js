@@ -294,7 +294,7 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
         if (batched) t.text += ` (${multWord(users.length)} batch for ${users.map(svcShort).join(' + ')})`;
         if (t.days != null) {
           const date = addDays(svc.date, t.days);
-          rows.push(tick(svc, name, base, date, null, { kind: 'advance', date, svc, component: name, text: t.text, order }, batched ? users : null));
+          rows.push(tick(svc, name, base, date, null, { kind: 'advance', date, svc, component: name, text: t.text, order, batch: !!batched }, batched ? users : null));
         } else {
           // Offsets can cross midnight; let the clock time roll the date.
           const total = anchor + t.minutes;
@@ -315,6 +315,15 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     rows.push(tick(svc, name, fill(freeze), made, null, { kind: 'advance', date: made, svc, component: name, text: fill(freeze), order }));
     rows.push(tick(svc, name, fill(thaw), thawOn, null, { kind: 'advance', date: thawOn, svc, component: name, text: fill(thaw), order: order + 1 }));
   }
+
+  // Every task ends with the date of the dinner it's for (Chef, 2026-11-15), so a row reads
+  // right on its own: past due, on the timeline, or out of its band. "(for Mon 11/16)", not
+  // "(for Mon 11/16 dinner)": in 2,200 test sheets the longer form ran 531 days over one
+  // printed page, the shorter 394 (287 before the date). A batch row already
+  // ends with its dinners. The daily tasks, added below, carry no date. The check-off key
+  // was taken from the text before this, so ticks made earlier still hold. Two parties on
+  // one night get the same words, so their shared timeline rows still merge.
+  for (const r of rows) if (!r.batch) r.text += ` (for ${shortDate(r.svc.date)})`;
 
   // Anything that should already have happened goes to the top of today's sheet, unless it
   // was ticked off before today: those are done and drop off. One ticked today stays on
@@ -604,7 +613,7 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
       out.push(section('Service Timeline'));
       const body = sheet.timed.map((r, i) => {
         const fill = i % 2 === 1 ? LIGHT : null;
-        const who = r.components.join(', ') + (r.svc.key !== sheet.key ? ` (for ${serviceTag(r.svc)})` : '');
+        const who = r.components.join(', ');   // the task text names the dinner
         return new TableRow({ cantSplit: true, children: [
           boxCell(fill, r.done),
           textCell(clock(r.minute), TIME_COLS[1], fill, { bold: true }),

@@ -825,7 +825,7 @@ details.past .tickets { margin-top: 10px; }
       ${sheet.timed.length ? `<h4>Service Timeline</h4><div class="table-scroll"><table>
         <thead><tr><th aria-label="Done"></th><th>Time</th><th>Item</th><th>Task</th></tr></thead>
         <tbody>${sheet.timed.map((r, i) => `${rowTag(r, i)}${tickCell(r)}<td class="time">${esc(P.clock(r.minute))}</td>
-          <td class="item">${esc(r.components.join(', ') + (r.svc.key !== sheet.key ? ` (for ${P.shortDate(r.svc.date)} dinner)` : ''))}</td><td>${esc(r.text)}</td></tr>`).join('')}</tbody></table></div>` : ''}
+          <td class="item">${esc(r.components.join(', '))}</td><td>${esc(r.text)}</td></tr>`).join('')}</tbody></table></div>` : ''}
     </article>`;
   };
 
