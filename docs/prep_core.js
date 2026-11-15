@@ -277,6 +277,7 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
   // Every task becomes one row on exactly one dated sheet.
   //   kind 'advance' : day offset, any time that day
   //   kind 'timed'   : hour or minute offset, at a clock time on the timeline
+  //   kind 'daily'   : menu.json daily_tasks, first on every sheet (added after Past Due below)
   const rows = [];
   services.forEach((svc, si) => {
     svc.componentNames.forEach((name, ci) => {
@@ -327,6 +328,27 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     return true;
   });
 
+  // Daily tasks (menu.json `daily_tasks`; Chef, 2026-11-14: "Feed sourdough starter" is the
+  // first task every day). One row per day from today through the last dinner, days with no
+  // other prep included, so every day gets a sheet. A daily task is never past due. Its tick
+  // reads as done when any dinner still ahead that day has it; a new tick saves to the
+  // nearest of those dinners only, so a dinner booked far out doesn't collect a key for every
+  // day before it (Firestore allows 400 per dinner).
+  const daily = MENU.daily_tasks || [];
+  for (const t of daily) if (!t || typeof t.item !== 'string' || typeof t.task !== 'string') fail('menu.json daily_tasks: each entry needs "item" and "task"');
+  const lastKey = services[services.length - 1].key;
+  for (let d = TODAY; daily.length && ymd(d) <= lastKey; d = addDays(d, 1)) {
+    const key = ymd(d);
+    const ahead = services.filter((s) => s.key >= key);
+    daily.forEach((t, di) => {
+      const id = taskKey(t.item, t.task, key, null);
+      const holders = ahead.filter((u) => u.done.get(id));
+      live.push({ kind: 'daily', date: d, key, component: t.item, text: t.task, order: di, id,
+        done: holders.length ? holders[0].done.get(id) : null,
+        tasks: (holders.length ? holders : ahead.slice(0, 1)).map((u) => ({ ref: u.ref, id })) });
+    });
+  }
+
   const byDate = new Map();
   for (const r of live) {
     if (!byDate.has(r.key)) byDate.set(r.key, []);
@@ -373,6 +395,7 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
       key,
       date: parseYMD(key),
       tonight: services.filter(s => s.key === key),
+      daily: list.filter(r => r.kind === 'daily').sort((a, b) => a.order - b.order),
       pastDue: groupByService(list.filter(r => r.kind === 'pastdue')),
       advance: groupByService(list.filter(r => r.kind === 'advance')),
       timed: mergeTimed(list.filter(r => r.kind === 'timed')),
@@ -386,21 +409,23 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
   const rowsOf = (g) => g.flatMap(([, l]) => l);
   const openOnly = (g) => g.map(([svc, l]) => [svc, l.filter((r) => !r.done)]).filter(([, l]) => l.length);
   for (const s of sheets) {
-    const past = rowsOf(s.pastDue), adv = rowsOf(s.advance), all = [...past, ...adv, ...s.timed];
+    const past = rowsOf(s.pastDue), adv = rowsOf(s.advance), all = [...s.daily, ...past, ...adv, ...s.timed];
     s.counts = {
       total: all.length,
       done: all.filter((r) => r.done).length,
+      dailyOpen: s.daily.filter((r) => !r.done).length,
       pastDueOpen: past.filter((r) => !r.done).length,
       advanceOpen: adv.filter((r) => !r.done).length,
       timedOpen: s.timed.filter((r) => !r.done).length,
     };
     if (!REQ.show_done) {
+      s.daily = s.daily.filter((r) => !r.done);
       s.pastDue = openOnly(s.pastDue);
       s.advance = openOnly(s.advance);
       s.timed = s.timed.filter((r) => !r.done);
     }
   }
-  const hasRows = (s) => s.pastDue.length + s.advance.length + s.timed.length > 0;
+  const hasRows = (s) => s.daily.length + s.pastDue.length + s.advance.length + s.timed.length > 0;
 
   // ==========================================================================
   // TEMPLATE: Five Oaks house format
@@ -548,6 +573,16 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     let firstSection = true;
     const section = (title, note) => { const p = h2(title, firstSection, note); firstSection = false; return p; };
 
+    // The daily tasks open every sheet, ahead of Past Due (Chef: the first task each day).
+    if (sheet.daily.length) {
+      out.push(section('Every Day', 'First thing each day.'));
+      out.push(table(ADV_COLS, [CHECK_CHAR, 'Item', 'Task'], sheet.daily.map((r, i) => {
+        const fill = i % 2 === 1 ? LIGHT : null;
+        return new TableRow({ cantSplit: true, children: [boxCell(fill, r.done),
+          textCell(r.component, ADV_COLS[1], fill), textCell(r.text, ADV_COLS[2], fill)] });
+      })));
+    }
+
     if (sheet.pastDue.length) {
       out.push(section('Past Due: Do First'));
       out.push(caption('These were scheduled before today. Do them now, or tell the chef if the service plan has to change.'));
@@ -609,6 +644,7 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
       for (const [svc, list] of groups) { t += rowPt(wrapLines(bandText(svc).join(''), W, d)); for (const r of list) t += rowsPt(cols, cellsOf(r)); }
       return t;
     };
+    if (sheet.daily.length) { h += h2Pt + rowPt(1); for (const r of sheet.daily) h += rowsPt(ADV_COLS, [r.component, r.text]); }
     if (sheet.pastDue.length) h += h2Pt + textLine + 3 + grouped(sheet.pastDue, PAST_COLS, r => [shortDate(r.dueDate), r.component, r.text]);
     if (sheet.advance.length) h += h2Pt + grouped(sheet.advance, ADV_COLS, r => [r.component, r.text]);
     if (sheet.timed.length) {
@@ -692,12 +728,13 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
   for (const s of sheets) {
     // Rows on the sheet as built (checked ones only with show_done). total, done and the
     // *Open counts above cover every task that day, shown or not.
-    Object.assign(s.counts, { pastDue: count(s.pastDue), advance: count(s.advance), timed: s.timed.length });
+    Object.assign(s.counts, { daily: s.daily.length, pastDue: count(s.pastDue), advance: count(s.advance), timed: s.timed.length });
     s.maySpill = s.estimate > BODY_PT - FIT_MARGIN;
-    boxes += s.counts.pastDue + s.counts.advance + s.counts.timed;
-    report.push(`\n== ${longDate(s.date)}  (past due ${s.counts.pastDue}, advance ${s.counts.advance}, timeline ${s.counts.timed}` +
+    boxes += s.counts.daily + s.counts.pastDue + s.counts.advance + s.counts.timed;
+    report.push(`\n== ${longDate(s.date)}  (${s.counts.daily ? `daily ${s.counts.daily}, ` : ''}past due ${s.counts.pastDue}, advance ${s.counts.advance}, timeline ${s.counts.timed}` +
       `${s.counts.done ? `, ticked ${s.counts.done}` : ''})` +
       `  [${s.density.name}, est ${Math.round(s.estimate)} of ${Math.round(BODY_PT)} pt${s.maySpill ? ', MAY SPILL' : ''}]`);
+    for (const r of s.daily) report.push(`  ${x(r)}daily ${r.component}: ${r.text}`);
     for (const [svc, l] of s.pastDue) for (const r of l) report.push(`  ${x(r)}PAST DUE (was ${ymd(r.dueDate)}) [${serviceTag(svc)}${hostTag(svc)}] ${r.component}: ${r.text}`);
     for (const [svc, l] of s.advance) for (const r of l) report.push(`  ${x(r)}advance [${serviceTag(svc)}${hostTag(svc)}] ${r.component}: ${r.text}`);
     for (const r of s.timed) report.push(`  ${x(r)}${clock(r.minute).padStart(8)}  ${r.components.join(', ')}: ${r.text}`);

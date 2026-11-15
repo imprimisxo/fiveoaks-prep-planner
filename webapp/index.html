@@ -752,7 +752,7 @@ details.past .tickets { margin-top: 10px; }
   const guestWord = (s) => (s.guests ? `${s.guests} guests` : 'guest count TBD');
   const prepResult = (sheet) => {
     const n = sheet.counts;
-    const parts = [n.pastDueOpen && `${n.pastDueOpen} past due`, n.advanceOpen && `${n.advanceOpen} advance prep`, n.timedOpen && `${n.timedOpen} on the service timeline`,
+    const parts = [n.dailyOpen && `${n.dailyOpen} daily task${n.dailyOpen === 1 ? '' : 's'}`, n.pastDueOpen && `${n.pastDueOpen} past due`, n.advanceOpen && `${n.advanceOpen} advance prep`, n.timedOpen && `${n.timedOpen} on the service timeline`,
       n.done && (n.done === n.total ? 'all checked off' : `${n.done} of ${n.total} checked off`)].filter(Boolean);
     const tonight = sheet.tonight.length
       ? `Dinner tonight: ${sheet.tonight.map((s) => `${s.host || 'Dinner'}, ${s.menuLabel}, ${guestWord(s)}`).join('; ')}.`
@@ -776,8 +776,8 @@ details.past .tickets { margin-top: 10px; }
     </div>`;
   };
 
-  // The day's sheet on screen, laid out like the printed one: Past Due, Advance Prep, then
-  // the Service Timeline, each with a box per task.
+  // The day's sheet on screen, laid out like the printed one: Every Day (the daily tasks),
+  // Past Due, Advance Prep, then the Service Timeline, each with a box per task.
   const COURSE_LABELS = [['Appetizers', 'appetizers'], ['Salad or Soup', 'salad'], ['Dinner', 'dinner'], ['Dessert', 'dessert']];
   const sheetView = (sheet) => {
     const svcTag = (s) => `${P.shortDate(s.date)} dinner${s.host ? ` | ${s.host}` : ''}`;
@@ -814,7 +814,10 @@ details.past .tickets { margin-top: 10px; }
           : `Tap a task when it's done and it comes off the list. ${{ firebase: 'Ticks save for every device opened with this kitchen code.', shared: 'Ticks save for everyone you share this page with.' }[state.mode] || 'Ticks here last until the page closes.'}`}</p>
         ${sheet.counts.done ? `<button type="button" class="btn quiet show-done" data-action="show-done" data-key="show-done" aria-pressed="${state.showDone}">${state.showDone ? 'Hide checked tasks' : `Show checked tasks (${sheet.counts.done})`}</button>` : ''}
       </div>
-      ${sheet.pastDue.length + sheet.advance.length + sheet.timed.length ? '' : '<p class="all-done-note"><b>Everything for this day is checked off.</b></p>'}
+      ${sheet.daily.length + sheet.pastDue.length + sheet.advance.length + sheet.timed.length ? '' : '<p class="all-done-note"><b>Everything for this day is checked off.</b></p>'}
+      ${sheet.daily.length ? `<h4>Every Day<span>First thing each day.</span></h4><div class="table-scroll"><table>
+        <thead><tr><th aria-label="Done"></th><th>Item</th><th>Task</th></tr></thead>
+        <tbody>${sheet.daily.map((r, i) => `${rowTag(r, i)}${tickCell(r)}<td class="item">${esc(r.component)}</td><td>${esc(r.text)}</td></tr>`).join('')}</tbody></table></div>` : ''}
       ${sheet.pastDue.length ? `<h4>Past Due: Do First</h4><p class="save-status">These were scheduled before today and aren't ticked off. Tick the ones already done. Do the rest now, or tell the chef if the service plan has to change.</p>
         ${grouped(sheet.pastDue, ['Was Due', 'Item', 'Task'], (r) => `<td class="time">${esc(P.shortDate(r.dueDate))}</td><td class="item">${esc(r.component)}</td><td>${esc(r.text)}</td>`)}` : ''}
       ${sheet.advance.length ? `<h4>Advance Prep<span>${esc(start != null ? `Any time today. Finish before the timeline starts at ${P.clock(start)}.` : 'Any time today, for the dinners named in each band.')}</span></h4>
