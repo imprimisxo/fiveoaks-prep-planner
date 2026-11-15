@@ -198,6 +198,12 @@ These are the rules the generator applies. Know them so you can explain a sheet 
   dinner gets a sheet, because each opens with the daily tasks (below); a day with no other
   prep carries just those. Each sheet starts on a new page with the logo, so one day can be
   pulled off the packet and posted.
+- **Every task ends with its dinner's date** (Chef, 2026-11-15), as "(for Tue 11/24)",
+  on screen and in the Word file, in Past Due, Advance Prep and the Service Timeline. Daily
+  tasks get none. A batch row already ends with its dinners ("double batch for Smith 11/24 +
+  Jones 11/25") and gets nothing more. The date goes on after the check-off key is taken,
+  so a menu.json task never needs a date in it and earlier ticks still hold. The shorter
+  form, not "(for Tue 11/24 dinner)", keeps more days to one printed page.
 - **Daily tasks open every sheet.** `daily_tasks` in `menu.json` (Chef, 2026-11-14: "Feed
   sourdough starter", the first task each day; the Sourdough Starter SOP feeds the mother
   every 24 hours) print under **Every Day**, ahead of Past Due. A daily task is never past
