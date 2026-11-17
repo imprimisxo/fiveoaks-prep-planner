@@ -469,13 +469,15 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   course time, after the slice, so he set -3 hours.
 - **Creamy Horseradish Sauce** (Chef, 2026-11-17): its own component in the Prime Rib
   dinner, from FiveOaks_SOP_Creamy_Horseradish_Sauce_for_Prime_Rib (SOP/Sauces). About
-  480 g made at -1 day and rested in the reefer overnight (it holds 3 days and does not
-  freeze), then tasted and portioned 30 g per guest into chilled 2 oz ramekins at -3 hours.
-  That step has no row of its own: Chef folded it into the prime rib's warm-up row ("warm
-  prime rib to 130°F, portion horseradish"), moving it from the SOP's -1 hour, because a
-  separate -1 hour row put more Prime Rib service-day sheets over one page (1,062 to 2,086
-  maySpill sheets of 489,375; worst 809.5 to 830.5 pt). Folded, it adds none. The covered
-  ramekins wait in the reefer and go out with the prime rib's plating row.
+  480 g made, rested at least 2 hours, tasted and portioned 30 g per guest into chilled
+  2 oz ramekins, all at -1 day in one row ("make and portion horseradish sauce per SOP");
+  it holds 3 days and does not freeze. The wrapped ramekins hold overnight in the reefer
+  and go out with the prime rib's plating row; the garnish chives, cut at -1 day and held
+  apart, go on at plating. History: the portioning first sat at the SOP's -1 hour, which as
+  its own row put more Prime Rib service-day sheets over one page (1,062 to 2,086 maySpill
+  sheets of 489,375; worst 809.5 to 830.5 pt). Chef folded it into the prime rib's -3 hours
+  warm-up row, then later on 11/17 moved it to Day -1 ("Change the prep time to day -1"),
+  and the warm-up row went back to its own wording. No extra spill (1,037 both ways).
 - **Money Sauce:** made 2 days ahead per its SOP (no parsley), cooled and refrigerated,
   then warmed at -2 hours.
 - **Skillet Cookie:** no whipped cream. It is served with Blue Bell, using the scoop
