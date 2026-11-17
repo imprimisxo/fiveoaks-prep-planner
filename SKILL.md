@@ -590,7 +590,12 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     rolls rolled from -45 minutes; cut, sauced, and garnished from -15 minutes; passed within
     30 minutes of cutting. Its 10 service-day SOP times share 7 short rows: one row each drew
     the heaviest menu to 751 pt, and the 7 rows bring it to 718 pt, in line with the Wonton
-    Cups. The Sweet & Spicy Kielbasa Bites ("Kielbasa Bites") joined the Non-duck group the
+    Cups. On 2026-11-16 Chef asked for "Pickle Ginger" at Day -4 whenever sushi
+    is planned: both sushi appetizers now list a Pickled Ginger component (one row, "pickle
+    ginger per SOP", from FiveOaks_SOP_Pickled_Ginger in SOP/Sauces). Its SOP plans Day -3
+    for a 72-hour pickle; Day -4 has it ready by Day -1. A dinner with both sushi appetizers
+    gets one row; each sushi dinner gets its own, though one 500 g batch makes about 10
+    courses and keeps 2 weeks. Both sushi appetizers now show "Prep starts 4 days ahead". The Sweet & Spicy Kielbasa Bites ("Kielbasa Bites") joined the Non-duck group the
     same day from their new SOP (40 passed pieces on picks, 700 g smoked kielbasa): coins
     sliced 1.5 cm and the apricot-mustard glaze mixed at -1 day, stored apart; green onions
     sliced and coins browned in 2 batches from -35 minutes; fat poured off and coins glazed
