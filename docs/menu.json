@@ -236,7 +236,8 @@
       "short": "Sushi Rolls",
       "components": [
         "Sweet Potato Sushi Rolls",
-        "Duck Skin Crumble"
+        "Duck Skin Crumble",
+        "Pickled Ginger"
       ]
     },
     "southern-fried-catfish-bites": {
@@ -285,7 +286,8 @@
       "name": "Blackened Ahi Tuna & Sweet Potato Sushi Rolls",
       "short": "Tuna Sushi Rolls",
       "components": [
-        "Blackened Tuna Sushi Rolls"
+        "Blackened Tuna Sushi Rolls",
+        "Pickled Ginger"
       ]
     },
     "sweet-and-spicy-kielbasa-bites": {
@@ -847,6 +849,13 @@
       "tasks": [
         "-2 days, move 200 g frozen raw duck skin to the reefer to thaw",
         "-1 days, render and crisp duck skin per SOP (275°F, then 325°F); strain fat to Base C; store pieces airtight"
+      ]
+    },
+    "Pickled Ginger": {
+      "course": "appetizers",
+      "_note": "Added 2026-11-16 at Chef's request: whenever sushi is planned (Sweet Potato Sushi Rolls or Blackened Ahi Tuna Sushi Rolls), pickle ginger at Day -4. FiveOaks_SOP_Pickled_Ginger (SOP/Sauces) plans Day -3 for its 72-hour pickle; Day -4 has it ready by Day -1. One 500 g batch makes about 10 sushi courses of 24 and keeps 2 weeks, so each sushi dinner still gets its own Day -4 row; a dinner with both sushi appetizers gets one.",
+      "tasks": [
+        "-4 days, pickle ginger per SOP"
       ]
     },
     "Mushroom & Cheese Arancini": {
