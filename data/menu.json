@@ -1092,23 +1092,23 @@
     },
     "Prime Rib with Au Jus": {
       "course": "dinner",
-      "_note": "Chef's prep timing of 2026-11-14, replacing the 2026-10-22 list (sous vide and dry on Day -1, grill mark at -3 hours, steaks cut at -1 hour, sliced at -15 minutes). Chef wrote the warm-up as 'day 0'; a 0-day task lands at course time, after the slice, so Chef put it at -3 hours (4:30 PM for a 7:30 PM entree) the same day. Chef also kept saving the bag juices for the Red Wine Au Jus (about 118 g; the SOP holds juices 2 days) on the Day -2 row. '0 hours, plate and serve' kept like every entree. On 2026-11-17 Chef folded the Creamy Horseradish Sauce portioning into the -3 hours row, worded 'warm prime rib to 130°F, portion horseradish' to stay one line (see that component).",
+      "_note": "Chef's prep timing of 2026-11-14, replacing the 2026-10-22 list (sous vide and dry on Day -1, grill mark at -3 hours, steaks cut at -1 hour, sliced at -15 minutes). Chef wrote the warm-up as 'day 0'; a 0-day task lands at course time, after the slice, so Chef put it at -3 hours (4:30 PM for a 7:30 PM entree) the same day. Chef also kept saving the bag juices for the Red Wine Au Jus (about 118 g; the SOP holds juices 2 days) on the Day -2 row. '0 hours, plate and serve' kept like every entree. On 2026-11-17 Chef folded the Creamy Horseradish Sauce portioning into the -3 hours row, then the same day moved it to Day -1 with the rest of the sauce, so the row is back to its original wording (see that component).",
       "tasks": [
         "-8 days, move prime rib roast to reefer to thaw",
         "-6 days, dry brine prime rib roast for 72 hours",
         "-3 days, sous vide the prime rib roast for 12 hours",
         "-2 days, remove prime rib roast from water bath, reserve the bag juices for jus, air dry on a rack in reefer",
         "-1 days, sear the prime rib roast, return to reefer",
-        "-3 hours, warm prime rib to 130°F, portion horseradish",
+        "-3 hours, warm the prime rib roast to 130°F for serving",
         "-30 minutes, slice the prime rib roast for serving",
         "0 hours, plate and serve"
       ]
     },
     "Creamy Horseradish Sauce": {
       "course": "dinner",
-      "_note": "Added 2026-11-17 at Chef's request from FiveOaks_SOP_Creamy_Horseradish_Sauce_for_Prime_Rib (SOP/Sauces), approved the same day. 30 g per guest in a chilled 2 oz ramekin, beside the au jus ramekin. The SOP makes about 480 g (12 guests plus seconds; double it for 13-24) on Day -1 and rests it overnight (2 hours minimum, 4-6 best); it holds 3 days at 41°F and does not freeze. SOP Step 5 (stir, taste and adjust, portion into ramekins chilled since Day -1, cut the garnish chives) has no row of its own: Chef folded it into the prime rib's -3 hours warm-up row on 2026-11-17 ('warm prime rib to 130°F, portion horseradish'), moving it from the SOP's -1 hour. As its own -1 hour row it put more Prime Rib service-day sheets over one page (sweep of 16,875 menus: 1,062 -> 2,086 maySpill sheets, worst 809.5 -> 830.5 pt); folded, it adds none. The covered ramekins wait in the reefer and go out with the prime rib's '0 hours, plate and serve' row.",
+      "_note": "Added 2026-11-17 at Chef's request from FiveOaks_SOP_Creamy_Horseradish_Sauce_for_Prime_Rib (SOP/Sauces), approved the same day. 30 g per guest in a chilled 2 oz ramekin, beside the au jus ramekin. The SOP makes about 480 g (12 guests plus seconds; double it for 13-24) on Day -1, rests it at least 2 hours (4 best), then tastes, adjusts and portions it into chilled ramekins the same day (SOP Step 5); it holds 3 days at 41°F and does not freeze. History: Step 5 first sat at the SOP's -1 hour; as its own row it put more Prime Rib service-day sheets over one page (sweep of 16,875 menus: 1,062 -> 2,086 maySpill sheets, worst 809.5 -> 830.5 pt), so Chef folded it into the prime rib's -3 hours warm-up row, then later on 2026-11-17 moved it to Day -1 ('Change the prep time to day -1'), so the whole sauce is one Day -1 row. The wrapped ramekins hold overnight in the reefer; the garnish chives, cut on Day -1 and held apart, go on at plating with the prime rib's '0 hours, plate and serve' row.",
       "tasks": [
-        "-1 days, make horseradish sauce per SOP, rest in reefer overnight"
+        "-1 days, make and portion horseradish sauce per SOP"
       ]
     },
     "Mashed Potatoes": {
