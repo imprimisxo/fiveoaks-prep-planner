@@ -743,7 +743,10 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     and topped with crab 10 minutes later; 165°F center and out at -12 minutes, chips
     warmed; chives on and skillets onto boards at -5 minutes; out at 6:00 PM and back in
     2 hours later. The SOP's 7 service-day rows run as 5 here, and its 6 rows put the
-    heaviest menu at 696.6 pt with no spill, level with the Hummus Board.
+    heaviest menu at 696.6 pt with no spill, level with the Hummus Board. On 2026-11-17 Chef
+    set it as a purchased product with no SOP: its only row is now "-4 hours, heat dip to
+    serving temperature; add more shrimp and crab" (2:00 PM for a 6:00 PM course).
+    The six rows above, the Day -1 thaw and pita chips included, are no longer scheduled.
     The Hushpuppies ("Hushpuppies") joined the Non-duck group on 2026-11-13 from
     FiveOaks_SOP_Hushpuppies, a scratch batter written as a side (it stays in SOP/Side
     Dishes, like the Mushroom & Cheese Arancini); Chef put it in the Non-duck group, at
