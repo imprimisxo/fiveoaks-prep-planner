@@ -124,12 +124,13 @@ Optional fields:
 - `extras` on a service adds whole components to that night, for example
   `["Blue Bell Ice Cream"]`. Names must match `menu.json` exactly.
 - `batch` (request level) lists components to make once for every dinner that uses them,
-  for example `["Classic Cheesecake", "Homemade Hot Fudge"]`. The component's first
+  for example `["Classic Cheesecake"]`. The component's first
   `batch_steps` tasks in `menu.json` (the make-ahead run) happen once, on the earliest
   dinner's dates. The task text names the batch size and the dinners it covers:
   "(double batch for <host> <m/d> + <host> <m/d>)". Each dinner keeps its own later tasks
   (thaw, reheat, plate). Only components with `batch_steps` can be batched; today that's
-  the cheesecake and the hot fudge.
+  the cheesecake. (The Homemade Hot Fudge was the other until Chef switched to a commercial
+  hot fudge on 2026-11-18; its component and all its prep are gone.)
 - `done` on a service: the tasks already ticked off, as the web app saves them (task key
   -> the day it was ticked, `YYYY-MM-DD`), or a plain list of task keys (read as ticked
   before today). Ticked rows come off the sheets and the .docx (Chef, 2026-11-14), and
@@ -142,8 +143,8 @@ Optional fields:
   empty box. Default false.
 
   Chef's standing preference (2026-10-22) is to combine and double these "to the earliest
-  date". So when a run has the cheesecake or the hot fudge on more than one night,
-  include them in `batch` by default and say so in the delivery message.
+  date". So when a run has the cheesecake on more than one night, include it in `batch`
+  by default and say so in the delivery message.
 
 ## Step 3: Run the generator
 
@@ -170,7 +171,8 @@ counts in the right places. Look hardest at any `PAST DUE` and `WARNING` lines.
 Each batch has a shelf life from its SOP, set as `batch_max_days` in `menu.json`. When a
 later dinner falls past it, the run handles it in one of two ways:
 
-- **`frozen share`:** the component defines `batch_freeze` (the hot fudge does). The
+- **`frozen share`:** the component defines `batch_freeze` (none does now; the hot fudge
+  did until 2026-11-18). The
   generator adds two tasks under that dinner's band: freeze its share on the make day,
   and pull it to the reefer to thaw the day before the dinner. That's the SOP's own route,
   and Chef approved it on 2026-10-22. Mention it in the delivery message, but it's not a
@@ -352,7 +354,7 @@ was slow. The artifact still works.
   this day is checked off." and has nothing to download. A past-due task ticked before
   today drops off Past Due for good. A
   merged timeline row covering two parties saves to both dinners and is checked only when
-  both are. A batch row (cheesecake, hot fudge) saves to every dinner in the batch and
+  both are. A batch row (the cheesecake) saves to every dinner in the batch and
   reads as done when any has it, so the tick survives the batch changing hands. A daily
   task (the starter feeding) saves to the nearest dinner still ahead that day and reads as
   done when any dinner still ahead has it, so no dinner collects a key for every day
@@ -365,7 +367,8 @@ was slow. The artifact still works.
   nested objects, so an untick saves `null`. Firestore refuses `done` until the
   2026-11-14 `firestore.rules` are pasted into the console.
 - **Same output as the generator.** The page runs the same `prep_core.js` and
-  `menu.json`, with the same `batch` default (cheesecake and hot fudge), and loads docx
+  `menu.json`, with the same `batch` default (every component with `batch_steps`: the
+  cheesecake), and loads docx
   9.8.1 from jsDelivr. On 2026-10-23 a three-dinner run gave the same schedule text and
   the same 33,857-byte .docx in the browser and from `build_prep_list.js`. The page
   always uses the brand fonts, and it can't make the PDF, since that needs Word on
@@ -444,7 +447,7 @@ All menu edits go in `data/menu.json`. The script needs no changes.
   take `"course": "salad"`, which keys off 7:00 PM, ahead of the 7:30 PM entrees. A
   component listed both as the salad and in `extras` isn't doubled.
 - **Shared components:** Au Gratin Rice, Sauteed Green Beans, Lemon Grilled Asparagus, Blue
-  Bell Ice Cream, Homemade Hot Fudge, and Homemade Sweetened Whipped Cream each appear in several meals or
+  Bell Ice Cream, and Homemade Sweetened Whipped Cream each appear in several meals or
   desserts. Edit the one component entry and every meal using it picks up the change.
 
 After any edit, run the generator once on a sample booking to confirm it still parses.
@@ -460,8 +463,9 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   7:00 PM and dessert 7:30 PM until Chef added the Salad or Soup course the same day.
 - **Sauteed Wild Mushrooms:** gently warm on the stove at -1 1/2 hours. (The thaw at
   -1 day was dropped on 2026-10-25; see below.)
-- **Hot fudge:** the brownie and the skillet cookie share one Homemade Hot Fudge list,
-  made 5 days ahead.
+- **Hot fudge:** commercial since 2026-11-18 (Chef), so it has no prep rows, and the
+  brownie and skillet cookie names say "Hot Fudge", not "Homemade Hot Fudge". Until then
+  the two desserts shared one Homemade Hot Fudge list, made 5 days ahead.
 - **Prime Rib** (Chef, 2026-11-14, replacing the 10/22 list): thaw -8 days, dry brine
   -6 days for 72 hours, sous vide -3 days for 12 hours, out of the bath -2 days (bag juices
   saved for the Red Wine Au Jus) and air dried on a rack, seared -1 day, warmed to 130°F at
@@ -482,11 +486,10 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   then warmed at -2 hours.
 - **Skillet Cookie:** no whipped cream. It is served with Blue Bell, using the scoop
   tasks shared with the brownie.
-- **Entree-time overlap is intended:** on cheesecake and hot fudge nights, the cheesecake
-  is plated and the fudge reheated at 7:30 PM while the entrees go out. Chef confirmed this
-  is correct, so don't flag it.
-- **Batching:** combine and double the cheesecake and the hot fudge onto the earliest
-  date when a run uses them on more than one night (see `batch` in Step 2).
+- **Entree-time overlap is intended:** on cheesecake nights, the cheesecake is plated at
+  7:30 PM while the entrees go out. Chef confirmed this is correct, so don't flag it.
+- **Batching:** combine and double the cheesecake onto the earliest date when a run uses
+  it on more than one night (see `batch` in Step 2).
 - **Salads & Soups list (2026-10-23):** Chef's four items, numbered 1-4 and entered in
   his wording. "Ceasar" is spelled Caesar. His Duck Gumbo list replaced the 15-step
   version derived from FiveOaks_SOP_Duck_Confit_Gumbo the day before.
