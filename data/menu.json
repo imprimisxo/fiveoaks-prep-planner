@@ -505,13 +505,14 @@
       ]
     }
   },
-  "_desserts_note": "Chef, 2026-11-18: the hot fudge is a commercial product now, so the Homemade Hot Fudge component came off the Brownie and the Skillet Cookie with all its prep (make and store at -5 days, reheat at -30 minutes, warm-oven hold at -15 minutes, plate at 0 hours; its batch and freeze routes too), and 'Homemade' came out of both dessert names. FiveOaks_SOP_Homemade_Hot_Fudge stays in the SOP folder.",
+  "_desserts_note": "Chef, 2026-11-19: keep the Homemade Hot Fudge and drop the commercial hot fudge. On 2026-11-18 the hot fudge had gone commercial and the Homemade Hot Fudge component came off the Brownie and the Skillet Cookie with all its prep; on 2026-11-19 it came back exactly as before (make and store at -5 days, reheat at -30 minutes, warm-oven hold at -15 minutes, plate at 0 hours, and its batch and freeze routes), and 'Homemade' is back in both dessert names.",
   "desserts": {
     "skillet-cookie": {
-      "name": "Warm Individual Chocolate Chip Skillet Cookie with Blue Bell Ice Cream and Hot Fudge",
+      "name": "Warm Individual Chocolate Chip Skillet Cookie with Blue Bell Ice Cream and Homemade Hot Fudge",
       "short": "Skillet Cookie",
       "components": [
         "Chocolate Chip Skillet Cookie",
+        "Homemade Hot Fudge",
         "Blue Bell Ice Cream"
       ]
     },
@@ -533,11 +534,12 @@
       ]
     },
     "brownie": {
-      "name": "Warm Chocolate Brownie with Blue Bell Ice Cream and Hot Fudge",
+      "name": "Warm Chocolate Brownie with Blue Bell Ice Cream and Homemade Hot Fudge",
       "short": "Brownie",
       "components": [
         "Warm Chocolate Brownie",
-        "Blue Bell Ice Cream"
+        "Blue Bell Ice Cream",
+        "Homemade Hot Fudge"
       ]
     }
   },
@@ -1246,6 +1248,23 @@
         "-6 hours, place a half sheet pan in freezer",
         "-3 hours, remove sheet pan from freezer, line with parchment, and scoop ice cream onto sheet pan, return to freezer",
         "0 hours, remove from freezer, plate and serve"
+      ]
+    },
+    "Homemade Hot Fudge": {
+      "course": "dessert",
+      "batch_steps": 2,
+      "batch_max_days": 6,
+      "batch_freeze": {
+        "freeze": "freeze the {share} share per SOP: airtight, 1/2 in headspace, label with days refrigerated",
+        "thaw": "pull the {share} share from freezer to reefer to thaw"
+      },
+      "_batch_note": "First 2 tasks (make, store) can be one batch for several dinners. Refrigerated up to 7 days counting the make day as day 1, so a dinner can be at most 6 days after the make day (FiveOaks_SOP_Homemade_Hot_Fudge). A later dinner past that limit gets its share frozen on the make day and thawed the day before its dinner (batch_freeze), per the SOP's freezing section. Chef approved this on 2026-10-22.",
+      "tasks": [
+        "-5 days, make the fudge",
+        "-5 days, store in reefer per SOP",
+        "-30 minutes, reheat fudge sauce per SOP",
+        "-15 minutes, hold in warm oven",
+        "0 hours, plate and serve"
       ]
     },
     "Wild Mushroom & Gruyère Tarts with Cognac": {

@@ -555,9 +555,8 @@ details.past .tickets { margin-top: 10px; }
     show_done: showDone,
     services: list.map((s) => ({ id: s.id, date: s.date, host: s.host, guests: s.guests, appetizer_duck: s.appetizer_duck,
       appetizer_nonduck: s.appetizer_nonduck, salad: s.salad, meal: s.meal, dessert: s.dessert, done: s.done || null })),
-    // Chef's standing preference: make the cheesecake once, doubled, on the earliest date,
-    // whenever more than one dinner uses it. (The hot fudge batched too until Chef switched
-    // to a commercial fudge, 2026-11-18.)
+    // Chef's standing preference: make the cheesecake and hot fudge once, doubled, on the
+    // earliest date, whenever more than one dinner uses them.
     batch: Object.keys(state.menu.components).filter((n) => state.menu.components[n].batch_steps),
   });
 
