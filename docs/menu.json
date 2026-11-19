@@ -1231,10 +1231,10 @@
       ]
     },
     "Warm Chocolate Brownie": {
+      "_note": "Chef, 2026-11-19: the brownies are made from a box mix now. The -3 day thaw of frozen brownies and the -3 hour warm-oven hold came off; one row at -7 hours (1:00 PM for the 8:00 PM dessert) makes them and keeps them warm. FiveOaks_SOP_Brown_Butter_Fudge_Brownies (9 x 13 and Hotel Pan) stays in SOP/Dessert but is no longer the planner's brownie.",
       "course": "dessert",
       "tasks": [
-        "-3 days, place frozen brownies in reefer to thaw",
-        "-3 hours, hold in a warm oven",
+        "-7 hours, make brownies and keep warm",
         "0 hours, plate and serve"
       ]
     },
