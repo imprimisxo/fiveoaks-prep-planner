@@ -626,11 +626,14 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
     spill, level with the Kielbasa Bites. The Southwest Savory Cheesecake Squares
     ("Cheesecake Squares") joined the Non-duck group the same day from their new SOP (one
     8 x 8 in cake cut into 36 squares, each passed chilled on a tortilla chip; Chef chose
-    passed squares over the source's 20 wedges): cream cheese softened, chip base pressed and
-    pre-baked, and filling baked to a 150°F center, slow-cooled, and chilled at -1 day;
-    platters chilled, top dusted with smoked paprika, edges trimmed, and 36 squares cut at
-    -1 hour; each square set on a whole chip at -15 minutes; passed chilled. Its 5 rows put
-    the heaviest menu at 696.6 pt with no spill, level with the Kielbasa Bites. The Crab Puff
+    passed squares over the source's 20 wedges; crustless since 11/18, when Chef dropped the
+    tortilla-chip base): cream cheese softened, pan lined and sprayed, mix-ins prepped, and
+    filling baked to a 150°F center, slow-cooled, and chilled at -1 day; platters chilled, top
+    dusted with smoked paprika, edges trimmed, and 36 squares cut at -1 hour; the first 18 set
+    on whole chips at -15 minutes and passed chilled, the second 18 chipped when the first
+    platter comes back. Its 5 rows put the heaviest menu at 696.6 pt with no spill, level
+    with the Kielbasa Bites (the 11/18 crustless rows swept 3,125 menus with 92 spill sheets,
+    the same as before the change). The Crab Puff
     Pastry Napoleons ("Crab Napoleons") joined the Non-duck group the same day from their new
     SOP (24 passed napoleons; Chef picked pasteurized lump crab): puff pastry thawed at
     -2 days; 490 g rolled 3 mm, cut into 48 rectangles of 4 x 6 cm, egg-washed, and baked
