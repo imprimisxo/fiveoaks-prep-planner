@@ -756,12 +756,14 @@
       ]
     },
     "Duck Southwest Egg Rolls": {
+      "_note": "Chef's call of 2026-11-18, approved 2026-11-19: make and freeze the rolls 9 days ahead, the same plan as the Asian egg rolls (11/09). Base A confit, frozen corn, and wrappers thaw at -10 days; filling roasted, cooked, chilled, squeezed, finished, rolled, frozen, and double-bagged at -9 days (the frozen hold is 60 days). The crema stays at -1 day and the fry stays on the service timeline.",
       "course": "appetizers",
       "tasks": [
-        "-2 days, move 3 Base A confit packs, frozen corn, and 60 wrappers to reefer to thaw",
-        "-1 days, roast corn, char poblanos, prep beans and aromatics, cook filling per SOP, cool to 41°F",
-        "-1 days, squeeze filling, return the reduced liquid, fold in Jack, lime, and cornstarch",
-        "-1 days, roll 50 egg rolls, freeze 2 hours, bag 10 per bag marked Southwest",
+        "-10 days, move 3 Base A packs, corn, 60 wrappers to reefer to thaw",
+        "-9 days, roast corn and poblanos, cook filling per SOP, cool to 41°F",
+        "-9 days, squeeze filling, return syrup; add Jack, lime, cornstarch",
+        "-9 days, roll 50 egg rolls, freeze 2 hours",
+        "-9 days, double-bag 10 per bag marked Southwest; label event date",
         "-1 days, make cilantro lime crema",
         "-30 minutes, heat fryer to 340°F; fry a test roll, check 165°F",
         "-20 minutes, fry 8 at a time from frozen, 7 minutes; rest 2 minutes; cut on the bias",
