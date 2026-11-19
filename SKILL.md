@@ -530,6 +530,11 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   Mayo made per its SOP if none is on hand) and Chinese hot mustard made when the fryer goes
   on at -30 minutes, in the fryer row. A separate -1 hour row sent 320 event-day sheets to a
   second page, up from 154, so Chef moved it on 2026-11-19. Each tray carries three ramekins.
+- **Duck Southwest Egg Rolls make-ahead:** the same Day -9 plan as the Asian egg rolls (Chef,
+  2026-11-18, SOP approved 2026-11-19). The confit, frozen corn, and 60 wrappers thaw at
+  -10 days; the filling is roasted, cooked, chilled, squeezed, finished, rolled, frozen, and
+  double-bagged at -9 days, labeled with the event date. The cilantro lime crema stays at
+  -1 day, and the fry stays on the service timeline.
 - **SOP review of 2026-10-25** (`/Users/cheflance/Five_Oaks/FiveOaksClaudeWorkspace/reports/
   SOP Prep Activities by Dish.md`): Chef's calls, each with a `_note` in `menu.json`.
   - **Sauteed Wild Mushrooms:** no freeze. The SOP says the butter sauce breaks and the
