@@ -622,7 +622,7 @@
       ]
     },
     "Duck Asian Egg Rolls": {
-      "_note": "Chef's call of 2026-11-09: make and freeze the rolls 9 days ahead, per the SOP's revised Step 1 plan. Base A confit and wrappers thaw at -10 days; filling cooked, chilled, squeezed, rolled, frozen, and double-bagged at -9 days (the frozen hold is 60 days). Nothing else moves: the fry stays on the service timeline.",
+      "_note": "Chef's call of 2026-11-09: make and freeze the rolls 9 days ahead, per the SOP's revised Step 1 plan. Base A confit and wrappers thaw at -10 days; filling cooked, chilled, squeezed, rolled, frozen, and double-bagged at -9 days (the frozen hold is 60 days). Nothing else moves: the fry stays on the service timeline. Chef's call of 2026-11-18 (\"Yes, add both\", then approved): spicy Kewpie-style mayo and Chinese hot mustard added beside the plum sauce, SOP Step 6. The Kewpie-Style Mayo is made per its SOP if none is on hand and the spicy mayo mixed at -1 day; the hot mustard is made when the fryer goes on at -30 minutes, in the fryer row (Chef, 2026-11-19: a separate -1 hour row sent 320 event-day sheets to a second page, up from 154). Each tray carries three ramekins: plum, spicy mayo, hot mustard.",
       "course": "appetizers",
       "tasks": [
         "-10 days, move 3 Base A confit packs and egg roll wrappers to reefer to thaw",
@@ -630,9 +630,10 @@
         "-9 days, squeeze filling, reduce the liquid to syrup and fold back, add cornstarch",
         "-9 days, portion 57 g logs, roll 40 egg rolls, freeze 2 hours",
         "-9 days, double-bag frozen rolls 10 per bag; label roll date and event date",
-        "-30 minutes, heat fryer to 340°F; fry a test roll, check 165°F center",
+        "-1 days, make Kewpie mayo per SOP if needed; mix spicy mayo per SOP",
+        "-30 minutes, heat fryer to 340°F; test roll to 165°F; make hot mustard",
         "-20 minutes, fry 8 at a time from frozen, 7 minutes; rest 2 minutes; cut on the bias",
-        "0 hours, tray 20 halves around plum sauce with sesame seeds and pass; fry in waves"
+        "0 hours, tray 20 halves around plum, spicy mayo, hot mustard; pass"
       ]
     },
     "Duck Beignets": {
