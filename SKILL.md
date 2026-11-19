@@ -521,7 +521,11 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   sheets, all with the Arancini or Mushroom Tart, as before).
 - **Duck Asian Egg Rolls make-ahead:** filling cooked, squeezed, rolled, and frozen at -9 days,
   not -1 day. Chef changed the SOP's Step 1 plan on 2026-11-09. The confit and wrappers thaw
-  at -10 days, and the frozen rolls hold 60 days.
+  at -10 days, and the frozen rolls hold 60 days. On 2026-11-18 Chef added two sauces beside
+  the plum sauce (SOP Step 6): spicy Kewpie-style mayo mixed at -1 day (the Kewpie-Style
+  Mayo made per its SOP if none is on hand) and Chinese hot mustard made when the fryer goes
+  on at -30 minutes, in the fryer row. A separate -1 hour row sent 320 event-day sheets to a
+  second page, up from 154, so Chef moved it on 2026-11-19. Each tray carries three ramekins.
 - **SOP review of 2026-10-25** (`/Users/cheflance/Five_Oaks/FiveOaksClaudeWorkspace/reports/
   SOP Prep Activities by Dish.md`): Chef's calls, each with a `_note` in `menu.json`.
   - **Sauteed Wild Mushrooms:** no freeze. The SOP says the butter sauce breaks and the
