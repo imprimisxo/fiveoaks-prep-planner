@@ -466,6 +466,10 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
 - **Hot fudge:** commercial since 2026-11-18 (Chef), so it has no prep rows, and the
   brownie and skillet cookie names say "Hot Fudge", not "Homemade Hot Fudge". Until then
   the two desserts shared one Homemade Hot Fudge list, made 5 days ahead.
+- **Brownie:** box mix since 2026-11-19 (Chef), so the Warm Chocolate Brownie has one prep
+  row, "make brownies and keep warm" at -7 hours (1:00 PM), plus its plating row. The
+  -3 day thaw of frozen brownies and the -3 hour warm-oven hold came off. The Brown Butter
+  Fudge Brownies SOP stays in SOP/Dessert but is no longer the planner's brownie.
 - **Prime Rib** (Chef, 2026-11-14, replacing the 10/22 list): thaw -8 days, dry brine
   -6 days for 72 hours, sous vide -3 days for 12 hours, out of the bath -2 days (bag juices
   saved for the Red Wine Au Jus) and air dried on a rack, seared -1 day, warmed to 130°F at
