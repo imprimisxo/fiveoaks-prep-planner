@@ -475,6 +475,10 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   130°F at -3 hours, sliced at -30 minutes. Until 11/19 the brine started -6 days, the cook
   was -3 days, the bath came off -2 days and the sear was -1 day. Chef wrote the warm-up as
   "day 0"; a 0-day task lands at course time, after the slice, so he set -3 hours.
+- **Duck Arancini** (Chef, 2026-11-19): made in bulk ahead and frozen, so the planner
+  no longer schedules the confit thaw, risotto, forming, breading, or freezing. It keeps
+  the -1 day truffle aioli and the service rows: fryer to 335°F with a test ball at -30
+  minutes, 10 fried from frozen from -25 minutes, aioli dots and passing at 6:00 PM.
 - **Creamy Horseradish Sauce** (Chef, 2026-11-17): its own component in the Prime Rib
   dinner, from FiveOaks_SOP_Creamy_Horseradish_Sauce_for_Prime_Rib (SOP/Sauces). About
   480 g made, rested at least 2 hours, tasted and portioned 30 g per guest into chilled
