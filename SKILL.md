@@ -477,8 +477,11 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   "day 0"; a 0-day task lands at course time, after the slice, so he set -3 hours.
 - **Duck Arancini** (Chef, 2026-11-19): made in bulk ahead and frozen, so the planner
   no longer schedules the confit thaw, risotto, forming, breading, or freezing. It keeps
-  the -1 day truffle aioli and the service rows: fryer to 335°F with a test ball at -30
-  minutes, 10 fried from frozen from -25 minutes, aioli dots and passing at 6:00 PM.
+  a -1 day sauce row and the service rows: fryer to 335°F with a test ball at -30
+  minutes, 10 fried from frozen from -25 minutes, gastrique dots and passing at 6:00 PM.
+  The same day Chef swapped the -1 day truffle aioli for "Make Tart Cherry & Black Pepper
+  Gastrique" (FiveOaks_SOP_Tart_Cherry_and_Black_Pepper_Gastrique, SOP/Sauces), and the
+  aioli dots at 6:00 PM for gastrique dots.
 - **Creamy Horseradish Sauce** (Chef, 2026-11-17): its own component in the Prime Rib
   dinner, from FiveOaks_SOP_Creamy_Horseradish_Sauce_for_Prime_Rib (SOP/Sauces). About
   480 g made, rested at least 2 hours, tasted and portioned 30 g per guest into chilled
