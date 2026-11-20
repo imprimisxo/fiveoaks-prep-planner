@@ -612,12 +612,12 @@
     },
     "Duck Arancini": {
       "course": "appetizers",
-      "_note": "Chef, 2026-11-19: the arancini are made in bulk ahead and frozen, so their make-ahead rows came off: confit thaw and risotto at -2 days; forming, breading, and freezing at -1 day. The truffle aioli (made fresh at -1 day) and the service rows, which already fry from frozen, stay.",
+      "_note": "Chef, 2026-11-19: the arancini are made in bulk ahead and frozen, so their make-ahead rows came off: confit thaw and risotto at -2 days; forming, breading, and freezing at -1 day. The truffle aioli (made fresh at -1 day) and the service rows, which already fry from frozen, stayed. Later the same day Chef replaced the -1 day aioli row with 'Make Tart Cherry & Black Pepper Gastrique' (FiveOaks_SOP_Tart_Cherry_and_Black_Pepper_Gastrique, SOP/Sauces), and the 6:00 PM row became gastrique dots.",
       "tasks": [
-        "-1 days, make truffle aioli, load piping bag",
+        "-1 days, make Tart Cherry & Black Pepper Gastrique",
         "-30 minutes, heat fryer to 335°F; fry a test ball, check 165°F center",
         "-25 minutes, fry 10 from frozen, 7 minutes; rest 3 minutes; hold at 200°F up to 25 minutes",
-        "0 hours, aioli dots and pass each tray; fry the next 10 as each tray goes out"
+        "0 hours, gastrique dots and pass each tray; fry the next 10 as each tray goes out"
       ]
     },
     "Duck Asian Egg Rolls": {
