@@ -612,11 +612,8 @@
     },
     "Duck Arancini": {
       "course": "appetizers",
+      "_note": "Chef, 2026-11-19: the arancini are made in bulk ahead and frozen, so their make-ahead rows came off: confit thaw and risotto at -2 days; forming, breading, and freezing at -1 day. The truffle aioli (made fresh at -1 day) and the service rows, which already fry from frozen, stay.",
       "tasks": [
-        "-2 days, move Base A confit (1 pack plus 225 g) to reefer to thaw",
-        "-2 days, soak porcini; cook risotto per SOP; spread on oiled sheet pans, cool, chill overnight",
-        "-1 days, mix confit into risotto; form 42.5 g balls around mozzarella cubes; chill 1 hour",
-        "-1 days, bread arancini, set 30 minutes, freeze 2 hours, bag 10 per bag",
         "-1 days, make truffle aioli, load piping bag",
         "-30 minutes, heat fryer to 335°F; fry a test ball, check 165°F center",
         "-25 minutes, fry 10 from frozen, 7 minutes; rest 3 minutes; hold at 200°F up to 25 minutes",
