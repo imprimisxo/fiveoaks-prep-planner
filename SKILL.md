@@ -468,11 +468,13 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   row, "make brownies and keep warm" at -7 hours (1:00 PM), plus its plating row. The
   -3 day thaw of frozen brownies and the -3 hour warm-oven hold came off. The Brown Butter
   Fudge Brownies SOP stays in SOP/Dessert but is no longer the planner's brownie.
-- **Prime Rib** (Chef, 2026-11-14, replacing the 10/22 list): thaw -8 days, dry brine
-  -6 days for 72 hours, sous vide -3 days for 12 hours, out of the bath -2 days (bag juices
-  saved for the Red Wine Au Jus) and air dried on a rack, seared -1 day, warmed to 130°F at
-  -3 hours, sliced at -30 minutes. Chef wrote the warm-up as "day 0"; a 0-day task lands at
-  course time, after the slice, so he set -3 hours.
+- **Prime Rib** (Chef, 2026-11-19, revising his 11/14 list, which replaced the 10/22 one):
+  thaw -8 days, dry brine -4 days for 72 hours, sous vide -1 day for 12 hours, then out of
+  the bath the same day (bag juices saved for the Red Wine Au Jus) and air dried overnight
+  on a rack in the reefer, seared at -4 hours (3:30 PM) and back to the reefer, warmed to
+  130°F at -3 hours, sliced at -30 minutes. Until 11/19 the brine started -6 days, the cook
+  was -3 days, the bath came off -2 days and the sear was -1 day. Chef wrote the warm-up as
+  "day 0"; a 0-day task lands at course time, after the slice, so he set -3 hours.
 - **Creamy Horseradish Sauce** (Chef, 2026-11-17): its own component in the Prime Rib
   dinner, from FiveOaks_SOP_Creamy_Horseradish_Sauce_for_Prime_Rib (SOP/Sauces). About
   480 g made, rested at least 2 hours, tasted and portioned 30 g per guest into chilled
