@@ -174,6 +174,9 @@ button, input { font: inherit; }
 .include input { width: 20px; height: 20px; accent-color: var(--brand); }
 .confirm { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; width: 100%; }
 .confirm p { flex: 1 1 200px; font-weight: 600; }
+.edit-menu { display: grid; gap: 20px; }
+.edit-note { color: var(--muted); font-size: 14px; }
+.actions .delete { margin-right: auto; color: var(--warn); }
 
 .empty {
   border: 1.5px dashed var(--line); border-radius: 10px; padding: 22px 20px;
@@ -383,9 +386,10 @@ details.past .tickets { margin-top: 10px; }
                           // done: { <task key>: 'YYYY-MM-DD' the day it was ticked off }, see prep_core.js taskKey
     mode: 'loading',      // loading | shared (Claude) | firebase | kitchen (needs the code) | local | error
     readOnly: false,
-    formFor: null,        // 'new' or a service id while the guest form is open
-    menuFor: null,        // service id whose menu is being picked
-    confirmRemove: null,  // service id waiting on "Remove?"
+    formFor: null,        // 'new' while the new-dinner form is open
+    menuFor: null,        // service id open in the Edit Dinner panel
+    confirmRemove: null,  // service id waiting on "Delete?"
+    editNote: '',         // a note under the Edit Dinner fields, e.g. after the date moves
     excluded: new Set(),  // services unticked from the prep list
     prepDate: null,       // the day picked on the calendar (YYYY-MM-DD)
     prepShown: null,      // the day whose View and Download buttons are showing
@@ -394,6 +398,7 @@ details.past .tickets { margin-top: 10px; }
     dlPart: null,         // the document dlStatus is about: 'prep' or 'timeline'
     notice: '',
     showDone: false,      // the on-screen sheet also shows checked-off tasks
+    pastOpen: false,      // the Past dinners section is open (it stays open across redraws)
     lastTick: null,       // { tasks, label } of the last task ticked, for Undo
   };
   let col = null, downloads = null, logoBytes = null, fsdb = null, unsubscribe = null;
@@ -487,7 +492,7 @@ details.past .tickets { margin-top: 10px; }
     } else if (code === 'permission-denied') {
       state.notice = 'The database turned that change down. Ask Claude to check the Firebase rules.';
     } else if (code === 'quota_exceeded' || code === 'resource-exhausted') {
-      state.notice = 'The dinner list is full for now. Remove past dinners, or try again tomorrow.';
+      state.notice = 'The dinner list is full for now. Delete past dinners, or try again tomorrow.';
     } else {
       state.notice = "Couldn't save that change. Check the connection and try again.";
     }
@@ -594,19 +599,22 @@ details.past .tickets { margin-top: 10px; }
       : '';
   };
 
+  // Chef, 2026-11-20: one Edit Dinner button on each upcoming dinner opens one panel for the
+  // host, date, guests, menu and Delete. It replaced Edit details, Change menu and Remove,
+  // which Chef didn't spot on the website. A past dinner can only be deleted.
+  const confirmDelete = (s) => `<div class="confirm"><p>Delete ${esc(s.host)}, ${esc(shortDay(s.date))}? Its menu and check-offs go with it.</p>
+        <button type="button" class="btn quiet" data-action="keep" data-id="${s.id}" data-key="keep-${s.id}">Keep</button>
+        <button type="button" class="btn danger" data-action="remove" data-id="${s.id}" data-key="remove-${s.id}">Delete</button></div>`;
   const ticket = (s, isPast) => {
     const guests = `${s.guests} guest${s.guests === 1 ? '' : 's'}`;
     let actions;
-    if (state.confirmRemove === s.id) {
-      actions = `<div class="confirm"><p>Remove ${esc(s.host)}, ${esc(shortDay(s.date))}?</p>
-        <button type="button" class="btn quiet" data-action="keep" data-id="${s.id}" data-key="keep-${s.id}">Keep</button>
-        <button type="button" class="btn danger" data-action="remove" data-id="${s.id}" data-key="remove-${s.id}">Remove</button></div>`;
+    if (isPast && state.confirmRemove === s.id) {
+      actions = confirmDelete(s);
     } else {
       const include = isPast ? '' : `<label class="include"><input type="checkbox" data-action="include" data-id="${s.id}" data-key="inc-${s.id}" ${state.excluded.has(s.id) ? '' : 'checked'}> In prep list</label>`;
-      const edit = state.readOnly ? '' : `
-        ${isPast ? '' : `<button type="button" class="btn quiet" data-action="edit" data-id="${s.id}" data-key="edit-${s.id}">Edit details</button>
-        <button type="button" class="btn" data-action="menu" data-id="${s.id}" data-key="menu-${s.id}">${isComplete(s) ? 'Change menu' : 'Pick menu'}</button>`}
-        <button type="button" class="btn quiet" data-action="ask-remove" data-id="${s.id}" data-key="ask-${s.id}">Remove</button>`;
+      const edit = state.readOnly ? '' : isPast
+        ? `<button type="button" class="btn quiet" data-action="ask-remove" data-id="${s.id}" data-key="ask-${s.id}">Delete</button>`
+        : `<button type="button" class="btn" data-action="edit" data-id="${s.id}" data-key="edit-${s.id}" aria-controls="menuPanel" aria-expanded="${state.menuFor === s.id}">Edit Dinner</button>`;
       actions = `${include}<span class="spacer"></span>${edit}`;
     }
     return `<li class="ticket${state.menuFor === s.id ? ' open' : ''}" id="t-${s.id}">
@@ -632,15 +640,41 @@ details.past .tickets { margin-top: 10px; }
       ? `<ul class="tickets">${up.map((s) => ticket(s, false)).join('')}</ul>`
       : `<div class="empty"><strong>No upcoming dinners yet</strong><span>Press Add Guest/Date to enter the host, the dinner date and the guest count. Then pick the appetizers, salad or soup, main course and dessert.</span></div>`;
     const oldList = old.length
-      ? `<details class="past"><summary>Past dinners (${old.length})</summary><ul class="tickets">${old.map((s) => ticket(s, true)).join('')}</ul></details>`
+      ? `<details class="past"${state.pastOpen ? ' open' : ''}><summary>Past dinners (${old.length})</summary><ul class="tickets">${old.map((s) => ticket(s, true)).join('')}</ul></details>`
       : '';
     el.innerHTML = list + oldList;
   };
 
+  // The Edit Dinner panel. Its host, date and guest fields are drawn once when it opens, so a
+  // re-render (a menu pick, a change from another device) never wipes what's being typed;
+  // each field saves when it's changed. The rest is redrawn only when it differs, so a tap on
+  // a dish right after typing in a field still lands on that dish.
+  const setHTML = (el, html) => { if (el._html !== html) { el.innerHTML = html; el._html = html; } };
+  const editField = (field, label, attrs, value) => `<div class="field">
+            <label for="edit-${field}">${label}</label>
+            <input id="edit-${field}" data-edit="${field}" ${attrs} value="${esc(value)}">
+            <span class="error" id="edit-${field}-error" hidden></span>
+          </div>`;
   const renderMenuPanel = () => {
     const el = $('#menuPanel');
     const s = state.items.find((i) => i.id === state.menuFor);
     if (!s || !state.menu) { el.innerHTML = ''; return; }
+    if (!el.querySelector(`.panel[data-id="${CSS.escape(s.id)}"]`)) {
+      el.innerHTML = `<section class="panel" data-id="${esc(s.id)}" aria-labelledby="menuTitle">
+        <div class="panel-head" id="editHead"></div>
+        <div class="course" role="group" aria-labelledby="h-details">
+          <div class="course-head"><h4 id="h-details">Host, Date and Guests</h4><span>each change saves as you go</span></div>
+          <div class="fields">
+          ${editField('host', 'Host', 'type="text" autocomplete="off"', s.host)}
+          ${editField('date', 'Dinner Date', `type="date" min="${todayKey}"`, s.date)}
+          ${editField('guests', 'Number of Guests', 'type="number" inputmode="numeric" min="1" max="200" step="1"', s.guests)}
+          </div>
+          <p class="edit-note" id="editNote" hidden></p>
+        </div>
+        <div class="edit-menu" id="editMenu"></div>
+        <div class="actions" id="editActions"></div>
+      </section>`;
+    }
     const times = state.menu.service_times;
     const choiceButtons = (c) => {
       const all = choicesFor(c.field);
@@ -692,18 +726,16 @@ details.past .tickets { margin-top: 10px; }
       </div>`;
     const appCourses = COURSES.filter((c) => c.group);
     const missing = COURSES.filter((c) => s[c.field] == null).map((c) => c.label);
-    el.innerHTML = `<section class="panel" aria-labelledby="menuTitle">
-      <div class="panel-head">
-        <h3 id="menuTitle">Menu for ${esc(s.host)}</h3>
-        <p>${esc(longDay(s.date))} &middot; ${esc(s.guests)} guests</p>
-      </div>
-      ${appCourses.length ? appetizerBlock(appCourses) : ''}
-      ${COURSES.filter((c) => !c.group).map(group).join('')}
-      <div class="actions">
+    setHTML($('#editHead'), `<h3 id="menuTitle">Edit Dinner: ${esc(s.host)}</h3>
+        <p>${esc(longDay(s.date))} &middot; ${esc(s.guests)} guests</p>`);
+    const note = $('#editNote');
+    note.textContent = state.editNote;
+    note.hidden = !state.editNote;
+    setHTML($('#editMenu'), (appCourses.length ? appetizerBlock(appCourses) : '') + COURSES.filter((c) => !c.group).map(group).join(''));
+    setHTML($('#editActions'), state.confirmRemove === s.id ? confirmDelete(s) : `
+        ${state.readOnly ? '' : `<button type="button" class="btn quiet delete" data-action="ask-remove" data-id="${s.id}" data-key="ask-${s.id}">Delete Dinner</button>`}
         ${missing.length ? `<span class="hint">Still to pick: ${esc(missing.join(', '))}</span>` : ''}
-        <button type="button" class="btn primary" data-action="menu-done" data-key="menu-done">Done</button>
-      </div>
-    </section>`;
+        <button type="button" class="btn primary" data-action="menu-done" data-key="menu-done">Done</button>`);
   };
 
   // ---- Prep list for one day ----------------------------------------------------
@@ -882,17 +914,11 @@ details.past .tickets { margin-top: 10px; }
     err.textContent = msg || '';
     err.hidden = !msg;
   };
-  const openForm = (id) => {
-    state.formFor = id;
-    state.menuFor = null;
-    const s = id === 'new' ? null : state.items.find((i) => i.id === id);
-    $('#formTitle').textContent = s ? `Edit ${s.host}, ${shortDay(s.date)}` : 'New dinner service';
-    $('#submitBtn').textContent = s ? 'Save and Pick Menu' : 'Add Dinner Service';
-    $('#hostInput').value = s ? s.host : '';
-    $('#dateInput').value = s ? s.date : '';
-    $('#guestsInput').value = s ? s.guests : '';
+  // The new-dinner form. Once added, the dinner opens in Edit Dinner for its menu.
+  const openForm = () => {
+    Object.assign(state, { formFor: 'new', menuFor: null, confirmRemove: null, editNote: '' });
+    ['host', 'date', 'guests'].forEach((n) => { $(`#${n}Input`).value = ''; fieldErr(n, ''); });
     $('#dateInput').min = todayKey;
-    ['host', 'date', 'guests'].forEach((n) => fieldErr(n, ''));
     form.hidden = false;
     render();
     $('#hostInput').focus();
@@ -900,28 +926,63 @@ details.past .tickets { margin-top: 10px; }
   };
   const closeForm = () => { state.formFor = null; form.hidden = true; };
 
+  // One set of checks for the new-dinner form and the Edit Dinner fields.
+  const checks = {
+    host: (v) => (v.trim() ? '' : "Enter the host's name."),
+    date: (v) => (!v ? 'Pick the dinner date.' : v < todayKey ? 'That date has passed. Pick today or a later date.' : ''),
+    guests: (v) => { const n = Number(v.trim()); return v.trim() && Number.isInteger(n) && n > 0 ? '' : 'Enter the number of guests, 1 or more.'; },
+  };
+  const cleaned = { host: (v) => v.trim(), date: (v) => v, guests: (v) => Number(v.trim()) };
+  // How many of this dinner's prep tasks show as checked off if it's served on `date`. A
+  // check-off key carries its task's date (prep_core.js taskKey), so ticks saved for one date
+  // don't land on another. Daily tasks are left out: their ticks go by the day, not the dinner.
+  const ticksOn = (s, date) => {
+    try {
+      const r = P.build({ menu: state.menu, request: requestFor([{ ...s, date }], true) });
+      return r.tickedEarlier + r.sheets.reduce((n, x) => n + x.counts.done - x.daily.filter((d) => d.done).length, 0);
+    } catch (e) { return 0; }
+  };
+  const prepTasks = (n) => `${n} prep task${n === 1 ? '' : 's'}`;
+  // Saves one Edit Dinner field once it's changed. False when the value isn't valid: the
+  // saved value stays and the field says why.
+  const saveEdit = (input) => {
+    const s = state.items.find((i) => i.id === state.menuFor);
+    const field = input.dataset.edit;
+    if (!s || state.readOnly || !checks[field]) return true;
+    const msg = checks[field](input.value);
+    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    const err = $(`#edit-${field}-error`);
+    err.textContent = msg;
+    err.hidden = !msg;
+    if (msg) return false;
+    const value = cleaned[field](input.value);
+    if (value === s[field]) return true;
+    // Check-offs stay with the date they were saved for: the note says what moved with the
+    // dinner, and that moving it back brings the old date's check-offs back.
+    if (field === 'date') {
+      const was = shortDay(s.date), now = shortDay(value);
+      const left = ticksOn(s, s.date), back = ticksOn(s, value);
+      const note = [`Moved from ${was} to ${now}.`];
+      if (back) note.push(`The ${prepTasks(back)} checked off when it was set for ${now} ${back === 1 ? 'is' : 'are'} checked again.`);
+      if (left) note.push(`The ${prepTasks(left)} checked off for ${was} ${left === 1 ? 'stays' : 'stay'} with that date${back ? '' : ', so the new schedule starts unchecked'}. Moving the dinner back to ${was} brings ${left === 1 ? 'it' : 'them'} back.`);
+      state.editNote = note.join(' ');
+    }
+    store.update(s.id, { [field]: value });
+    render();
+    return true;
+  };
+
   form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
-    const host = $('#hostInput').value.trim();
-    const date = $('#dateInput').value;
-    const guestsRaw = $('#guestsInput').value.trim();
-    const guests = Number(guestsRaw);
-    const errs = {
-      host: host ? '' : "Enter the host's name.",
-      date: !date ? 'Pick the dinner date.' : (date < todayKey ? 'That date has passed. Pick today or a later date.' : ''),
-      guests: guestsRaw && Number.isInteger(guests) && guests > 0 ? '' : 'Enter the number of guests, 1 or more.',
-    };
+    const raw = { host: $('#hostInput').value, date: $('#dateInput').value, guests: $('#guestsInput').value };
+    const errs = Object.fromEntries(Object.keys(checks).map((n) => [n, checks[n](raw[n])]));
     Object.entries(errs).forEach(([n, m]) => fieldErr(n, m));
     const firstBad = Object.keys(errs).find((n) => errs[n]);
     if (firstBad) { $(`#${firstBad}Input`).focus(); return; }
-    const id = state.formFor;
-    let target = id;
-    if (id === 'new') target = store.add({ host, date, guests, appetizer_duck: null, appetizer_nonduck: null, salad: null, meal: null, dessert: null, created: new Date().toISOString() });
-    else store.update(id, { host, date, guests });
-    state.excluded.delete(target);
+    const v = (n) => cleaned[n](raw[n]);
+    const target = store.add({ host: v('host'), date: v('date'), guests: v('guests'), appetizer_duck: null, appetizer_nonduck: null, salad: null, meal: null, dessert: null, created: new Date().toISOString() });
     closeForm();
-    state.menuFor = target;
-    state.notice = '';
+    Object.assign(state, { menuFor: target, confirmRemove: null, editNote: '', notice: '' });
     render();
     const panel = $('#menuPanel .panel');
     if (panel) { panel.scrollIntoView({ block: 'start', behavior: 'smooth' }); const first = panel.querySelector('.choice'); if (first) first.focus({ preventScroll: true }); }
@@ -1028,14 +1089,23 @@ details.past .tickets { margin-top: 10px; }
     if (!el || el.tagName === 'INPUT') return;
     const id = el.dataset.id;
     switch (el.dataset.action) {
-      case 'new': openForm('new'); break;
-      case 'edit': openForm(id); break;
+      case 'new': openForm(); break;
+      case 'edit':
+        closeForm();
+        if (state.menuFor !== id) Object.assign(state, { menuFor: id, confirmRemove: null, editNote: '' });
+        render();
+        { const p = $('#menuPanel .panel'); if (p) p.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
+        break;
       case 'cancel-form': closeForm(); render(); $('#addBtn').focus(); break;
-      case 'menu': closeForm(); state.menuFor = id; render(); { const p = $('#menuPanel .panel'); if (p) p.scrollIntoView({ block: 'start', behavior: 'smooth' }); } break;
       case 'menu-done': {
-        const done = state.menuFor; state.menuFor = null; render();
+        // Saves any field not yet saved; a field that isn't valid keeps the panel open.
+        const bad = [...document.querySelectorAll('#menuPanel [data-edit]')].map((i) => (saveEdit(i) ? null : i)).filter(Boolean);
+        if (bad.length) { bad[0].focus(); break; }
+        const done = state.menuFor;
+        Object.assign(state, { menuFor: null, confirmRemove: null, editNote: '' });
+        render();
         const t = document.getElementById(`t-${done}`);
-        if (t) { t.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); const b = t.querySelector('[data-action="menu"]'); if (b) b.focus({ preventScroll: true }); }
+        if (t) { t.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); const b = t.querySelector('[data-action="edit"]'); if (b) b.focus({ preventScroll: true }); }
         break;
       }
       case 'pick': {
@@ -1045,11 +1115,19 @@ details.past .tickets { margin-top: 10px; }
         render();
         break;
       }
-      case 'ask-remove': state.confirmRemove = id; render(); break;
-      case 'keep': state.confirmRemove = null; render(); break;
+      case 'ask-remove': {
+        state.confirmRemove = id; render();
+        const k = document.querySelector(`[data-key="keep-${CSS.escape(id)}"]`); if (k) k.focus();
+        break;
+      }
+      case 'keep': {
+        state.confirmRemove = null; render();
+        const a = document.querySelector(`[data-key="ask-${CSS.escape(id)}"]`); if (a) a.focus();
+        break;
+      }
       case 'remove':
         state.confirmRemove = null;
-        if (state.menuFor === id) state.menuFor = null;
+        if (state.menuFor === id) Object.assign(state, { menuFor: null, editNote: '' });
         store.remove(id);
         render();
         $('#addBtn').focus();
@@ -1112,9 +1190,14 @@ details.past .tickets { margin-top: 10px; }
     if (state.lastTick) toastTimer = setTimeout(() => { state.lastTick = null; renderToast(); }, 10000);
     render();
   };
+  // Opening or closing Past dinners is remembered, so a Delete there doesn't fold it shut.
+  document.addEventListener('toggle', (ev) => {
+    if (ev.target.matches && ev.target.matches('details.past')) state.pastOpen = ev.target.open;
+  }, true);
   document.addEventListener('change', (ev) => {
     const el = ev.target;
     if (el.id === 'prepDate') { pickDay(el.value || todayKey); return; }
+    if (el.dataset && el.dataset.edit) { saveEdit(el); return; }
     if (el.dataset && el.dataset.action === 'tick') { setTicks(el); return; }
     if (el.dataset && el.dataset.action === 'include') {
       if (el.checked) state.excluded.delete(el.dataset.id); else state.excluded.add(el.dataset.id);
