@@ -345,11 +345,31 @@ was slow. The artifact still works.
 
 - **Flow:** the Five Oaks logo at the top, then an **Add Guest/Date** button. It opens a
   form for Host (the host sponsor), Dinner Date, and Number of Guests, with an **Add Dinner
-  Service** button. That button saves the dinner and shows the menu selection: Appetizers
-  (a Duck group and a Non-duck group, one pick or "No ... appetizer" in each), Salad or
-  Soup, Main Course (the entree), and Dessert. Each choice card shows how far ahead its
-  prep starts and flags it when the dinner is too close. Dinners saved before 2026-10-25
-  have no appetizer picks, so their menus ask for those once before the prep list builds.
+  Service** button. That button saves the dinner and opens it in Edit Dinner for the
+  menu: Appetizers (a Duck group and a Non-duck group, one pick or "No ... appetizer" in
+  each), Salad or Soup, Main Course (the entree), and Dessert. Each choice card shows how
+  far ahead its prep starts and flags it when the dinner is too close. Dinners saved
+  before 2026-10-25 have no appetizer picks, so their menus ask for those once before the
+  prep list builds.
+- **Edit Dinner** (Chef, 2026-11-20, asked for a way to "edit (delete, change, and
+  modify)" a booked dinner and picked "One Edit Dinner screen"). Each upcoming dinner's
+  ticket has one outlined **Edit Dinner** button, in place of the old Edit details,
+  Change menu and Remove. It opens one panel above the list: Host, Dinner Date and Number
+  of Guests fields, the menu picks, then **Delete Dinner** and **Done**. Each field saves
+  when it's changed (blur, Enter or a date pick), with the same checks as the new-dinner
+  form (host required, today or later, a whole number of guests 1 or more); a bad value
+  shows its error, keeps the saved value, and stops Done from closing the panel. Menu
+  picks save on tap. The fields are drawn once when the panel opens and the rest is
+  redrawn only when it changes, so typing isn't wiped by another device's change and a
+  tap on a dish right after typing still lands. Delete Dinner asks "Delete <host>,
+  <date>? Its menu and check-offs go with it." with **Keep** and **Delete**. A past
+  dinner shows only **Delete**, with the same question; the Past dinners section stays
+  open across redraws. Moving the date leaves check-offs with the date they were saved
+  for (the key carries the task date), and the panel says so: "The N prep tasks checked
+  off for <old date> stay with that date ... Moving the dinner back to <old date> brings
+  them back." It counts with `build()` (`counts.done` less daily rows, plus
+  `tickedEarlier`) for the old and new dates, so a move back reports the check-offs
+  that return.
 - **Prep List** (Chef's change, 2026-10-23): a calendar field picks the prep day
   (today by default, no past days) and chips list every day that has prep. Pressing
   **Prep List** shows that day's task counts and a row of buttons per document.
