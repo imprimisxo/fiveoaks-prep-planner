@@ -430,7 +430,11 @@ was slow. The artifact still works.
   serves the site from `docs/` (Chef merged the old `fiveoaks-prep-list` repo into it on
   2026-10-26 and archived it). `docs/` holds staged copies: `index.html`, `prep_core.js`,
   `menu.json`, the logo, `firebase-config.json` and `.nojekyll`. Never edit `docs/` by
-  hand; `publish_site.sh` rebuilds it from the sources. `webapp/firebase-config.json` is
+  hand; `publish_site.sh` rebuilds it from the sources. `webapp/index.html` starts at
+  `<title>` because the artifact publish wraps it in a doctype and phone-size (viewport)
+  tag, so `publish_site.sh` puts the same four lines in front of the website's copy
+  (Chef, 2026-11-21). Without them a phone lays the page out 980 px wide and shrinks it.
+  Don't add them to `webapp/index.html` itself. `webapp/firebase-config.json` is
   the Firebase web config. It is public by design: it only tells browsers where the
   database is.
 - **Dinner fields**, the same in both stores, one document per dinner: `host`, `date`

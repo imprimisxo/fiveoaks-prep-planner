@@ -13,6 +13,15 @@ cd "$SKILL"
 "$SKILL/scripts/stage_webapp.sh" "$SKILL/docs" >/dev/null
 touch docs/.nojekyll   # serve the files as they are, no Jekyll build
 
+# The page starts at <title>, because the artifact publish wraps it in its own doctype and
+# phone-size (viewport) tag. The website serves the file as it is, so its copy gets them
+# here. Without them a phone lays the page out 980 px wide and shrinks it. Chef, 2026-11-21.
+{
+  printf '%s\n' '<!doctype html>' '<html lang="en">' '<meta charset="utf-8">' \
+    '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">'
+  cat webapp/index.html
+} > docs/index.html
+
 # The site and the sources it was staged from go out in one commit, so the repo never
 # serves a page its own sources can't produce. Anything else in the tree stays as it is.
 PATHS=(docs webapp/index.html scripts/prep_core.js data/menu.json assets/FiveOaksLogo.png)
