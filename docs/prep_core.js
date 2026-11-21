@@ -141,8 +141,10 @@ const FIT_MARGIN = 8;
 const CHAR_EM = 0.40;
 
 // Without `docx` only the schedule is built (doc is null), which is how the web app reads
-// a day's tasks for its on-screen sheet. `only` (YYYY-MM-DD) limits the document to that
-// one prep day.
+// a day's tasks for its on-screen sheet. `only` (YYYY-MM-DD) limits the documents to that
+// one prep day. Two documents come back (Chef, 2026-11-20): `doc` is the prep list (Every
+// Day, Past Due, Advance Prep) and `timelineDoc` is the Service Timeline, one sheet per day
+// that has timed tasks. Either is null when it has nothing to print.
 function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, only = null }) {
   const {
     Document, Paragraph, TextRun, ImageRun, AlignmentType,
@@ -426,6 +428,8 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
       pastDueOpen: past.filter((r) => !r.done).length,
       advanceOpen: adv.filter((r) => !r.done).length,
       timedOpen: s.timed.filter((r) => !r.done).length,
+      timedTotal: s.timed.length,
+      timedDone: s.timed.filter((r) => r.done).length,
     };
     if (!REQ.show_done) {
       s.daily = s.daily.filter((r) => !r.done);
@@ -434,7 +438,9 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
       s.timed = s.timed.filter((r) => !r.done);
     }
   }
-  const hasRows = (s) => s.daily.length + s.pastDue.length + s.advance.length + s.timed.length > 0;
+  // The prep list and the Service Timeline print as separate documents (Chef, 2026-11-20).
+  const hasPrepRows = (s) => s.daily.length + s.pastDue.length + s.advance.length > 0;
+  const hasTimeline = (s) => s.timed.length > 0;
 
   // ==========================================================================
   // TEMPLATE: Five Oaks house format
@@ -523,7 +529,10 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
   };
 
   // ---- One dated sheet ------------------------------------------------------
-  const sheetChildren = (sheet, first) => {
+  // Both documents open a day the same way: the logo, the title, the Tonight lines and the
+  // sign-off. `gap` is the space under the last header line in twips: the prep list's first
+  // section heading brings its own, the timeline's table follows the header directly.
+  const sheetHead = (sheet, first, title, noDinner, gap) => {
     const out = [];
 
     // Logo opens every sheet as a body paragraph (never a Header). Each sheet after the
@@ -539,7 +548,7 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     out.push(new Paragraph({
       spacing: { after: 80 },
       border: { bottom: { style: BorderStyle.SINGLE, size: 12, color: TAN, space: 4 } },
-      children: [new TextRun({ text: `Prep List: ${longDate(sheet.date)}`, font: headFace, size: 36, bold: true, color: GREEN })],
+      children: [new TextRun({ text: `${title}: ${longDate(sheet.date)}`, font: headFace, size: 36, bold: true, color: GREEN })],
     }));
 
     // The sign-off rides right-aligned on the last header line instead of taking a line of
@@ -551,7 +560,7 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
       run('Prepped: _________   Checked: _________', { bold: true }),
     ];
     const headerLine = (children, last) => new Paragraph({
-      spacing: { after: last ? 40 : 20 },
+      spacing: { after: last ? gap : 20 },
       // At the true right margin (W). TabStopPosition.MAX sits 0.23in short of it.
       tabStops: [{ type: TabStopType.RIGHT, position: W }],
       children: last ? [...children, ...signOff] : children,
@@ -576,9 +585,15 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
         out.push(headerLine([run(courses.join('  |  ') + ' PM')], k === sheet.tonight.length - 1));
       });
     } else {
-      out.push(headerLine([run('No dinner service tonight. Advance prep only.', { bold: true })], true));
+      out.push(headerLine([run(noDinner, { bold: true })], true));
     }
+    return out;
+  };
 
+  // The prep list: Every Day, Past Due and Advance Prep. The Service Timeline left it for a
+  // document of its own on 2026-11-20 (Chef).
+  const prepChildren = (sheet, first) => {
+    const out = sheetHead(sheet, first, 'Prep List', 'No dinner service tonight. Advance prep only.', 40);
     let firstSection = true;
     const section = (title, note) => { const p = h2(title, firstSection, note); firstSection = false; return p; };
 
@@ -603,30 +618,35 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     if (sheet.advance.length) {
       const start = sheet.timed.length ? sheet.timed[0].minute : null;
       out.push(section('Advance Prep', start != null
-        ? `Any time today. Finish before the timeline starts at ${clock(start)}.`
+        ? `Any time today. Finish before the service timeline starts at ${clock(start)}.`
         : 'Any time today, for the dinners named in each band.'));
       out.push(groupedTable(ADV_COLS, [CHECK_CHAR, 'Item', 'Task'], sheet.advance,
         (r, fill) => [textCell(r.component, ADV_COLS[1], fill), textCell(r.text, ADV_COLS[2], fill)]));
     }
 
-    if (sheet.timed.length) {
-      out.push(section('Service Timeline'));
-      const body = sheet.timed.map((r, i) => {
-        const fill = i % 2 === 1 ? LIGHT : null;
-        const who = r.components.join(', ');   // the task text names the dinner
-        return new TableRow({ cantSplit: true, children: [
-          boxCell(fill, r.done),
-          textCell(clock(r.minute), TIME_COLS[1], fill, { bold: true }),
-          textCell(who, TIME_COLS[2], fill),
-          textCell(r.text, TIME_COLS[3], fill),
-        ] });
-      });
-      out.push(table(TIME_COLS, [CHECK_CHAR, 'Time', 'Item', 'Task'], body));
-    }
-
     // No spacer paragraph here: the next sheet's logo paragraph follows the table directly.
     // A spacer after a table that ends at the bottom of the page lands on a blank page.
     return out;
+  };
+
+  // The Service Timeline: the header, then one table of the day's clock-time tasks. A
+  // timed task can roll to the day before its dinner (an offset past midnight), so a
+  // timeline day may have no dinner of its own; each task's date suffix names its dinner.
+  const TIMELINE_GAP = 120;
+  const timelineChildren = (sheet, first) => {
+    const out = sheetHead(sheet, first, 'Service Timeline', 'No dinner service tonight. Each task names its dinner.', TIMELINE_GAP);
+    const body = sheet.timed.map((r, i) => {
+      const fill = i % 2 === 1 ? LIGHT : null;
+      const who = r.components.join(', ');   // the task text names the dinner
+      return new TableRow({ cantSplit: true, children: [
+        boxCell(fill, r.done),
+        textCell(clock(r.minute), TIME_COLS[1], fill, { bold: true }),
+        textCell(who, TIME_COLS[2], fill),
+        textCell(r.text, TIME_COLS[3], fill),
+      ] });
+    });
+    out.push(table(TIME_COLS, [CHECK_CHAR, 'Time', 'Item', 'Task'], body));
+    return out;   // no spacer after the table, as on the prep list
   };
 
   // ---- Height estimate (constants above) --------------------------------------
@@ -640,7 +660,8 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     }
     return lines;
   };
-  const estimateSheet = (sheet, d) => {
+  // `part` is 'prep' (the prep list) or 'timeline' (the Service Timeline document).
+  const estimateSheet = (sheet, d, part = 'prep') => {
     const rowPt = (lines) => lines * d.line / 20 + 2 * d.pad / 20 + 0.5;
     const textLine = d.sz / 2 * 1.3 + 1.5;
     const h2Pt = d.h2 / 2 * 1.35 + 8.5;
@@ -648,6 +669,11 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     // Each dinner tonight takes its "Tonight" line (which can wrap) plus the course line.
     const tonightLines = sheet.tonight.reduce((n, s) => n + wrapLines(`Tonight: ${tonightText(s)}`, W, d) + 1, 0);
     let h = 39 + 36 + (sheet.tonight.length ? tonightLines : 1) * textLine + 2;
+    if (part === 'timeline') {
+      h += (TIMELINE_GAP - 40) / 20 + rowPt(1);
+      for (const r of sheet.timed) h += rowsPt(TIME_COLS, [clock(r.minute), r.components.join(', '), r.text]);
+      return h;
+    }
     const grouped = (groups, cols, cellsOf) => {
       let t = rowPt(1);
       for (const [svc, list] of groups) { t += rowPt(wrapLines(bandText(svc).join(''), W, d)); for (const r of list) t += rowsPt(cols, cellsOf(r)); }
@@ -656,13 +682,14 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
     if (sheet.daily.length) { h += h2Pt + rowPt(1); for (const r of sheet.daily) h += rowsPt(ADV_COLS, [r.component, r.text]); }
     if (sheet.pastDue.length) h += h2Pt + textLine + 3 + grouped(sheet.pastDue, PAST_COLS, r => [shortDate(r.dueDate), r.component, r.text]);
     if (sheet.advance.length) h += h2Pt + grouped(sheet.advance, ADV_COLS, r => [r.component, r.text]);
-    if (sheet.timed.length) {
-      h += h2Pt + rowPt(1);
-      for (const r of sheet.timed) h += rowsPt(TIME_COLS, [clock(r.minute), r.components.join(', '), r.text]);
-    }
     return h;
   };
-  const pickDensity = (sheet) => DENSITIES.find(d => estimateSheet(sheet, d) <= BODY_PT - FIT_MARGIN) || DENSITIES[DENSITIES.length - 1];
+  const pickDensity = (sheet, part) => DENSITIES.find(d => estimateSheet(sheet, d, part) <= BODY_PT - FIT_MARGIN) || DENSITIES[DENSITIES.length - 1];
+  // Density, estimate and spill for one part of a day, each document sized on its own.
+  const fitOf = (sheet, part) => {
+    const density = pickDensity(sheet, part), estimate = estimateSheet(sheet, density, part);
+    return { density, estimate, maySpill: estimate > BODY_PT - FIT_MARGIN };
+  };
 
   // Word needs a paragraph after the document's final table. Pin it to an exact 1pt line
   // so a last sheet that fills its page cannot spill onto a blank one.
@@ -673,57 +700,71 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
 
   // ---- Document -------------------------------------------------------------
   // Every sheet gets its density even when no document is built: the report and the web
-  // app's on-screen sheet both use it.
-  for (const s of sheets) { s.density = pickDensity(s); s.estimate = estimateSheet(s, s.density); }
+  // app's on-screen sheet both use it. The prep list's fit is s.density / s.estimate /
+  // s.maySpill; the Service Timeline's is s.timelineFit (null on a day with no timed rows).
+  for (const s of sheets) {
+    const prep = fitOf(s, 'prep');
+    Object.assign(s, { density: prep.density, estimate: prep.estimate, maySpill: prep.maySpill });
+    s.timelineFit = hasTimeline(s) ? fitOf(s, 'timeline') : null;
+  }
   // A day with every task checked off has nothing left to print.
-  const docSheets = (only ? sheets.filter((s) => s.key === only) : sheets).filter(hasRows);
+  const inRange = only ? sheets.filter((s) => s.key === only) : sheets;
+  const prepSheets = inRange.filter(hasPrepRows);
+  const timelineSheets = inRange.filter(hasTimeline);
   const first = services[0], last = services[services.length - 1];
   const span = only ? shortDate(parseYMD(only))
     : first.key === last.key ? shortDate(first.date) : `${shortDate(first.date)} to ${shortDate(last.date)}`;
-  const footerText = `Five Oaks Prep List | ${REQ.label ? REQ.label + ' | ' : ''}${span}`;
 
-  const doc = !docx || !docSheets.length ? null : new Document({
-    creator: 'Five Oaks Duck Lodge',
-    title: `Five Oaks Prep List ${span}`,
-    sections: [{
-      properties: {
-        page: {
-          size: { width: 12240, height: 15840 },   // US Letter
-          margin: {
-            top: convertInchesToTwip(0.5), bottom: convertInchesToTwip(0.7),
-            left: convertInchesToTwip(1), right: convertInchesToTwip(1),
-            footer: convertInchesToTwip(0.35),
+  const makeDoc = (name, list, childrenOf, densityOf) => {
+    if (!docx || !list.length) return null;
+    const footerText = `Five Oaks ${name} | ${REQ.label ? REQ.label + ' | ' : ''}${span}`;
+    return new Document({
+      creator: 'Five Oaks Duck Lodge',
+      title: `Five Oaks ${name} ${span}`,
+      sections: [{
+        properties: {
+          page: {
+            size: { width: 12240, height: 15840 },   // US Letter
+            margin: {
+              top: convertInchesToTwip(0.5), bottom: convertInchesToTwip(0.7),
+              left: convertInchesToTwip(1), right: convertInchesToTwip(1),
+              footer: convertInchesToTwip(0.35),
+            },
           },
         },
-      },
-      footers: {
-        default: new Footer({ children: [new Paragraph({
-          tabStops: [{ type: TabStopType.RIGHT, position: TabStopPosition.MAX }],
-          children: [
-            new TextRun({ text: footerText, size: 16, font: bodyFace, color: CAPTION_COLOR }),
-            // MUST be a Tab element; a literal '\t' inside <w:t> is ignored by Word
-            new TextRun({ children: [new Tab()], size: 16, font: bodyFace }),
-            new TextRun({ text: 'Page ', size: 16, font: bodyFace, color: CAPTION_COLOR }),
-            new TextRun({ children: [PageNumber.CURRENT], size: 16, font: bodyFace, color: CAPTION_COLOR }),
-            new TextRun({ text: ' of ', size: 16, font: bodyFace, color: CAPTION_COLOR }),
-            new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 16, font: bodyFace, color: CAPTION_COLOR }),
-          ],
-        })] }),
-      },
-      children: [...docSheets.flatMap((s, i) => {
-        D = s.density;
-        return sheetChildren(s, i === 0);
-      }), endSpacer()],
-    }],
-  });
+        footers: {
+          default: new Footer({ children: [new Paragraph({
+            tabStops: [{ type: TabStopType.RIGHT, position: TabStopPosition.MAX }],
+            children: [
+              new TextRun({ text: footerText, size: 16, font: bodyFace, color: CAPTION_COLOR }),
+              // MUST be a Tab element; a literal '\t' inside <w:t> is ignored by Word
+              new TextRun({ children: [new Tab()], size: 16, font: bodyFace }),
+              new TextRun({ text: 'Page ', size: 16, font: bodyFace, color: CAPTION_COLOR }),
+              new TextRun({ children: [PageNumber.CURRENT], size: 16, font: bodyFace, color: CAPTION_COLOR }),
+              new TextRun({ text: ' of ', size: 16, font: bodyFace, color: CAPTION_COLOR }),
+              new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 16, font: bodyFace, color: CAPTION_COLOR }),
+            ],
+          })] }),
+        },
+        children: [...list.flatMap((s, i) => {
+          D = densityOf(s);
+          return childrenOf(s, i === 0);
+        }), endSpacer()],
+      }],
+    });
+  };
+  const doc = makeDoc('Prep List', prepSheets, prepChildren, (s) => s.density);
+  const timelineDoc = makeDoc('Service Timeline', timelineSheets, timelineChildren, (s) => s.timelineFit.density);
 
   // ---- Report ---------------------------------------------------------------
   const slug = (s) => String(s).replace(/[^A-Za-z0-9]+/g, '_').replace(/^_|_$/g, '');
-  const stem = ['FiveOaks_Prep_List', ...(only ? [only] : [first.key, ...(first.key !== last.key ? ['to', last.key] : [])]),
-    ...(REQ.label ? [slug(REQ.label)] : [])].join('_');
+  const stemTail = [...(only ? [only] : [first.key, ...(first.key !== last.key ? ['to', last.key] : [])]),
+    ...(REQ.label ? [slug(REQ.label)] : [])];
+  const stem = ['FiveOaks_Prep_List', ...stemTail].join('_');
+  const timelineStem = ['FiveOaks_Service_Timeline', ...stemTail].join('_');
 
   // Plain-text schedule, so the run can be checked and summarized without opening the
-  // document.
+  // documents. It lists the timeline rows under their day too, after the prep rows.
   const report = [];
   for (const w of warnings) report.push(`WARNING: ${w}`);
   for (const [name, users] of Object.entries(batchUsers)) report.push(`batch: ${name} x${users.length} for ${users.map(svcShort).join(' + ')}`);
@@ -731,25 +772,28 @@ function build({ menu: MENU, request: REQ, docx, logo: logoBuffer, fonts = {}, o
   report.push(`today: ${todayStr}`);
   for (const s of services) report.push(`service ${s.key}${hostTag(s)}  ${s.menuLabel}  ${guestText(s)}`);
   if (tickedEarlier) report.push(`ticked off before today, left off the sheets: ${tickedEarlier}`);
-  let boxes = 0;
+  let boxes = 0, prepBoxes = 0, timelineBoxes = 0;
   const count = (g) => g.reduce((k, [, l]) => k + l.length, 0);
   const x = (r) => (r.done ? '[x] ' : '');
   for (const s of sheets) {
     // Rows on the sheet as built (checked ones only with show_done). total, done and the
     // *Open counts above cover every task that day, shown or not.
     Object.assign(s.counts, { daily: s.daily.length, pastDue: count(s.pastDue), advance: count(s.advance), timed: s.timed.length });
-    s.maySpill = s.estimate > BODY_PT - FIT_MARGIN;
-    boxes += s.counts.daily + s.counts.pastDue + s.counts.advance + s.counts.timed;
+    prepBoxes += s.counts.daily + s.counts.pastDue + s.counts.advance;
+    timelineBoxes += s.counts.timed;
     report.push(`\n== ${longDate(s.date)}  (${s.counts.daily ? `daily ${s.counts.daily}, ` : ''}past due ${s.counts.pastDue}, advance ${s.counts.advance}, timeline ${s.counts.timed}` +
       `${s.counts.done ? `, ticked ${s.counts.done}` : ''})` +
-      `  [${s.density.name}, est ${Math.round(s.estimate)} of ${Math.round(BODY_PT)} pt${s.maySpill ? ', MAY SPILL' : ''}]`);
+      `  [${s.density.name}, est ${Math.round(s.estimate)} of ${Math.round(BODY_PT)} pt${s.maySpill ? ', MAY SPILL' : ''}]` +
+      (s.timelineFit ? `  timeline [${s.timelineFit.density.name}, est ${Math.round(s.timelineFit.estimate)} of ${Math.round(BODY_PT)} pt${s.timelineFit.maySpill ? ', MAY SPILL' : ''}]` : ''));
     for (const r of s.daily) report.push(`  ${x(r)}daily ${r.component}: ${r.text}`);
     for (const [svc, l] of s.pastDue) for (const r of l) report.push(`  ${x(r)}PAST DUE (was ${ymd(r.dueDate)}) [${serviceTag(svc)}${hostTag(svc)}] ${r.component}: ${r.text}`);
     for (const [svc, l] of s.advance) for (const r of l) report.push(`  ${x(r)}advance [${serviceTag(svc)}${hostTag(svc)}] ${r.component}: ${r.text}`);
     for (const r of s.timed) report.push(`  ${x(r)}${clock(r.minute).padStart(8)}  ${r.components.join(', ')}: ${r.text}`);
   }
+  boxes = prepBoxes + timelineBoxes;
 
-  return { doc, report, stem, sheets, boxes, services, warnings, frozenShares, batchUsers, todayStr, tickedEarlier, fonts: { head: headFace, body: bodyFace, box: BOX_FONT } };
+  return { doc, timelineDoc, report, stem, timelineStem, sheets, boxes, prepBoxes, timelineBoxes,
+    sheetCount: { prep: prepSheets.length, timeline: timelineSheets.length }, services, warnings, frozenShares, batchUsers, todayStr, tickedEarlier, fonts: { head: headFace, body: bodyFace, box: BOX_FONT } };
 }
 
 return { build, PrepError, parseTask, taskKey, longDate, shortDate, parseYMD, ymd, clock };

@@ -389,8 +389,9 @@ details.past .tickets { margin-top: 10px; }
     excluded: new Set(),  // services unticked from the prep list
     prepDate: null,       // the day picked on the calendar (YYYY-MM-DD)
     prepShown: null,      // the day whose View and Download buttons are showing
-    viewOpen: false,      // that day's sheet is open on screen
+    viewOpen: false,      // 'prep' or 'timeline' while that day's sheet is open on screen
     dlStatus: '',
+    dlPart: null,         // the document dlStatus is about: 'prep' or 'timeline'
     notice: '',
     showDone: false,      // the on-screen sheet also shows checked-off tasks
     lastTick: null,       // { tasks, label } of the last task ticked, for Undo
@@ -759,27 +760,39 @@ details.past .tickets { margin-top: 10px; }
       : 'No dinner service tonight. Advance prep only.';
     const notes = [];
     if (n.pastDueOpen) notes.push(`<li><b>${n.pastDueOpen} task${n.pastDueOpen === 1 ? ' is' : 's are'} past due.</b> ${n.pastDueOpen === 1 ? 'It is' : 'They are'} at the top of the sheet under Past Due: Do First. If already done, press View Prep List and tick ${n.pastDueOpen === 1 ? 'it' : 'them'} off. If not, check whether the menu still works.</li>`);
-    if (sheet.maySpill) notes.push('<li><b>A full day.</b> The printed sheet may run onto a second page, even in its smallest text.</li>');
+    if (sheet.maySpill) notes.push('<li><b>A full day.</b> The printed prep list may run onto a second page, even in its smallest text.</li>');
+    if (sheet.timelineFit && sheet.timelineFit.maySpill) notes.push('<li><b>A full service.</b> The printed service timeline may run onto a second page, even in its smallest text.</li>');
     const canDownload = canSave() && !!window.docx;
     const status = !window.docx ? 'The document library did not load. Reload the page to download.'
-      : !canSave() ? 'Downloading works when this page is open in Claude.' : state.dlStatus;
+      : !canSave() ? 'Downloading works when this page is open in Claude.' : null;
+    // One row of buttons per document (Chef, 2026-11-20: the Service Timeline is its own
+    // document). A day with no timed tasks has no timeline row.
+    const docRow = (part, name) => `<div class="save-row">
+        <button type="button" class="btn primary" data-action="view" data-part="${part}" data-key="view-${part}" aria-expanded="${state.viewOpen === part}">View ${name}</button>
+        <button type="button" class="btn" data-action="download" data-part="${part}" data-key="download-${part}" ${canDownload ? '' : 'disabled'}>Download ${name}</button>
+        <span class="save-status">${esc((status && part === 'prep' ? status : state.dlPart === part ? state.dlStatus : '') || '')}</span>
+      </div>`;
     return `<div class="prep-result" aria-live="polite">
       <p class="prep-head"><strong>${esc(longDay(sheet.key))}</strong> &middot; ${esc(parts.join(', '))}</p>
       <p>${esc(tonight)}</p>
       ${notes.length ? `<ul class="notes">${notes.join('')}</ul>` : ''}
-      <div class="save-row">
-        <button type="button" class="btn primary" data-action="view" data-key="view" aria-expanded="${state.viewOpen}">View Prep List</button>
-        <button type="button" class="btn" data-action="download" data-key="download" ${canDownload ? '' : 'disabled'}>Download Prep List</button>
-        <span class="save-status">${esc(status || '')}</span>
-      </div>
-      ${state.viewOpen ? sheetView(sheet) : ''}
+      ${docRow('prep', 'Prep List')}
+      ${n.timedTotal ? docRow('timeline', 'Service Timeline') : ''}
+      ${state.viewOpen ? sheetView(sheet, state.viewOpen) : ''}
     </div>`;
   };
 
-  // The day's sheet on screen, laid out like the printed one: Every Day (the daily tasks),
-  // Past Due, Advance Prep, then the Service Timeline, each with a box per task.
+  // The day's sheet on screen, laid out like the printed one, a box per task. `part` picks
+  // the document: 'prep' is the prep list (Every Day, Past Due, Advance Prep), 'timeline'
+  // the Service Timeline (Chef, 2026-11-20: its own document).
   const COURSE_LABELS = [['Appetizers', 'appetizers'], ['Salad or Soup', 'salad'], ['Dinner', 'dinner'], ['Dessert', 'dessert']];
-  const sheetView = (sheet) => {
+  const sheetView = (sheet, part) => {
+    const isTimeline = part === 'timeline';
+    const title = isTimeline ? 'Service Timeline' : 'Prep List';
+    const n = sheet.counts;
+    const doneHere = isTimeline ? n.timedDone : n.done - n.timedDone;
+    const totalHere = isTimeline ? n.timedTotal : n.total - n.timedTotal;
+    const rowsHere = isTimeline ? sheet.timed.length : sheet.daily.length + sheet.pastDue.length + sheet.advance.length;
     const svcTag = (s) => `${P.shortDate(s.date)} dinner${s.host ? ` | ${s.host}` : ''}`;
     const band = (svc, cols) => `<tr class="band"><td colspan="${cols}"><b>For ${esc(svcTag(svc))}</b> &nbsp; ${esc(svc.menuLabel)} &nbsp;|&nbsp; ${esc(guestWord(svc))}</td></tr>`;
     // Each box is a real checkbox. Tapping anywhere on the row ticks it too, an easier target
@@ -800,34 +813,36 @@ details.past .tickets { margin-top: 10px; }
       const courses = COURSE_LABELS.filter(([, c]) => s.times[c] != null && served.has(c))
         .map(([label, c]) => `${label} ${P.clock(s.times[c]).replace(/ [AP]M$/, '')}`).join('  |  ');
       return `<p><b class="g">Tonight:</b> <b>${esc(`${s.host ? s.host + '  |  ' : ''}${s.menuLabel}  |  ${guestWord(s)}`)}</b></p><p>${esc(courses)} PM</p>`;
-    }).join('') : '<p><b>No dinner service tonight. Advance prep only.</b></p>';
+    }).join('') : `<p><b>${isTimeline ? 'No dinner service tonight. Each task names its dinner.' : 'No dinner service tonight. Advance prep only.'}</b></p>`;
     const start = sheet.timed.length ? sheet.timed[0].minute : null;
-    return `<article class="sheet" aria-label="Prep list for ${esc(longDay(sheet.key))}">
-      <div class="sheet-bar"><button type="button" class="btn quiet" data-action="close-view" data-key="close-view">Close</button></div>
+    return `<article class="sheet" aria-label="${title} for ${esc(longDay(sheet.key))}">
+      <div class="sheet-bar"><button type="button" class="btn quiet" data-action="close-view" data-part="${part}" data-key="close-view">Close</button></div>
       <div class="logo" role="img" aria-label="Five Oaks"></div>
-      <h3>Prep List: ${esc(P.longDate(sheet.date))}</h3>
+      <h3>${title}: ${esc(P.longDate(sheet.date))}</h3>
       <div class="tonight">${tonight}</div>
       <p class="signoff"><span></span><span><b>Prepped: _________</b> &nbsp; <b>Checked: _________</b></span></p>
       <div class="tick-bar">
         <p class="tick-hint">${state.readOnly ? 'Tasks the kitchen has checked off are left off this list.'
           : state.showDone ? 'Checked-off tasks show with a line through them. Tap one to put it back on the list.'
           : `Tap a task when it's done and it comes off the list. ${{ firebase: 'Ticks save for every device opened with this kitchen code.', shared: 'Ticks save for everyone you share this page with.' }[state.mode] || 'Ticks here last until the page closes.'}`}</p>
-        ${sheet.counts.done ? `<button type="button" class="btn quiet show-done" data-action="show-done" data-key="show-done" aria-pressed="${state.showDone}">${state.showDone ? 'Hide checked tasks' : `Show checked tasks (${sheet.counts.done})`}</button>` : ''}
+        ${doneHere ? `<button type="button" class="btn quiet show-done" data-action="show-done" data-key="show-done" aria-pressed="${state.showDone}">${state.showDone ? 'Hide checked tasks' : `Show checked tasks (${doneHere})`}</button>` : ''}
       </div>
-      ${sheet.daily.length + sheet.pastDue.length + sheet.advance.length + sheet.timed.length ? '' : '<p class="all-done-note"><b>Everything for this day is checked off.</b></p>'}
-      ${sheet.daily.length ? `<h4>Every Day<span>First thing each day.</span></h4><div class="table-scroll"><table>
+      ${rowsHere ? '' : `<p class="all-done-note"><b>${totalHere ? `Everything on this ${title.toLowerCase()} is checked off.` : `Nothing on the ${title.toLowerCase()} this day.`}</b></p>`}
+      ${isTimeline ? timelineTable(sheet, rowTag, tickCell) : ''}
+      ${!isTimeline && sheet.daily.length ? `<h4>Every Day<span>First thing each day.</span></h4><div class="table-scroll"><table>
         <thead><tr><th aria-label="Done"></th><th>Item</th><th>Task</th></tr></thead>
         <tbody>${sheet.daily.map((r, i) => `${rowTag(r, i)}${tickCell(r)}<td class="item">${esc(r.component)}</td><td>${esc(r.text)}</td></tr>`).join('')}</tbody></table></div>` : ''}
-      ${sheet.pastDue.length ? `<h4>Past Due: Do First</h4><p class="save-status">These were scheduled before today and aren't ticked off. Tick the ones already done. Do the rest now, or tell the chef if the service plan has to change.</p>
+      ${!isTimeline && sheet.pastDue.length ? `<h4>Past Due: Do First</h4><p class="save-status">These were scheduled before today and aren't ticked off. Tick the ones already done. Do the rest now, or tell the chef if the service plan has to change.</p>
         ${grouped(sheet.pastDue, ['Was Due', 'Item', 'Task'], (r) => `<td class="time">${esc(P.shortDate(r.dueDate))}</td><td class="item">${esc(r.component)}</td><td>${esc(r.text)}</td>`)}` : ''}
-      ${sheet.advance.length ? `<h4>Advance Prep<span>${esc(start != null ? `Any time today. Finish before the timeline starts at ${P.clock(start)}.` : 'Any time today, for the dinners named in each band.')}</span></h4>
+      ${!isTimeline && sheet.advance.length ? `<h4>Advance Prep<span>${esc(start != null ? `Any time today. Finish before the service timeline starts at ${P.clock(start)}.` : 'Any time today, for the dinners named in each band.')}</span></h4>
         ${grouped(sheet.advance, ['Item', 'Task'], (r) => `<td class="item">${esc(r.component)}</td><td>${esc(r.text)}</td>`)}` : ''}
-      ${sheet.timed.length ? `<h4>Service Timeline</h4><div class="table-scroll"><table>
-        <thead><tr><th aria-label="Done"></th><th>Time</th><th>Item</th><th>Task</th></tr></thead>
-        <tbody>${sheet.timed.map((r, i) => `${rowTag(r, i)}${tickCell(r)}<td class="time">${esc(P.clock(r.minute))}</td>
-          <td class="item">${esc(r.components.join(', '))}</td><td>${esc(r.text)}</td></tr>`).join('')}</tbody></table></div>` : ''}
     </article>`;
   };
+  // The Service Timeline's one table: no section heading, the sheet's title names it.
+  const timelineTable = (sheet, rowTag, tickCell) => !sheet.timed.length ? '' : `<div class="table-scroll"><table>
+        <thead><tr><th aria-label="Done"></th><th>Time</th><th>Item</th><th>Task</th></tr></thead>
+        <tbody>${sheet.timed.map((r, i) => `${rowTag(r, i)}${tickCell(r)}<td class="time">${esc(P.clock(r.minute))}</td>
+          <td class="item">${esc(r.components.join(', '))}</td><td>${esc(r.text)}</td></tr>`).join('')}</tbody></table></div>`;
 
   const renderStatus = () => {
     const msg = {
@@ -976,30 +991,34 @@ details.past .tickets { margin-top: 10px; }
       state.dlStatus = res && res.status === 'delivered' ? `Sent ${filename}.` : `Saved ${filename}.`;
     } catch (e) {
       const code = e && e.code;
-      state.dlStatus = code === 'declined' ? 'Not saved. Press Download Prep List to try again.'
+      state.dlStatus = code === 'declined' ? 'Not saved. Press Download to try again.'
         : code === 'rate_limited' ? 'A save is already waiting for your answer.'
         : "Saving files isn't available in this view.";
     }
   };
-  const downloadDay = async () => {
+  // `part` is 'prep' (the prep list) or 'timeline' (the Service Timeline document).
+  const downloadDay = async (part) => {
     const key = state.prepShown;
     if (!key || !canSave() || !window.docx) return;
-    state.dlStatus = 'Preparing the file\u2026'; render();
+    const name = part === 'timeline' ? 'service timeline' : 'prep list';
+    Object.assign(state, { dlPart: part, dlStatus: 'Preparing the file\u2026' }); render();
     try {
       if (!logoBytes) logoBytes = new Uint8Array(await (await fetch('FiveOaksLogo.png')).arrayBuffer());
       const r = P.build({ menu: state.menu, request: requestFor(included()), docx: window.docx, logo: logoBytes, only: key });
       const day = r.sheets.find((s) => s.key === key);
-      if (!r.doc) state.dlStatus = day && day.counts.total ? 'Everything that day is checked off. Nothing left to print.' : 'Nothing to prep that day.';
-      else await saveFile(`${r.stem}.docx`, await window.docx.Packer.toBlob(r.doc));
+      const doc = part === 'timeline' ? r.timelineDoc : r.doc;
+      const total = !day ? 0 : part === 'timeline' ? day.counts.timedTotal : day.counts.total - day.counts.timedTotal;
+      if (!doc) state.dlStatus = total ? `Everything on that ${name} is checked off. Nothing left to print.` : `Nothing on the ${name} that day.`;
+      else await saveFile(`${part === 'timeline' ? r.timelineStem : r.stem}.docx`, await window.docx.Packer.toBlob(doc));
     } catch (e) {
-      state.dlStatus = e instanceof P.PrepError ? `The prep list couldn't be built: ${e.message}` : "The prep list couldn't be built. Reload the page and try again.";
+      state.dlStatus = e instanceof P.PrepError ? `The ${name} couldn't be built: ${e.message}` : `The ${name} couldn't be built. Reload the page and try again.`;
     }
     render();
   };
   const pickDay = (key) => {
     state.prepDate = key;
     $('#prepDate').value = key;
-    Object.assign(state, { prepShown: null, viewOpen: false, dlStatus: '' });
+    Object.assign(state, { prepShown: null, viewOpen: false, dlStatus: '', dlPart: null });
     render();
   };
 
@@ -1037,17 +1056,23 @@ details.past .tickets { margin-top: 10px; }
         break;
       case 'prep':
         state.prepDate = $('#prepDate').value || todayKey;
-        Object.assign(state, { prepShown: state.prepDate, viewOpen: false, dlStatus: '' });
+        Object.assign(state, { prepShown: state.prepDate, viewOpen: false, dlStatus: '', dlPart: null });
         render();
         break;
       case 'pick-day': pickDay(el.dataset.date); break;
       case 'view':
-        state.viewOpen = !state.viewOpen;
+        // One sheet open at a time: the other document's button swaps it.
+        state.viewOpen = state.viewOpen === el.dataset.part ? false : el.dataset.part;
         render();
         if (state.viewOpen) { const s = $('.sheet'); if (s) s.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
         break;
-      case 'close-view': state.viewOpen = false; render(); $('[data-action="view"]').focus(); break;
-      case 'download': downloadDay(); break;
+      case 'close-view': {
+        const part = el.dataset.part;
+        state.viewOpen = false; render();
+        const b = $(`[data-action="view"][data-part="${part}"]`); if (b) b.focus();
+        break;
+      }
+      case 'download': downloadDay(el.dataset.part); break;
       case 'change-kitchen': leaveKitchen(); break;
       case 'tick-row': {
         // A tap on the row's text, not a drag to select it.
