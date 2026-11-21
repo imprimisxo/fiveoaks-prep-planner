@@ -2,10 +2,12 @@
 //
 // Reads the menu (data/menu.json) and a request naming the services (date, host, guests,
 // salad or soup, meal, dessert), back-schedules every component task from its course
-// time, and writes ONE .docx with one dated sheet per prep day. Tasks for different
-// services that land on the same day share that day's sheet. The scheduling and the
-// document live in prep_core.js, which the web app (webapp/index.html) runs too; this
-// file is the command line around it.
+// time, and writes the prep list .docx with one dated sheet per prep day. Tasks for
+// different services that land on the same day share that day's sheet. Since 2026-11-20
+// (Chef) the Service Timeline is a second .docx beside it, one sheet per day with timed
+// tasks, named FiveOaks_Service_Timeline_... (with --out, the prep list's name plus
+// _Service_Timeline). The scheduling and the documents live in prep_core.js, which the
+// web app (webapp/index.html) runs too; this file is the command line around it.
 //
 //   npm init -y && npm install docx@9.8.1 --no-audit --no-fund      (in a scratch dir)
 //   NODE_PATH=$PWD/node_modules node <skill>/scripts/build_prep_list.js request.json
@@ -62,14 +64,22 @@ try {
   if (e instanceof PrepError) fail(e.message);
   throw e;
 }
-const { doc, report, stem, sheets, boxes } = result;
+const { doc, timelineDoc, report, stem, timelineStem, sheetCount, prepBoxes, timelineBoxes } = result;
 
 const OUT = OUT_OVERRIDE || path.join('/Users/cheflance/Five_Oaks/Prep Lists', `${stem}.docx`);
+const TIMELINE_OUT = OUT_OVERRIDE
+  ? path.join(path.dirname(OUT), `${path.basename(OUT, '.docx')}_Service_Timeline.docx`)
+  : path.join(path.dirname(OUT), `${timelineStem}.docx`);
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 
-docx.Packer.toBuffer(doc).then(buf => {
-  fs.writeFileSync(OUT, buf);
+(async () => {
   console.log(report.join('\n'));
-  console.log(`\nWROTE ${OUT} (${buf.length} bytes)`);
-  console.log(`sheets: ${sheets.length} | checkboxes: ${boxes} | fonts: ${result.fonts.head} / ${result.fonts.body} / ${result.fonts.box} | logo: ${logoPath}`);
-});
+  console.log('');
+  for (const [d, file, n, boxes] of [[doc, OUT, sheetCount.prep, prepBoxes], [timelineDoc, TIMELINE_OUT, sheetCount.timeline, timelineBoxes]]) {
+    if (!d) { console.log(`NOT WRITTEN ${path.basename(file)}: nothing to print`); continue; }
+    const buf = await docx.Packer.toBuffer(d);
+    fs.writeFileSync(file, buf);
+    console.log(`WROTE ${file} (${buf.length} bytes) | sheets: ${n} | checkboxes: ${boxes}`);
+  }
+  console.log(`fonts: ${result.fonts.head} / ${result.fonts.body} / ${result.fonts.box} | logo: ${logoPath}`);
+})();

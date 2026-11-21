@@ -4,9 +4,10 @@ description: >
   Build dated, printable Five Oaks Duck Lodge prep lists from a dinner booking. Given the
   service date(s), guest count, salad or soup, entree meal (#1-#5) and dessert, it back-schedules every
   component task (thaw, cut, dry brine, sous vide, sauces, desserts) from Chef's day and hour
-  offsets onto one check-off sheet per prep day. Tasks from different nights of a stay that
-  land on the same day share that day's sheet. Output is a Five Oaks branded .docx plus a
-  print PDF. Use whenever the user asks for a Five Oaks prep list, prep schedule, prep
+  offsets onto one check-off sheet per prep day, with each night's clock-time tasks on a
+  separate Service Timeline. Tasks from different nights of a stay that land on the same day
+  share that day's sheet. Output is two Five Oaks branded .docx files (the prep list and the
+  Service Timeline) plus print PDFs. Use whenever the user asks for a Five Oaks prep list, prep schedule, prep
   sheets, prep calendar, or "what do we need to prep" for a lodge dinner, hunting party, or
   group stay, including short asks that give a date, a guest count, and a meal number or
   dessert, or "we have a group Fri-Sun, build the prep sheets". Also use when Chef just
@@ -36,7 +37,7 @@ say "per SOP"; those SOPs live in `/Users/cheflance/Five_Oaks/SOP/`.
 | Path | What it is |
 |---|---|
 | `data/menu.json` | The source of truth: service times, meals, desserts, and each component's tasks in Chef's own wording |
-| `scripts/build_prep_list.js` | Command line generator: reads the request, writes the .docx, prints the full schedule as text |
+| `scripts/build_prep_list.js` | Command line generator: reads the request, writes the prep list and Service Timeline .docx files, prints the full schedule as text |
 | `scripts/prep_core.js` | The scheduling and document code itself, shared by the generator and the web app |
 | `scripts/render_docx.sh` | Renders a .docx through Microsoft Word to PDF and page PNGs |
 | `scripts/stage_webapp.sh` | Gathers the web app and the files it loads into one folder for publishing |
@@ -160,8 +161,10 @@ cd <scratchpad>/node && npm init -y && npm install docx@9.8.1 --no-audit --no-fu
 NODE_PATH=<scratchpad>/node/node_modules node ~/.claude/skills/fiveoaks-prep-list/scripts/build_prep_list.js <scratchpad>/request.json
 ```
 
-It writes `/Users/cheflance/Five_Oaks/Prep Lists/FiveOaks_Prep_List_<first date>[_to_<last date>][_<Label>].docx`.
-Add `--out <path>` to write somewhere else while testing.
+It writes `/Users/cheflance/Five_Oaks/Prep Lists/FiveOaks_Prep_List_<first date>[_to_<last date>][_<Label>].docx`
+and, beside it, `FiveOaks_Service_Timeline_<same dates and label>.docx`. Add `--out <path>` to
+write somewhere else while testing; the timeline then takes that name plus
+`_Service_Timeline`. Each `WROTE` line gives that file's sheet and checkbox counts.
 
 **Read the printed schedule before going further.** It lists every sheet and every task.
 Check it against what the user asked: the right nights, meals, and desserts, and guest
@@ -188,6 +191,16 @@ These are the rules the generator applies. Know them so you can explain a sheet 
 - **Hour and minute offsets** (`-3 hours`, `-4 ½ hours`, `-1/2 hours`, `-15 minutes`) go on
   the **Service Timeline**, counted back from that component's course time. `0 hours` and
   `0 days` both mean the course time itself.
+- **The Service Timeline is its own document** (Chef, 2026-11-20: "Remove the service
+  timeline from the daily prep list. create a separate document for that."). The prep list
+  carries Every Day, Past Due and Advance Prep; the timeline is a second .docx with one sheet
+  per day that has timed tasks: the logo, "Service Timeline: <date>", the same Tonight and
+  course-times lines and sign-off, then the Time / Item / Task table. On the page each day
+  has a View and a Download button for each. The Advance Prep note still names the time the
+  timeline starts. Each document picks its own print density, so a service day's prep list
+  no longer shrinks to fit its timeline. `build()` returns `doc` (prep list) and
+  `timelineDoc`, `stem` and `timelineStem`, and per sheet `timelineFit` (density, estimate,
+  maySpill; null on a day with no timed rows).
 - **Course times** come from `service_times` in `menu.json`: appetizers 6:00 PM, salad or
   soup 7:00 PM, dinner (entrees) 7:30 PM, dessert 8:00 PM. Each component keys off its own
   `course`. The course-times line under "Tonight" lists only the courses that have prep
@@ -199,7 +212,7 @@ These are the rules the generator applies. Know them so you can explain a sheet 
   prep carries just those. Each sheet starts on a new page with the logo, so one day can be
   pulled off the packet and posted.
 - **Every task ends with its dinner's date** (Chef, 2026-11-15), as "(for Tue 11/24)",
-  on screen and in the Word file, in Past Due, Advance Prep and the Service Timeline. Daily
+  on screen and in the Word files, in Past Due, Advance Prep and the Service Timeline. Daily
   tasks get none. A batch row already ends with its dinners ("double batch for Smith 11/24 +
   Jones 11/25") and gets nothing more. The date goes on after the check-off key is taken,
   so a menu.json task never needs a date in it and earlier ticks still hold. The shorter
@@ -208,9 +221,10 @@ These are the rules the generator applies. Know them so you can explain a sheet 
   sourdough starter", the first task each day; the Sourdough Starter SOP feeds the mother
   every 24 hours) print under **Every Day**, ahead of Past Due. A daily task is never past
   due: a missed day doesn't carry over. Report lines read `daily <item>: <task>`.
-- **Overlapping nights share a sheet.** On the Friday of a Fri-Sun stay, the sheet carries
-  Friday's service timeline plus the advance prep due that day for Saturday and Sunday,
-  each under its own band.
+- **Overlapping nights share a sheet.** On the Friday of a Fri-Sun stay, Friday's prep list
+  carries the advance prep due that day for Saturday and Sunday, each under its own band,
+  and Friday's Service Timeline carries that night's timed tasks. Two parties on one night
+  share one timeline.
 - **Identical timeline lines merge.** "Plate and serve" at 7:30 PM for four components
   prints once, naming all four, so there's one box to check rather than four.
 - **Past-due work moves to today.** If a booking comes in late, any task dated before
@@ -241,8 +255,10 @@ EOF
 Expected results:
 
 - `headers: []`
-- `logos` equals the generator's sheet count, and `page breaks` is one fewer.
-- `boxes` equals the generator's checkbox count.
+- `logos` equals that file's sheet count on its `WROTE` line, and `page breaks` is one fewer.
+- `boxes` equals that file's checkbox count.
+
+Run it on both files, the prep list and the Service Timeline.
 - `footer tab: True` and `NUMPAGES: 1`.
 - `tan-as-text: 0` and `dashes: 0`.
 
@@ -256,7 +272,8 @@ On the PNGs, confirm these things:
 
 - Each sheet starts on its own page with the logo once at the top.
 - The tables span the full column, and every task row has a green box.
-- A service day's timeline fits on one page.
+- A Service Timeline sheet fits on one page, or the report marked it `MAY SPILL`.
+- The prep list has no Service Timeline section.
 - There is no blank trailing page.
 
 **Every day on one page.** Chef chose this on 2026-10-23, even if heavy days get smaller
@@ -267,17 +284,20 @@ uses the largest density that fits:
 - 9pt (`compact`) and 8pt (`tight`) are used only on the days that need them.
 
 The printed schedule shows the choice on each day's line, for example
-`[compact, est 685 of 706 pt]`.
+`[compact, est 685 of 706 pt]`, then the Service Timeline's own on a service day, for example
+`timeline [tight, est 609 of 706 pt]`.
 
 The estimate was calibrated against Word renders on 2026-10-23. A five-night run with a
 salad or soup, entree, and dessert every night put its two fullest days at 9pt, and they
 measured within about 5pt of the estimate. A sheet must fit with an 8pt margin to spare
 (`FIT_MARGIN`).
 
-- **`MAY SPILL` on a day:** it doesn't fit even at 8pt. The only case seen so far is two
-  parties on the same night (45 timeline rows), which ran one row onto a second page.
-  Mention it in the delivery message. The header row repeats on the second page, so
-  it's usable.
+- **`MAY SPILL` on a day:** it doesn't fit even at 8pt. Since the timeline split
+  (2026-11-20) no single-dinner prep list spills; a sweep of all 84,375 single-dinner menus
+  left 987 timelines that may spill, the heaviest with Asian Grilled Duck, the Ahi sushi
+  rolls, a salad, an entree and a dessert (about 756 pt of 706). Two parties on one night
+  also spill the timeline (53 rows est 923 pt). Mention it in the delivery message. The
+  header row repeats on the second page, so it's usable.
 - **A render that spills on a day the estimate cleared:** the estimator is off. Raise
   `FIT_MARGIN` or `CHAR_EM` in the generator rather than shrinking the 10pt default.
 
@@ -298,10 +318,11 @@ Things not to undo, each one bought back page space:
 
 ## Step 5: Deliver
 
-1. Copy `_render/render.pdf` next to the .docx with the same stem
-   (`FiveOaks_Prep_List_..._.pdf`). The PDF is what prints the same from a phone or iPad,
-   with the brand fonts baked in. Then delete the `_render` folder.
-2. Open the .docx in Word for Chef.
+1. Copy `_render/render.pdf` next to each .docx with the same stem
+   (`FiveOaks_Prep_List_..._.pdf`, `FiveOaks_Service_Timeline_..._.pdf`). The PDF is what
+   prints the same from a phone or iPad, with the brand fonts baked in. Then delete the
+   `_render` folder.
+2. Open both .docx files in Word for Chef.
 3. Reply briefly:
    - Any past-due lines first, with what they mean for the menu.
    - The sheet dates, each with its task count.
@@ -331,10 +352,12 @@ was slow. The artifact still works.
   have no appetizer picks, so their menus ask for those once before the prep list builds.
 - **Prep List** (Chef's change, 2026-10-23): a calendar field picks the prep day
   (today by default, no past days) and chips list every day that has prep. Pressing
-  **Prep List** shows that day's task counts and two buttons. **View Prep List** shows
-  the day's sheet on screen, laid out like the printed one. **Download Prep List** saves
-  the .docx for that one day, `FiveOaks_Prep_List_<date>.docx`. Nothing downloads on
-  its own. The schedule always covers every ticked upcoming dinner, so a day's sheet
+  **Prep List** shows that day's task counts and a row of buttons per document.
+  **View Prep List** shows the day's sheet on screen, laid out like the printed one.
+  **Download Prep List** saves the .docx for that one day, `FiveOaks_Prep_List_<date>.docx`.
+  On a day with timed tasks a second row has **View Service Timeline** and **Download
+  Service Timeline** (`FiveOaks_Service_Timeline_<date>.docx`); one sheet is open at a
+  time, and ticks work the same on both. Nothing downloads on its own. The schedule always covers every ticked upcoming dinner, so a day's sheet
   carries advance prep for later nights too. `build()` takes `only: "<date>"` for the
   one-day document, and without `docx` it returns the schedule alone (`doc` is null),
   which is what the on-screen sheet uses.
