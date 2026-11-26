@@ -541,6 +541,14 @@
         "Blue Bell Ice Cream",
         "Homemade Hot Fudge"
       ]
+    },
+    "lemon-icebox-pie": {
+      "name": "Lemon Icebox Pie with Homemade Sweetened Whipped Cream",
+      "short": "Lemon Icebox Pie",
+      "components": [
+        "Lemon Icebox Pie",
+        "Homemade Sweetened Whipped Cream"
+      ]
     }
   },
   "components": {
@@ -1237,6 +1245,15 @@
       "tasks": [
         "-7 hours, make brownies and keep warm",
         "0 hours, plate and serve"
+      ]
+    },
+    "Lemon Icebox Pie": {
+      "_note": "Chef, 2026-11-26: added to the planner as dessert #5 from FiveOaks_SOP_Lemon_Icebox_Pie (SOP/Dessert): two 9-inch pies, 8 slices each, 16 servings. Made at -1 day per the SOP's two-day plan (it allows up to 2 days ahead; holds 4 days counting the make day; do not freeze) and set at least 8 hours overnight. Chef's menu line is '#5 Lemon Icebox Pie with Homemade Whipped Cream', so the plate's cream comes from the shared Homemade Sweetened Whipped Cream rows, as on the cheesecake and bread pudding, in place of the SOP's own 357 g garnish cream. The SOP's lemon zest and 3 raspberries per plate stay.",
+      "course": "dessert",
+      "tasks": [
+        "-1 days, make the lemon icebox pies per SOP, chill overnight",
+        "-15 minutes, rinse raspberries; slice pies 8 per pie, hot knife",
+        "0 hours, pipe cream, zest, add 3 raspberries, serve"
       ]
     },
     "Blue Bell Ice Cream": {
