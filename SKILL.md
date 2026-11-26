@@ -62,7 +62,7 @@ under `appetizers`; the web app and the chat selection menu show them as buttons
 | Guests | Prints in every band so the cook knows how many steaks, slices, skillets |
 | Salad or soup | 1-4, see below, or `none` |
 | Meal | 1-5, see below |
-| Dessert | `skillet-cookie`, `cheesecake`, `bread-pudding`, `brownie`, or `none` |
+| Dessert | `skillet-cookie`, `cheesecake`, `bread-pudding`, `brownie`, `lemon-icebox-pie`, or `none` |
 
 | Salad or soup | Key | Earliest prep |
 |---|---|---|
@@ -515,6 +515,16 @@ which is the source of truth. Never re-import from the .docx, or they will be lo
   row, "make brownies and keep warm" at -7 hours (1:00 PM), plus its plating row. The
   -3 day thaw of frozen brownies and the -3 hour warm-oven hold came off. The Brown Butter
   Fudge Brownies SOP stays in SOP/Dessert but is no longer the planner's brownie.
+- **Lemon Icebox Pie** (Chef, 2026-11-26): the fifth dessert, `lemon-icebox-pie`, from
+  FiveOaks_SOP_Lemon_Icebox_Pie (SOP/Dessert): two 9-inch pies, 8 slices each, 16
+  servings. The pies are made at -1 day and chill overnight (the SOP's two-day plan; it
+  allows up to 2 days ahead, holds 4 days counting the make day, and does not freeze).
+  Raspberries are rinsed and the pies sliced with a hot knife at -15 minutes, then the
+  plate gets the cream, fresh zest, and 3 raspberries at 8:00 PM. Chef's menu line is
+  "Lemon Icebox Pie with Homemade Whipped Cream", so the cream comes from the shared
+  Homemade Sweetened Whipped Cream rows (as on the cheesecake and bread pudding), not the
+  SOP's own 357 g garnish cream. It's the lightest of the five desserts in the page-fit
+  sweep: 101 spill sheets of 506,250, against 102 to 437 for the other four.
 - **Prime Rib** (Chef, 2026-11-19, revising his 11/14 list, which replaced the 10/22 one):
   thaw -8 days, dry brine -4 days for 72 hours, sous vide -1 day for 12 hours, then out of
   the bath the same day (bag juices saved for the Red Wine Au Jus) and air dried overnight
